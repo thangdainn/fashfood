@@ -8,7 +8,7 @@ setInterval(function() {
         slides[i].style.display = 'block';
     }
     i++;
-    if (i == 4) {
+    if (i == 3) {
         i = 0;
     }
 }, 4000);

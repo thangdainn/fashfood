@@ -16,6 +16,16 @@ function showSignUp() {
     document.getElementById('sign-in').style.display = 'none';
 }
 
+function eventSignUp() {
+    document.getElementById('account__modal').style.display = 'flex';
+    showSignUp();
+}
+
+function eventSignIn() {
+    document.getElementById('account__modal').style.display = 'flex';
+    showSignIn();
+}
+
 function showPassword() {
     var icon = document.querySelector('.sign-up-showpass .show-hide');
     passwords.forEach(function(password) {

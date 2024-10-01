@@ -28,16 +28,13 @@
                     
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item">
-                            <a href="index.html?iphone" class="header__navbar-item-link">iPhone</a>
+                            <a href="index.html?chicken" class="header__navbar-item-link" data-value="chicken">Gà Rán</a>
                         </li>
                         <li class="header__navbar-item">
-                            <a href="index.html?ipad" class="header__navbar-item-link">iPad</a>
+                            <a href="index.html?side-dish" class="header__navbar-item-link" data-value="side-dish">Phần Ăn Phụ</a>
                         </li>
                         <li class="header__navbar-item">
-                            <a href="index.html?macbook" class="header__navbar-item-link">MacBook</a>
-                        </li>
-                        <li class="header__navbar-item">
-                            <a href="index.html?apple-watch" class="header__navbar-item-link">AppleWatch</a>
+                            <a href="index.html?drink" class="header__navbar-item-link" data-value="drink">Thức Uống</a>
                         </li>
                     </ul>
     
@@ -52,8 +49,12 @@
                         </div>
 
                         <div class="header__user-group">
-                            <div class="header__none-user" onclick="document.getElementById('account__modal').style.display='flex'">
+                            <div class="header__none-user" >
                                 <i class="fa-solid fa-user"></i>
+                                <div class="header__group-menu">
+                                    <div class="header__login" onclick="eventSignIn()">Đăng nhập</div>
+                                    <div class="header__register" onclick="eventSignUp()">Đăng ký</div>
+                                </div>
                             </div>
     
                             <div class="header__user">
@@ -159,7 +160,7 @@
                     
                     <div id="search-bar" class="header__searchbar">
                         <div class="header__searcbar-container">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-magnifying-glass" style="color: #333333;"></i>
                             <input id="search-info" type="text" class="header__search-input" placeholder="Nhập tên sản phẩm">
                             <span onclick="document.getElementById('search-bar').style.display='none'" class="header__searchbar-close">
                                 <i class="fa-solid fa-xmark"></i>
@@ -183,15 +184,13 @@
                 <div class="slide__box">
                     <img src="./img/slide/slide3.png" alt="" class="slide__img">
                 </div>
-                <div class="slide__box">
-                    <img src="./img/slide/silde4.png" alt="" class="slide__img">
-                </div>
             </div>
 
             <div class="grid wide">
                 <div class="product__header">
                     <div class="product__logo">
-                        <i class="product__logo-icon fa-brands fa-apple"></i>
+                        <i class="product__logo-icon fa fa-drumstick-bite"></i>
+                        <!-- <i class="fas fa-drumstick-bite"></i> -->
                         <span class="product__logo-name"></span>
                     </div>
                 </div>
