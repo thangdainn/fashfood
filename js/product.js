@@ -181,7 +181,7 @@ function showProduct(start) {
         productArray = products.filter(function(product) {
             return product.state == 'new';
         });
-        category = 'Món mới';
+        category = 'Tất cả';
     }
     localStorage.setItem('filterName', 'Tất cả');
 
@@ -193,7 +193,7 @@ function showProduct(start) {
     document.getElementById('body').style.display = 'block';
     document.querySelector('.product__logo-name').innerHTML = category;
     document.getElementById('show-product').innerHTML = arr.join('');
-    if (category != 'Món mới'){
+    if (category != 'Tất cả'){
         document.querySelector('.product__header').scrollIntoView();
     }
     

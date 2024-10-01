@@ -8,6 +8,8 @@
     right: 0;
     z-index: 1;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+    background: transparent !important;
+    backdrop-filter: blur(14px) !important;
 }
 
 .header__navbar {
@@ -18,12 +20,15 @@
 }
 
 .header__logo {
-    display: flex;
-    align-items: center;
+    font-size: 22px;
+    color: #1e1e27;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
-.header__logo-img {
-    width: 130px;
+.header__logo span {
+    color: #fe4c50;
 }
 
 .header__navbar-list {
