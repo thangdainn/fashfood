@@ -98,8 +98,9 @@ if (screen.width <= 1023) {
     }
 }
 
+// general pagination html in home page
 function showPagination(array) {
-    if (array.length > productPerPage) {
+    if (array.length > 0) {
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
@@ -121,12 +122,13 @@ function showPagination(array) {
     }
 }
 
+// general pagination filters html
 function showFilterPagination(array, category, filterName) {
-    if (array.length > productPerPage) {
+    if (array.length > 0) {
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
-        for (var i = 1; i <= pageNumber; i++) {
+        for (let i = 1; i <= pageNumber; i++) {
             s += `
                 <div class="pagination-item" onclick="showFilterProduct('${category}', '${filterName}', ${i})">
                     <span value="${i}" class="pagination-item__page">${i}</span>
@@ -142,6 +144,7 @@ function showFilterPagination(array, category, filterName) {
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }
+    
 }
 
 //search pagination
@@ -190,27 +193,3 @@ function showCategoryPagination(array, name) {
         nextBtn.style.display = 'none';
     }
 } 
-
-// Admin product pagination
-function showAdProductPagination(array) {
-    if (array.length > productPerPage) {
-        var pageNumber = Math.ceil(array.length / productPerPage);
-        localStorage.setItem('totalPage', pageNumber);
-        var s = '';
-        for (var i = 1; i <= pageNumber; i++) {
-            s += `
-                <div class="pagination-item" onclick="showAdminProduct(${i})">
-                    <span value="${i}" class="pagination-item__page">${i}</span>
-                </div>
-            `;
-        }
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
-        document.querySelector('.product__pagination-list').innerHTML = s;
-    } else {
-        localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-    }
-}

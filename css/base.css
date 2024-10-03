@@ -6,7 +6,7 @@
 
 html {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #3e3e3f;
+    background-color: #f3f3f3;
     scroll-behavior: smooth;
 }
 
@@ -65,8 +65,8 @@ html::-webkit-scrollbar-thumb,
 .toast {
     position: fixed;
     top: calc(var(--header-height) + 10px);
-    left: 50%;
-    transform: translateX(-50%);
+    right: 0;
+    /* transform: translateX(-50%); */
     z-index: 3;
 }
 
@@ -81,7 +81,7 @@ html::-webkit-scrollbar-thumb,
     min-width: 300px;
     max-width: 400px;
     margin-bottom: 24px;
-    animation: slideDown ease 0.5s, fadeOut linear 1s 1s forwards;
+    animation: toastSlideLeft ease 0.5s, fadeOut linear 1.8s 1s forwards;
 }
 
 .toast-message.success {

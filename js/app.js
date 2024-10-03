@@ -28,43 +28,52 @@ function converPriceToString(price) {
 }
 
 // sửa thành tên chuẩn
-renderProductName();
-function renderProductName() {
-    var products = JSON.parse(localStorage.getItem('products'));
-    for (var i = 0; i < products.length; i++) {
-        products[i].name = renderString(products[i].name);
-        products[i].category = renderString(products[i].category);
-        products[i].detailCategory = renderString(products[i].detailCategory);
-    }
-    localStorage.setItem('products', JSON.stringify(products));
-}
+// renderProductName();
+// function renderProductName() {
+//     var products = JSON.parse(localStorage.getItem('products'));
+//     for (var i = 0; i < products.length; i++) {
+//         products[i].name = renderString(products[i].name);
+//         products[i].category = renderString(products[i].category);
+//         products[i].detailCategory = renderString(products[i].detailCategory);
+//     }
+//     localStorage.setItem('products', JSON.stringify(products));
+// }
 
-function ReName(name) {
-    if (name == 'iphone') {
-        name = 'iPhone'
-    } else if (name == 'ipad') {
-        name = 'iPad';
-    } else if (name == 'macbook') {
-        name = 'MacBook';
-    } else if (name == 'apple-watch' || name == 'apple watch') {
-        name = 'Apple Watch';
+function reNameCategory(name) {
+    if (name == 'chicken') {
+        name = 'Gà rán';
+    } else if (name == 'drink') {
+        name = 'Thức uống';
+    } else if (name == 'side-dish') {
+        name = 'Phần ăn phụ';
     }
     return name;
 }
 
-function UpperCaseFirstCharacter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function renderString(name) {
-    var tmp = name.split(' ');
-    tmp[0] = ReName(tmp[0]);
-    for (var i = 1; i < tmp.length; i++) {
-        tmp[i] = UpperCaseFirstCharacter(tmp[i]);
+function prevNameCategory(name) {
+    if (name == 'Gà rán') {
+        name = 'chicken';
+    } else if (name == 'Thức uống') {
+        name = 'drink';
+    } else if (name == 'Phần ăn phụ') {
+        name = 'side-dish';
     }
-    name = tmp.join(' ');
     return name;
 }
+
+// function UpperCaseFirstCharacter(str) {
+//     return str.charAt(0).toUpperCase() + str.slice(1);
+// }
+
+// function renderString(name) {
+//     var tmp = name.split(' ');
+//     tmp[0] = ReName(tmp[0]);
+//     for (var i = 1; i < tmp.length; i++) {
+//         tmp[i] = UpperCaseFirstCharacter(tmp[i]);
+//     }
+//     name = tmp.join(' ');
+//     return name;
+// }
 
 // tạo mảng tạm lưu số sản phẩm 1 trang
 function createTempArray(start, array) {

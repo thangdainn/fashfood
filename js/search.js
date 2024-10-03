@@ -2,15 +2,6 @@ var searchProduct = [];
 var search = document.getElementById('search-info');
 var products = JSON.parse(localStorage.getItem('products'));
 
-getNewLabel();
-function getNewLabel() {
-    for (var i = 0; i < products.length; i++) {
-        if (products[i].state == 'new')
-            products[i]['label'] = 'product__item-new-label';
-        else
-            products[i]['label'] = 'no-label';
-    }
-}
 
 search.addEventListener('keyup', function(event) {
     if (event.keyCode == 13 && search.value.length > 0) {
@@ -39,7 +30,7 @@ function showCategory() {
     categoryList = [...new Set(categoryList)];
 
     for (var i = 0; i < categoryList.length; i++) {
-        categoryList[i] = ReName(categoryList[i]);
+        categoryList[i] = reNameCategory(categoryList[i]);
     }
 
     if (categoryList.length > 1) {
@@ -51,7 +42,7 @@ function showCategory() {
         var html = categoryList.map(function(category) {
             return `
                 <li class="product__filter-item">
-                    <button class="product__filter-item-btn" onclick="showCategoryProduct('${category.toLowerCase().replaceAll(' ', '-')}', 1)">${category}</button>
+                    <button class="product__filter-item-btn" onclick="showCategoryProduct('${prevNameCategory(category)}', 1)">${category}</button>
                 </li>
             `;
         });
@@ -78,7 +69,7 @@ function showCurrentCategory(name) {
 function showCategoryProduct(name, start) {
     var tmpArray = JSON.parse(localStorage.getItem('searchProduct'));
     var categoryProduct = tmpArray.filter(function(product) {
-        return product.category.toLowerCase().replaceAll(' ', '') == name.toLowerCase().replaceAll('-', '');
+        return product.category == name;
     });
     localStorage.setItem('categoryName', name);
 
@@ -116,7 +107,6 @@ function showSearchProduct(start) {
             </div>
         `;   
     } else {
-        // searchProduct = JSON.parse(localStorage.getItem('searchProduct'));
         search.value = localStorage.getItem('search');
         localStorage.setItem('categoryName', 'Tất cả');
 
