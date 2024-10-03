@@ -153,9 +153,12 @@ function showProduct(start) {
         productArray = products.filter(function(product) {
             return product.category == category;
         });
+        document.querySelector('.slider').style.display = 'none';
+
         showCurrentNavbar(category);
         showFilter(category);
     } else {
+        document.querySelector('.slider').style.display = 'block';
         productArray = products.filter(function(product) {
             return product.state == 'new';
         });
@@ -169,7 +172,7 @@ function showProduct(start) {
 
     var arr = createTempArray(start, productArray); //tạo mảng tạm chứa sản phẩm ở trang hiện tại
     document.getElementById('body').style.display = 'block';
-    document.querySelector('.product__logo-name').innerHTML = category;
+    // document.querySelector('.product__logo-name').innerHTML = category;
     document.getElementById('show-product').innerHTML = arr.join('');
     if (category != 'Món mới'){
         document.querySelector('.product__header').scrollIntoView();

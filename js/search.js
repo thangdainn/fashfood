@@ -107,6 +107,8 @@ function showSearchProduct(start) {
             </div>
         `;   
     } else {
+        document.querySelector('.slider').style.display = 'none';
+
         search.value = localStorage.getItem('search');
         localStorage.setItem('categoryName', 'Tất cả');
 
