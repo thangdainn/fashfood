@@ -1,9 +1,9 @@
-var modalBody = document.querySelector('.modal-body');
+var ModelBody = document.querySelector('.Model-body');
 var signUp = document.getElementById('sign-up-btn');
 var signIn = document.getElementById('sign-in-btn');
 
-modalBody.addEventListener('click', function(event) {
-    event.stopPropagation();        // ấn vô khung modal body sẽ kh bị tắt
+ModelBody.addEventListener('click', function(event) {
+    event.stopPropagation();        // ấn vô khung Model body sẽ kh bị tắt
 });
 
 function showSignIn() {
@@ -17,12 +17,12 @@ function showSignUp() {
 }
 
 function eventSignUp() {
-    document.getElementById('account__modal').style.display = 'flex';
+    document.getElementById('account_Model').style.display = 'flex';
     showSignUp();
 }
 
 function eventSignIn() {
-    document.getElementById('account__modal').style.display = 'flex';
+    document.getElementById('account_Model').style.display = 'flex';
     showSignIn();
 }
 
@@ -128,9 +128,9 @@ function LogOut() {
 }
 
 // show user
-var noneUser = document.querySelector('.header__none-user');
-var user =  document.querySelector('.header__user');
-var admin = document.querySelector('.header__admin');
+var noneUser = document.querySelector('.header_none-user');
+var user =  document.querySelector('.header_user');
+var admin = document.querySelector('.header_admin');
 var index;
 
 function showUserGroup(name, name1, name2) { 
@@ -146,7 +146,7 @@ if (isLogIn == 1) {
     if (userAccount[index].type == 'admin') {
         showUserGroup(admin, noneUser, user);
     } else {
-        var changeUserName = document.querySelector('.header__user .header__user-name');
+        var changeUserName = document.querySelector('.header_user .header_user-name');
         changeUserName.innerHTML = userAccount[index].userName;
         showUserGroup(user, noneUser, admin);
     }

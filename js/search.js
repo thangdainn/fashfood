@@ -6,7 +6,7 @@ getNewLabel();
 function getNewLabel() {
     for (var i = 0; i < products.length; i++) {
         if (products[i].state == 'new')
-            products[i]['label'] = 'product__item-new-label';
+            products[i]['label'] = 'product_item-new-label';
         else
             products[i]['label'] = 'no-label';
     }
@@ -44,32 +44,32 @@ function showCategory() {
 
     if (categoryList.length > 1) {
         var s = `
-            <li class="product__filter-item">
-                <button class="product__filter-item-btn product__filter-item-btn--active" onclick="showSearchProduct(1)">Tất cả</button>
+            <li class="product_filter-item">
+                <button class="product_filter-item-btn product_filter-item-btn--active" onclick="showSearchProduct(1)">Tất cả</button>
             </li>
         `;
         var html = categoryList.map(function(category) {
             return `
-                <li class="product__filter-item">
-                    <button class="product__filter-item-btn" onclick="showCategoryProduct('${category.toLowerCase().replaceAll(' ', '-')}', 1)">${category}</button>
+                <li class="product_filter-item">
+                    <button class="product_filter-item-btn" onclick="showCategoryProduct('${category.toLowerCase().replaceAll(' ', '-')}', 1)">${category}</button>
                 </li>
             `;
         });
         s = s + html.join('');
-        document.querySelector('.product__filter').innerHTML = s;
+        document.querySelector('.product_filter').innerHTML = s;
     } else {
-        document.querySelector('.product__filter').innerHTML = '';
+        document.querySelector('.product_filter').innerHTML = '';
     }
 }
 
 function showCurrentCategory(name) {
-    var currentFilter = document.querySelectorAll('.product__filter-item-btn');
+    var currentFilter = document.querySelectorAll('.product_filter-item-btn');
     for (var i = 0; i < currentFilter.length; i++) {
-        currentFilter[i].classList.remove('product__filter-item-btn--active');
+        currentFilter[i].classList.remove('product_filter-item-btn--active');
     }
     for (var i = 0; i < currentFilter.length; i++) {
         if (currentFilter[i].innerText.toLowerCase() == name.replaceAll('-', ' ')) {
-            currentFilter[i].classList.add('product__filter-item-btn--active');
+            currentFilter[i].classList.add('product_filter-item-btn--active');
             break;
         }
     }
@@ -88,7 +88,7 @@ function showCategoryProduct(name, start) {
     
     var arr = createTempArray(start, categoryProduct);
     document.getElementById('show-product').innerHTML = arr.join('');
-    document.querySelector('.product__header').scrollIntoView();
+    document.querySelector('.product_header').scrollIntoView();
 
     // Xử lý page
     Pagination();
@@ -101,16 +101,16 @@ function showSearchProduct(start) {
     searchProduct = JSON.parse(localStorage.getItem('searchProduct'));
     if (!searchProduct || searchProduct.length == 0) {
         document.getElementById('body').style.display = 'none';
-        document.getElementById('search__empty').innerHTML = `
+        document.getElementById('search_empty').innerHTML = `
             <div class="grid wide">
-                <p class="search__empty-notice">Không tìm thấy kết quả nào phù hợp với từ khóa "${localStorage.getItem('search')}"</p>
-                <div class="search__empty-box">
-                    <ul class="search__empty-list">
-                        <h3 class="search__empty-list-heading">Để tìm được kết quả chính xác hơn, bạn vui lòng:</h3>
-                        <li class="search__empty-item">Kiểm tra lỗi chính tả của từ khóa đã nhập</li>
-                        <li class="search__empty-item">Thử lại bằng từ khóa khác</li>
-                        <li class="search__empty-item">Thử lại bằng những từ khóa tổng quát hơn</li>
-                        <li class="search__empty-item">Thử lại bằng những từ khóa ngắn gọn hơn</li>
+                <p class="search_empty-notice">Không tìm thấy kết quả nào phù hợp với từ khóa "${localStorage.getItem('search')}"</p>
+                <div class="search_empty-box">
+                    <ul class="search_empty-list">
+                        <h3 class="search_empty-list-heading">Để tìm được kết quả chính xác hơn, bạn vui lòng:</h3>
+                        <li class="search_empty-item">Kiểm tra lỗi chính tả của từ khóa đã nhập</li>
+                        <li class="search_empty-item">Thử lại bằng từ khóa khác</li>
+                        <li class="search_empty-item">Thử lại bằng những từ khóa tổng quát hơn</li>
+                        <li class="search_empty-item">Thử lại bằng những từ khóa ngắn gọn hơn</li>
                     </ul>
                 </div>
             </div>
@@ -120,7 +120,7 @@ function showSearchProduct(start) {
         search.value = localStorage.getItem('search');
         localStorage.setItem('categoryName', 'Tất cả');
 
-        document.querySelector('.product__logo-name').innerHTML = `Tìm thấy các sản phẩm có từ khóa "${search.value}"`;
+        document.querySelector('.product_logo-name').innerHTML = `Tìm thấy các sản phẩm có từ khóa "${search.value}"`;
         showCategory();
         showSearchPagination(searchProduct);
         showCurrentPage(start);
@@ -130,7 +130,7 @@ function showSearchProduct(start) {
         document.getElementById('show-product').innerHTML = arr.join(''); 
         document.getElementById('search-info').value = ''; //reset search input
 
-        document.querySelector('.product__header').scrollIntoView();
+        document.querySelector('.product_header').scrollIntoView();
 
         // Xử lý page
         Pagination();

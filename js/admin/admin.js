@@ -1,9 +1,9 @@
-var productPage = document.querySelector('.admin__product');
-var orderPage = document.querySelector('.admin__order');
-var statisticsPage = document.querySelector('.admin__statis');
-var userPage = document.querySelector('.admin__user');
-var contentBtn = document.querySelectorAll('.side-bar__item');
-var content = document.querySelector('.admin__content');
+var productPage = document.querySelector('.admin_product');
+var orderPage = document.querySelector('.admin_order');
+var statisticsPage = document.querySelector('.admin_statis');
+var userPage = document.querySelector('.admin_user');
+var contentBtn = document.querySelectorAll('.sidebar_item');
+var content = document.querySelector('.admin_content');
 
 function showCurrentContent(name) {
     var index;
@@ -27,25 +27,25 @@ function LogOut() {
     window.location.href = 'index.html';
 }
 
-// Tránh đóng modal khi thao tác trên modal-body
-var modalBodies = document.querySelectorAll('.modal-body');
+// Tránh đóng Model khi thao tác trên Model-body
+var ModelBodies = document.querySelectorAll('.Model-body');
 
-modalBodies.forEach(function(modalBody) {
-    modalBody.addEventListener('click', function(event) {
+ModelBodies.forEach(function(ModelBody) {
+    ModelBody.addEventListener('click', function(event) {
         event.stopPropagation();
     })
 })
 
 // Hủy delete
-function cacelDelete() {
-    productControlModal.style.display = 'none';
-    userControlModal.style.display = 'none';
+function cancelDelete() {
+    productControlModel.style.display = 'none';
+    userControlModel.style.display = 'none';
 }
 
 // Side bar
-var switchBtn = document.querySelector('.side-bar-switch');
-var sideBar = document.querySelector('.side-bar');
+var switchBtn = document.querySelector('.sidebar-switch');
+var sideBar = document.querySelector('.sidebar');
 
 switchBtn.addEventListener('click', function() {
-    sideBar.classList.toggle('side-bar--close');
+    sideBar.classList.toggle('sidebar--close');
 });

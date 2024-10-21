@@ -1,32 +1,32 @@
 var showCart = document.querySelector('.cart');
 var showOrder = document.querySelector('.order');
-var notUser = document.querySelector('.header__none-user');
-var showcartQuantity = document.querySelector('.header__cart-quantity');
+var notUser = document.querySelector('.header_none-user');
+var showcartQuantity = document.querySelector('.header_cart-quantity');
 var mobileQuantity = document.querySelector('.mobile-cart-quantity');
 
 function htmlCartProduct(product) {  
     var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
     var html = `
-        <li class="cart__product-item">
-            <div class="cart__product-box">
-                <div class="cart__product-img-box">
-                    <img class="cart__product-img" src="${product.img}">
-                    <button class="cart__product-delete" onclick="removeProduct('${tmpName}')">
-                        <i class="cart__product-delete-icon fa-solid fa-xmark"></i>
+        <li class="cart_product-item">
+            <div class="cart_product-box">
+                <div class="cart_product-img-box">
+                    <img class="cart_product-img" src="${product.img}">
+                    <button class="cart_product-delete" onclick="removeProduct('${tmpName}')">
+                        <i class="cart_product-delete-icon fa-solid fa-xmark"></i>
                         Xóa
                     </button>
                 </div>
-                <div class="cart__product-info-box">
-                    <p class="cart__procduct-name">${product.name}</p>
-                    <div class="cart__product-price-box">
-                        <div class="cart__prodcut-price">
-                            <p class="cart__product-current-price">${product.currentPrice}</p>
-                            <p class="cart__product-old-price">${product.oldPrice}</p>
+                <div class="cart_product-info-box">
+                    <p class="cart_procduct-name">${product.name}</p>
+                    <div class="cart_product-price-box">
+                        <div class="cart_prodcut-price">
+                            <p class="cart_product-current-price">${product.currentPrice}</p>
+                            <p class="cart_product-old-price">${product.oldPrice}</p>
                         </div>
-                        <div class="cart__product-quantity-box">
-                            <button class="cart_product-minus cart__product-quantity-btn" onclick="minusProduct('${tmpName}')">-</button>
-                            <span value="${product.quantity}" class="cart__product-quantity">${product.quantity}</span>
-                            <button class="cart_product-plus cart__product-quantity-btn" onclick="plusProduct('${tmpName}')">+</button>
+                        <div class="cart_product-quantity-box">
+                            <button class="cart_product-minus cart_product-quantity-btn" onclick="minusProduct('${tmpName}')">-</button>
+                            <span value="${product.quantity}" class="cart_product-quantity">${product.quantity}</span>
+                            <button class="cart_product-plus cart_product-quantity-btn" onclick="plusProduct('${tmpName}')">+</button>
                         </div>
                     </div>
                 </div>
@@ -43,11 +43,11 @@ function htmlOrderProduct(orderItem, array) {
     var productList = '';
     for (var i = 0; i < array.length; i++) {
         productList += `
-            <li class="order__item">
-                <img src="${array[i].img}" alt="" class="order__item-img">
-                <span class="order__item-name">${array[i].name}</span>
-                <span class="order__item-price">${array[i].currentPrice}</span>
-                <span class="order__item-quantity">${array[i].quantity}</span>
+            <li class="order_item">
+                <img src="${array[i].img}" alt="" class="order_item-img">
+                <span class="order_item-name">${array[i].name}</span>
+                <span class="order_item-price">${array[i].currentPrice}</span>
+                <span class="order_item-quantity">${array[i].quantity}</span>
             </li>
         `;
         quantity += array[i].quantity;
@@ -63,29 +63,29 @@ function htmlOrderProduct(orderItem, array) {
     }
 
     var html = `
-        <div class="order__box">
-            <div class="order__box-title" onclick="showOrderProduct(${orderItem.orderID})">
-                <div class="order__box-item">
+        <div class="order_box">
+            <div class="order_box-title" onclick="showOrderProduct(${orderItem.orderID})">
+                <div class="order_box-item">
                     <i class="uil uil-arrow-down"></i>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Đơn hàng #${orderItem.orderID}</h3>
                     <span>${quantity} sản phẩm</span>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Tổng tiền</h3>
                     <span>${total}</span>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Ngày đặt hàng</h3>
                     <span>${orderItem.orderDate}</span>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <span class="status ${status}">${statusText}</span>
                 </div>
             </div>
 
-            <ul class="order__list scrollbar" value="${orderItem.orderID}">
+            <ul class="order_list scrollbar" value="${orderItem.orderID}">
                 ${productList}
             </ul>
         </div>
@@ -103,7 +103,7 @@ function showCartPage() {
     if (notUser.style.display == 'block') {
         showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để xem giỏ hàng!');
         setTimeout(function() {
-            document.getElementById('account__modal').style.display = 'flex';
+            document.getElementById('account_Model').style.display = 'flex';
         }, 1000);
     } else {
         window.location.href = 'index.html?cart';
@@ -115,7 +115,7 @@ var userAccount = JSON.parse(localStorage.getItem('userAccount'));
 var index = localStorage.userAccountIndex;
 
 function addToCart() {
-    var addCartBtn = document.querySelector('.product__detail-add-cart');
+    var addCartBtn = document.querySelector('.product_detail-add-cart');
     var productName = getProductName();
 
     var cartProduct = products.find(function(product) {
@@ -127,7 +127,7 @@ function addToCart() {
         if (notUser.style.display == 'block') {
             showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để thêm thêm vào giỏ!');
             setTimeout(function() {
-                document.getElementById('account__modal').style.display = 'flex';
+                document.getElementById('account_Model').style.display = 'flex';
             }, 1000);
         } else {
             showToast('success', 'Thành công!', 'Thêm vào giỏ thành công!');
@@ -149,8 +149,8 @@ function updateCartProduct(name) {
     }) 
     
     if (userAccount[index].cartList.length == 0) {
-        document.querySelector('.cart__wrapper').style.display = 'none';
-        document.querySelector('.cart__empty').style.display = 'block';
+        document.querySelector('.cart_wrapper').style.display = 'none';
+        document.querySelector('.cart_empty').style.display = 'block';
     } 
     
     showCartQuantity();
@@ -170,8 +170,8 @@ function removeProduct(name) {
         return htmlCartProduct(product);
     });
 
-    document.querySelector('.cart__product-list').innerHTML = html.join('');
-    document.querySelector('.cart__product-total-price').innerHTML = getTotalPrice(newArray);
+    document.querySelector('.cart_product-list').innerHTML = html.join('');
+    document.querySelector('.cart_product-total-price').innerHTML = getTotalPrice(newArray);
 
     updateCartProduct(name);
     userAccount[index].cartList = newArray;
@@ -266,18 +266,18 @@ function showCartProduct() {
     }
 
     if (tmpArray != null) {
-        document.querySelector('.cart__wrapper').style.display = 'block';
-        document.querySelector('.cart__empty').style.display = 'none';
+        document.querySelector('.cart_wrapper').style.display = 'block';
+        document.querySelector('.cart_empty').style.display = 'none';
         
         var html = tmpArray.map(function(product) {
             return htmlCartProduct(product);
         });
 
-        document.querySelector('.cart__product-list').innerHTML = html.join('');
-        document.querySelector('.cart__product-total-price').innerHTML = getTotalPrice(tmpArray);
+        document.querySelector('.cart_product-list').innerHTML = html.join('');
+        document.querySelector('.cart_product-total-price').innerHTML = getTotalPrice(tmpArray);
     } else {
-        document.querySelector('.cart__wrapper').style.display = 'none';
-        document.querySelector('.cart__empty').style.display = 'block';
+        document.querySelector('.cart_wrapper').style.display = 'none';
+        document.querySelector('.cart_empty').style.display = 'block';
     }
 }
 
@@ -305,8 +305,8 @@ function showOrderPage() {
     showOrder.style.display = 'block';
     
     if (checkUser()) {
-        document.querySelector('.order__wrapper').style.display = 'block';
-        document.querySelector('.order__empty').style.display = 'none';
+        document.querySelector('.order_wrapper').style.display = 'block';
+        document.querySelector('.order_empty').style.display = 'none';
         
         var html = orderList.map(function(orderItem) {
             if(orderItem.userAccount.userEmail == userAccount[index].userEmail) {
@@ -317,8 +317,8 @@ function showOrderPage() {
 
         document.querySelector('.show-order').innerHTML = html.join('');
     } else {
-        document.querySelector('.order__wrapper').style.display = 'none';
-        document.querySelector('.order__empty').style.display = 'block';
+        document.querySelector('.order_wrapper').style.display = 'none';
+        document.querySelector('.order_empty').style.display = 'block';
     }
 }
 
@@ -417,7 +417,7 @@ function orderProduct() {
 
 //show order product
 function showOrderProduct(id) {
-    var orderProducts = document.querySelectorAll('.order__list');
+    var orderProducts = document.querySelectorAll('.order_list');
     var showProduct;
     for (var i = 0; i < orderProducts.length; i++) {
         if (orderProducts[i].getAttribute('value') == id) {

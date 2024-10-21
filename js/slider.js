@@ -1,4 +1,4 @@
-var slides = document.querySelectorAll('.slide__box');
+var slides = document.querySelectorAll('.slide_box');
 var i = 1;
 setInterval(function() {
     slides.forEach(function(slide) {

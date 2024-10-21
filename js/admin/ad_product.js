@@ -1,5 +1,5 @@
 var products = JSON.parse(localStorage.getItem('products'));
-var productList = document.querySelector('.admin__product-list tbody');
+var productList = document.querySelector('.admin_product-list tbody');
 
 function htmlAdminProduct(product) {
     if (product.oldPrice == '') {
@@ -11,7 +11,7 @@ function htmlAdminProduct(product) {
     tmpName = tmpName.replaceAll(' ', '-');
 
     var html = `
-        <tbody class="admin__product-item">
+        <tbody class="admin_product-item">
             <tr>
                 <td>
                     <img src="${product.img}" alt="">
@@ -23,10 +23,10 @@ function htmlAdminProduct(product) {
                 <td>${product.oldPrice}</td>
                 <td>${product.currentPrice}</td>
                 <td>
-                    <span class="edit-product" onclick="showEditModal('${tmpName}')">
+                    <span class="edit-product" onclick="showEditModel('${tmpName}')">
                         <i class="uil uil-edit"></i>
                     </span>
-                    <span class="delete-product" onclick="showDeleteModal('${tmpName}')">
+                    <span class="delete-product" onclick="showDeleteModel('${tmpName}')">
                         <i class="uil uil-trash-alt"></i>
                     </span>
                 </td>
@@ -48,16 +48,16 @@ function showAdminProduct(start) {
     orderPage.style.display = 'none';
     productPage.style.display = 'block';
     
-    document.querySelector('.admin__content-header h3').innerHTML = 'Quản lý sản phẩm';
+    document.querySelector('.admin_content-header h3').innerHTML = 'Quản lý sản phẩm';
     productList.innerHTML = arr.join('');
-    document.querySelector('.admin__content-header').scrollIntoView();
+    document.querySelector('.admin_content-header').scrollIntoView();
 
     //Xử lý pagination
     Pagination();
 }
 
 // Search
-var searchInfo = document.querySelector('.admin__product-search-input');
+var searchInfo = document.querySelector('.admin_product-search-input');
 
 searchInfo.addEventListener('keyup', function() {
     if (searchInfo.value != '') {
@@ -71,20 +71,20 @@ searchInfo.addEventListener('keyup', function() {
         })
         productList.innerHTML = html;
     
-        document.querySelector('.product__pagination').style.display = 'none';
+        document.querySelector('.product_pagination').style.display = 'none';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     } else {
-        document.querySelector('.product__pagination').style.display = 'flex';
+        document.querySelector('.product_pagination').style.display = 'flex';
         showAdminProduct(1);
     }
 })
 
 // Product control
-var productControlModal = document.getElementById('product-control-modal');
-var addModal = document.getElementById('add-product');
-var editModal = document.getElementById('edit-product');
-var deleteProductModal = document.getElementById('delete-product');
+var productControlModel = document.getElementById('product-control-Model');
+var addModel = document.getElementById('add-product');
+var editModel = document.getElementById('edit-product');
+var deleteProductModel = document.getElementById('delete-product');
 
 // Add product
 var uploadBox = document.querySelector('#add-product .upload-box');
@@ -93,11 +93,11 @@ var addProductImg = document.querySelector('#add-product .upload-img');
 var openFileBtn = document.querySelector('#add-product #open-file');
 var deleteBtn = document.querySelector('.upload-box .close');
 
-function showAddModal() {
-    productControlModal.style.display = 'flex';
-    addModal.style.display = 'block';
-    editModal.style.display = 'none';
-    deleteProductModal.style.display = 'none';
+function showAddModel() {
+    productControlModel.style.display = 'flex';
+    addModel.style.display = 'block';
+    editModel.style.display = 'none';
+    deleteProductModel.style.display = 'none';
 }
 
 function openFileBtnActive() {
@@ -164,7 +164,7 @@ function addProduct() {
         products.push({id: productID, category: productCategory, name: productName, img: productImg, currentPrice: productCurrentPrice, oldPrice: productOldPrice, detailCategory: productDetailCategory});
         localStorage.setItem('products', JSON.stringify(products));
         document.querySelector('.error.id').innerHTML = '';
-        productControlModal.style.display = 'none';
+        productControlModel.style.display = 'none';
         showToast('success', 'Thành công!', `Thêm sản phẩm ${productID} thành công`);
         showAdminProduct(1);
         resetForm();
@@ -182,11 +182,11 @@ var productOldPrice = document.querySelector('#edit-product #product-old-price')
 var productCurrentPrice = document.querySelector('#edit-product #product-current-price');
 var editIndex;
 
-function showEditModal(name) {
-    productControlModal.style.display = 'flex';
-    editModal.style.display = 'block';
-    addModal.style.display = 'none';
-    deleteProductModal.style.display = 'none';
+function showEditModel(name) {
+    productControlModel.style.display = 'flex';
+    editModel.style.display = 'block';
+    addModel.style.display = 'none';
+    deleteProductModel.style.display = 'none';
     
     for (var i = 0; i < editUploadBox.length; i++) {
         editUploadBox[i].classList.add('active');
@@ -259,7 +259,7 @@ function editProductInfo() {
     products[editIndex].oldPrice = converPriceToString(productOldPrice.value);
     products[editIndex].currentPrice = converPriceToString(productCurrentPrice.value);
     localStorage.setItem('products', JSON.stringify(products));
-    productControlModal.style.display = 'none';
+    productControlModel.style.display = 'none';
     showToast('success', 'Thành công!', `Đã lưu thông tin mới của sản phẩm ${products[editIndex].id}`);
     showAdminProduct(1);
 }
@@ -267,18 +267,18 @@ function editProductInfo() {
 // Delete control
 var deleteIndex;
 
-function showDeleteModal(name) {
-    productControlModal.style.display = 'flex';
-    deleteProductModal.style.display = 'block';
-    addModal.style.display = 'none';
-    editModal.style.display = 'none';
+function showDeleteModel(name) {
+    productControlModel.style.display = 'flex';
+    deleteProductModel.style.display = 'block';
+    addModel.style.display = 'none';
+    editModel.style.display = 'none';
 
     var productInfo = products.find(function(product, index) {
         deleteIndex = index;
         return product.name.replace('"', '').replaceAll(' ', '-') == name;
     });
 
-    document.querySelector('#delete-product .delete-form__question').innerHTML = `Bạn có muốn xóa sản phẩm "${productInfo.name}" không ?`;
+    document.querySelector('#delete-product .delete-form_question').innerHTML = `Bạn có muốn xóa sản phẩm "${productInfo.name}" không ?`;
 }
 
 function deleteProduct() {
@@ -288,7 +288,7 @@ function deleteProduct() {
     }
     products.length--;
     localStorage.setItem('products', JSON.stringify(products));
-    productControlModal.style.display = 'none';
+    productControlModel.style.display = 'none';
     showToast('success', 'Thành công', `Xóa thành công sản phẩm ${tmpProduct.name}`);
     showAdminProduct(1);
 }

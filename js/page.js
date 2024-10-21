@@ -22,7 +22,7 @@ prevBtn.addEventListener('click', function() {
                 showProduct(--number);
             }   
         }
-        document.querySelector('.product__header').scrollIntoView();
+        document.querySelector('.product_header').scrollIntoView();
     }
 })
 
@@ -48,7 +48,7 @@ nextBtn.addEventListener('click', function() {
                 showProduct(++number);
             }
         }
-        document.querySelector('.product__header').scrollIntoView();
+        document.querySelector('.product_header').scrollIntoView();
     }
 })
 
@@ -68,7 +68,7 @@ function showCurrentPage(number) {
 function Pagination() {
     var totalPage = localStorage.getItem('totalPage');
     if (totalPage > 0) {
-        var currentPage = document.querySelector('.pagination-item--active .pagination-item__page');
+        var currentPage = document.querySelector('.pagination-item--active .pagination-item_page');
         localStorage.setItem('currentPage', currentPage.getAttribute('value'));
 
         if (currentPage.getAttribute('value') == 1) {
@@ -106,16 +106,16 @@ function showPagination(array) {
         for (var i = 1; i <= pageNumber; i++) {
             s += `
                 <div class="pagination-item" onclick="showProduct(${i})">
-                    <span value="${i}" class="pagination-item__page">${i}</span>
+                    <span value="${i}" class="pagination-item_page">${i}</span>
                 </div>
             `;
         }
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'block';
-        document.querySelector('.product__pagination-list').innerHTML = s;
+        document.querySelector('.product_pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
+        document.querySelector('.product_pagination-list').innerHTML = '';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }
@@ -129,16 +129,16 @@ function showFilterPagination(array, category, filterName) {
         for (var i = 1; i <= pageNumber; i++) {
             s += `
                 <div class="pagination-item" onclick="showFilterProduct('${category}', '${filterName}', ${i})">
-                    <span value="${i}" class="pagination-item__page">${i}</span>
+                    <span value="${i}" class="pagination-item_page">${i}</span>
                 </div>
             `;
         }
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'block';
-        document.querySelector('.product__pagination-list').innerHTML = s;
+        document.querySelector('.product_pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
+        document.querySelector('.product_pagination-list').innerHTML = '';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }
@@ -153,16 +153,16 @@ function showSearchPagination(array) {
         for (var i = 1; i <= pageNumber; i++) {
             s += `
                 <div class="pagination-item" onclick="showSearchProduct(${i})">
-                    <span value="${i}" class="pagination-item__page">${i}</span>
+                    <span value="${i}" class="pagination-item_page">${i}</span>
                 </div>
             `;
         }
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'block';
-        document.querySelector('.product__pagination-list').innerHTML = s;
+        document.querySelector('.product_pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
+        document.querySelector('.product_pagination-list').innerHTML = '';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }
@@ -176,16 +176,16 @@ function showCategoryPagination(array, name) {
         for (var i = 1; i <= pageNumber; i++) {
             s += `
                 <div class="pagination-item" onclick="showCategoryProduct('${name}', ${i})">
-                    <span value="${i}" class="pagination-item__page">${i}</span>
+                    <span value="${i}" class="pagination-item_page">${i}</span>
                 </div>
             `;
         }
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'block';
-        document.querySelector('.product__pagination-list').innerHTML = s;
+        document.querySelector('.product_pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
+        document.querySelector('.product_pagination-list').innerHTML = '';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }
@@ -200,16 +200,16 @@ function showAdProductPagination(array) {
         for (var i = 1; i <= pageNumber; i++) {
             s += `
                 <div class="pagination-item" onclick="showAdminProduct(${i})">
-                    <span value="${i}" class="pagination-item__page">${i}</span>
+                    <span value="${i}" class="pagination-item_page">${i}</span>
                 </div>
             `;
         }
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'block';
-        document.querySelector('.product__pagination-list').innerHTML = s;
+        document.querySelector('.product_pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
+        document.querySelector('.product_pagination-list').innerHTML = '';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }

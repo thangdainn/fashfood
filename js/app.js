@@ -40,14 +40,12 @@ function renderProductName() {
 }
 
 function ReName(name) {
-    if (name == 'iphone') {
-        name = 'iPhone'
-    } else if (name == 'ipad') {
-        name = 'iPad';
-    } else if (name == 'macbook') {
-        name = 'MacBook';
-    } else if (name == 'apple-watch' || name == 'apple watch') {
-        name = 'Apple Watch';
+    if (name == 'chicken') {
+        name = 'Gà rán';
+    } else if (name == 'drink') {
+        name = 'Thức uống';
+    } else if (name == 'side-dish') {
+        name = 'Phần ăn phụ';
     }
     return name;
 }
@@ -110,11 +108,11 @@ function showToast(type, title, message) {
 
         toast.innerHTML = `
             <div class="toast-message ${type}">
-                <div class="toast__icon">
+                <div class="toast_icon">
                     <i class="${icon}"></i>
                 </div>
 
-                <div class="toast__body">
+                <div class="toast_body">
                     <h3>${title}</h3>
                     <p>${message}</p>
                 </div>
@@ -130,9 +128,9 @@ function showToast(type, title, message) {
 // Xử lý mobile&tablet menu
 var userAccount = JSON.parse(localStorage.getItem('userAccount'));
 var index = localStorage.userAccountIndex;
-var showMobileMenu = document.querySelector('.mobile__menu-btn');
-var hideMobileMenu = document.querySelector('.mobile__list .close');
-var MobileMenuPage = document.querySelector('.mobile__list');
+var showMobileMenu = document.querySelector('.mobile_menu-btn');
+var hideMobileMenu = document.querySelector('.mobile_list .close');
+var MobileMenuPage = document.querySelector('.mobile_list');
 var MobileOverlay = document.querySelector('.mobile-overlay');
 var userInfo = document.querySelector('.user-info');
 var adminInterface = document.querySelector('.admin-interface');
@@ -172,19 +170,19 @@ if (showMobileMenu && hideMobileMenu && MobileMenuPage && MobileOverlay && userI
 //Mobile sign up, sign in
 var signUpBtn = document.getElementById('mobile-sign-up');
 var signInBtn = document.getElementById('mobile-sign-in');
-var accountModal = document.getElementById('account__modal')
+var accountModel = document.getElementById('account_Model')
 var helloBox = document.querySelector('.hello-user');
 var helloText = document.querySelector('.hello-user p');
 var userAccountInterface = document.querySelector('.user-account');
 
-if (signUpBtn && signInBtn && accountModal && helloBox && helloText && userAccountInterface) {
+if (signUpBtn && signInBtn && accountModel && helloBox && helloText && userAccountInterface) {
     signUpBtn.addEventListener('click', function() {
-        accountModal.style.display = 'flex';
+        accountModel.style.display = 'flex';
         showSignUp();
     })
     
     signInBtn.addEventListener('click', function() {
-        accountModal.style.display = 'flex';
+        accountModel.style.display = 'flex';
         showSignIn();
     })
     

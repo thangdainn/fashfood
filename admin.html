@@ -21,45 +21,45 @@
 <body>
     <div id="admin-main">
         <!-- side bar -->
-        <div class="side-bar side-bar--close">
-            <a href="index.html" class="side-bar__logo">
-                <img src="./img/logo-black.png" alt="" class="side-bar__logo-img">
-                <img src="./img/logo-icon.png" alt="" class="side-bar__logo-img-close">
+        <div class="sidebar sidebar--close">
+            <a href="index.html" class="sidebar_logo">
+                <img src="./img/logo-black.png" alt="" class="sidebar_logo-img">
+                <img src="./img/logo-icon.png" alt="" class="sidebar_logo-img-close">
             </a>
 
-            <span class="side-bar-switch">
+            <span class="sidebar-switch">
                 <i class="right bx bx-chevron-right"></i>
                 <i class="left bx bx-chevron-left"></i>
             </span>
 
-            <div class="side-bar-list">
-                <ul class="side-bar__top">
-                    <li class="side-bar__item" value="statistics" onclick="showStatisticsPage()">
-                        <i class="uil uil-chart-line"></i>
-                        <span class="side-bar__item-text">Thống kê</span> 
+            <div class="sidebar-list">
+                <ul class="sidebar_top">
+                    <li class="sidebar_item" value="statistics" onclick="showStatisticsPage()">
+                        <i class="uil uil-chart-growth"></i>
+                        <span class="sidebar_item-text">Thống kê</span> 
                     </li>
-                    <li class="side-bar__item" value="order" onclick="showAdminOrder()">
+                    <li class="sidebar_item" value="order" onclick="showAdminOrder()">
                         <i class="uil uil-clipboard-notes"></i>
-                        <span class="side-bar__item-text">Quản lý đơn hàng</span>
+                        <span class="sidebar_item-text">Quản lý đơn hàng</span>
                     </li>
-                    <li class="side-bar__item" value="product" onclick="showAdminProduct(1)">
-                        <i class="uil uil-apple-alt"></i>
-                        <span class="side-bar__item-text">Quản lý sản phẩm</span>
+                    <li class="sidebar_item" value="product" onclick="showAdminProduct(1)">
+                        <i class="uil uil-server"></i>
+                        <span class="sidebar_item-text">Quản lý sản phẩm</span>
                     </li>
-                    <li class="side-bar__item" value="user" onclick="showUserPage()">
+                    <li class="sidebar_item" value="user" onclick="showUserPage()">
                         <i class="uil uil-user-circle"></i>
-                        <span class="side-bar__item-text">Quản lý khách hàng</span>   
+                        <span class="sidebar_item-text">Quản lý khách hàng</span>   
                     </li>
                 </ul>
 
-                <ul class="side-bar__bottom">
-                    <li class="side-bar__item" value="homepage" onclick="backHomePage()">
+                <ul class="sidebar_bottom">
+                    <li class="sidebar_item" value="homepage" onclick="backHomePage()">
                         <i class="uil uil-estate"></i>
-                        <span class="side-bar__item-text">Trở về trang chủ</span>
+                        <span class="sidebar_item-text">Trở về trang chủ</span>
                     </li>
-                    <li class="side-bar__item" value="" onclick="LogOut()">
+                    <li class="sidebar_item" value="" onclick="LogOut()">
                         <i class="bx bx-log-out"></i>
-                        <span class="side-bar__item-text">Đăng xuất</span>
+                        <span class="sidebar_item-text">Đăng xuất</span>
                     </li>
                 </ul>
             </div>
@@ -67,136 +67,135 @@
         </div>
 
         <!-- Content -->
-        <div class="admin__content scrollbar"> 
-            <div class="admin__content-wrapper">
-                <div class="admin__content-header">
+        <div class="admin_content scrollbar"> 
+            <div class="admin_content-wrapper">
+                <div class="admin_content-header">
                     <h3></h3>
                 </div>
                 
                 <!-- Statistics -->
-                <div class="admin__statis">
-                    <div class="admin__statis-sum">
-                        <div class="admin__statis-sum-box">
-                            <div class="admin__statis-sum-box-icon sum-order">
+                <div class="admin_statis">
+                    <div class="admin_statis-sum">
+                        <div class="admin_statis-sum-box">
+                            <div class="admin_statis-sum-box-icon sum-order">
                                 <span class="material-symbols-rounded">inventory</span>
                             </div>
-                            <div class="admin__statis-sum-box-info">
+                            <div class="admin_statis-sum-box-info">
                                 <h3>Đơn hàng</h3>
                                 <p></p>
                             </div>
                         </div>
-                        <div class="admin__statis-sum-box">
-                            <div class="admin__statis-sum-box-icon sum-product">
+                        <div class="admin_statis-sum-box">
+                            <div class="admin_statis-sum-box-icon sum-product">
                                 <i class="uil uil-apple"></i>
                             </div>
-                            <div class="admin__statis-sum-box-info">
+                            <div class="admin_statis-sum-box-info">
                                 <h3>Sản phẩm đã bán</h3>
                                 <p></p>
                             </div>
                         </div>
-                        <div class="admin__statis-sum-box">
-                            <div class="admin__statis-sum-box-icon total">
+                        <div class="admin_statis-sum-box">
+                            <div class="admin_statis-sum-box-icon total">
                                 <span class="material-symbols-rounded">currency_bitcoin</span>
                             </div>
-                            <div class="admin__statis-sum-box-info">
+                            <div class="admin_statis-sum-box-info">
                                 <h3>Doanh Thu</h3>
                                 <p></p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="admin__statis-filter">
+                    <div class="admin_statis-filter">
                         <h3>Chọn loại sản phẩm:</h3>
-                        <select name="" id="" onchange="showChart(this.value)">
+                        <select name="opt" id="opt" onchange="showChart(this.value)">
                             <option value="all" selected>Tất cả</option>
-                            <option value="iphone">iPhone</option>
-                            <option value="ipad">iPad</option>
-                            <option value="macbook">MacBook</option>
-                            <option value="apple-watch">Apple Watch</option>
+                            <option value="chicken">Gà rán</option>
+                            <option value="drink">Thức uống</option>
+                            <option value="side-dish">Phần ăn phụ</option>
                         </select>
                     </div>
 
-                    <div class="admin__statis-chart-wrapper">
-                        <div class="admin__statis-chart-header">
+                    <div class="admin_statis-chart-wrapper">
+                        <div class="admin_statis-chart-header">
                             <h3>Biểu đồ thống kê</h3>
                         </div>
 
-                        <div class="admin__statis-chart-note">
-                            <div class="admin__statis-chart-note-item">
+                        <div class="admin_statis-chart-note">
+                            <div class="admin_statis-chart-note-item">
                                 <div></div>
                                 :
                                 <p>Đơn hàng(%)</p>
                             </div>
-                            <div class="admin__statis-chart-note-item">
+                            <div class="admin_statis-chart-note-item">
                                 <div></div>
                                 :
                                 <p>Sản phẩm bán được(%)</p>
                             </div>
-                            <div class="admin__statis-chart-note-item">
+                            <div class="admin_statis-chart-note-item">
                                 <div></div>
                                 :
                                 <p>Doanh thu(%)</p>
                             </div>       
                         </div>
 
-                        <div class="admin__statis-chart">
+                        <div class="admin_statis-chart">
 
                         </div>
                     </div>
                 </div>
 
                 <!-- Product -->
-                <div class="admin__product">
-                    <div class="admin__product-control">
-                        <div class="admin__product-search">
+                <div class="admin_product">
+                    <div class="admin_product-control">
+                        <div class="admin_product-search">
                             Tìm kiếm
-                            <input type="text" class="admin__product-search-input" placeholder="Nhập tên sản phẩm">
+                            <input type="text" class="admin_product-search-input" placeholder="Nhập tên sản phẩm">
                         </div>
-                        <div class="admin__product-add" onclick="showAddModal()">
+                        <div class="admin_product-add" onclick="showAddModel()">
                             <i class="uil uil-plus-circle"></i>
                             Thêm sản phẩm
                         </div>
                     </div>
         
-                    <div class="admin__product-wrapper scrollbar">
-                        <table class="admin__product-list">
-                            <thead class="admin__product-list-header">
+                    <div class="admin_product-wrapper scrollbar">
+                        <table class="admin_product-list">
+                            <thead class="admin_product-list-header">
                                 <tr>
-                                    <th class="admin__product-list-header-item">Ảnh</th>
-                                    <th class="admin__product-list-header-item">ID</th>
-                                    <th class="admin__product-list-header-item">Tên sản phẩm</th>
-                                    <th class="admin__product-list-header-item">Loại sản phẩm</th>
-                                    <th class="admin__product-list-header-item">Chi tiết loại sản phẩm</th>
-                                    <th class="admin__product-list-header-item">Giá niêm yết</th>
-                                    <th class="admin__product-list-header-item">Giá bán</th>
-                                    <th class="admin__product-list-header-item">Thao tác</th>
+                                    <th class="admin_product-list-header-item">Ảnh</th>
+                                    <th class="admin_product-list-header-item">ID</th>
+                                    <th class="admin_product-list-header-item">Tên sản phẩm</th>
+                                    <th class="admin_product-list-header-item">Loại sản phẩm</th>
+                                    <th class="admin_product-list-header-item">Chi tiết loại sản phẩm</th>
+                                    <th class="admin_product-list-header-item">Giá niêm yết</th>
+                                    <th class="admin_product-list-header-item">Giá bán</th>
+                                    <th class="admin_product-list-header-item">Thao tác</th>
                                 </tr>
                             </thead>
             
-                            <tbody class="admin__product-item">
+                            <tbody class="admin_product-item">
 
                             </tbody>
                         </table>
                     </div>
 
                     <!-- Pagination -->
-                    <div class="product__pagination">
+                    <div class="product_pagination">
                         <div class="pagination-prev">
-                            <i class="pagination-prev__icon fa-solid fa-arrow-left"></i>
+                            <i class="pagination-prev_icon fa-solid fa-arrow-left"></i>
                         </div>
-                        <div class="product__pagination-list">
+                        <div class="product_pagination-list">
     
                         </div>
                         <div class="pagination-next">
-                            <i class="pagination-next__icon fa-solid fa-arrow-right"></i>
+                            <i class="pagination-next_icon fa-solid fa-arrow-right"></i>
                         </div>
                     </div> 
                 </div>
                 
                 <!-- Order -->
-                <div class="admin__order">
-                    <div class="admin__ordder-filter">
-                        <div class="admin__order-date">
+                <div class="admin_order">
+                    <div class="admin_ordder-filter">
+                        <div class="admin_order-date">
                             <h3>Khoảng thời gian:</h3>
                             <label for="start-date">Từ</label>
                             <input type="date" id="start-date" value="2022-01-01" min="2022-01-01" onchange="showAdminOrder()">
@@ -204,7 +203,7 @@
                             <input type="date" id="end-date" value="" min="2022-01-01" onchange="showAdminOrder()">
                         </div>
                         
-                        <div class="admin__order-status">
+                        <div class="admin_order-status">
                             <h3>Tình trạng: </h3>
                             <select name="" id="" onchange="showAdminOrder()">
                                 <option value="all" selected>Tất cả</option>
@@ -214,41 +213,41 @@
                         </div>
                     </div>
 
-                    <div class="admin__order-wrapper">                        
+                    <div class="admin_order-wrapper">                        
 
                     </div>
                     
                     <!-- Order empty -->
-                    <div class="empty admin__order-empty">
+                    <div class="empty admin_order-empty">
                         <h3 class="empty-noti" style="font-size: 18px;">Không có đơn hàng nào!</h3>
                         <img src="./img/order-empty.png" alt="" class="empty-img" style="width: 300px;">
                     </div>
                 </div>
                 
                 <!-- User -->
-                <div class="admin__user">
-                    <div class="admin__user-wrapper">
-                        <div class="admin__user-left">
-                            <div class="admin__user-search">
+                <div class="admin_user">
+                    <div class="admin_user-wrapper">
+                        <div class="admin_user-left">
+                            <div class="admin_user-search">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" class="admin__user-search-input" placeholder="Nhập tên người dùng">
+                                <input type="text" class="admin_user-search-input" placeholder="Nhập tên người dùng">
                             </div>
-                            <div class="admin__user-account-list">
+                            <div class="admin_user-account-list">
 
                             </div>
                         </div>
 
-                        <div class="admin__user-right">
-                            <div class="admin__user-header">
+                        <div class="admin_user-right">
+                            <div class="admin_user-header">
                                 <span>Tất cả tài khoản</span>
                                 <span class="all-account-quantity"></span>
                             </div>
-                            <div class="admin__user-list">
-                                <div class="admin__user-item">
+                            <div class="admin_user-list">
+                                <div class="admin_user-item">
                                     <span>Admin</span>
                                     <span class="admin-account-quantity"></span>
                                 </div>
-                                <div class="admin__user-item">
+                                <div class="admin_user-item">
                                     <span>Người dùng</span>
                                     <span class="user-account-quantity"></span>
                                 </div>
@@ -260,21 +259,21 @@
         </div>
 
         <!-- Product control -->
-        <div id="product-control-modal" class="modal" onclick="document.getElementById('product-control-modal').style.display='none'">
-            <div class="modal-overlay"></div>
+        <div id="product-control-Model" class="Model" onclick="document.getElementById('product-control-Model').style.display='none'">
+            <div class="Model-overlay"></div>
 
-            <div class="modal-body">
+            <div class="Model-body">
                 <!-- Add product -->
                 <div id="add-product" class="control-form">
-                    <span class="close" onclick="document.getElementById('product-control-modal').style.display='none'">
+                    <span class="close" onclick="document.getElementById('product-control-Model').style.display='none'">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <div class="control-form__container">
-                        <div class="control-form__heading">
+                    <div class="control-form_container">
+                        <div class="control-form_heading">
                             <h3>Thêm sản phẩm</h3>
                         </div>
-                        <div class="control-form__upload">
-                            <button class="upload-img-btn" onclick="openFileBtnActive()">Upload ảnh</button>
+                        <div class="control-form_upload">
+                            <button class="upload-img-btn" onclick="openFileBtnActive()">Chọn ảnh</button>
                             <input type="file" name="" id="open-file" hidden required>
                             <div class="upload-box">
                                 <img src="" alt="" class="upload-img" id="product-img">
@@ -286,54 +285,53 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="control-form__form">
-                            <div class="control-form__form-box">
-                                <label for="product-id" class="control-form__form-lable">ID</label>
-                                <input id="product-id" type="text" class="control-form__form-input" placeholder="Nhập ID" required >
+                        <div class="control-form_form">
+                            <div class="control-form_form-box">
+                                <label for="product-id" class="control-form_form-lable">ID</label>
+                                <input id="product-id" type="text" class="control-form_form-input" placeholder="Nhập ID" required >
                                 <span class="error id"></span>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-name" class="control-form__form-lable">Tên sản phẩm</label>
-                                <input id="product-name" type="text" class="control-form__form-input" placeholder="Nhập tên" required>
+                            <div class="control-form_form-box">
+                                <label for="product-name" class="control-form_form-lable">Tên sản phẩm</label>
+                                <input id="product-name" type="text" class="control-form_form-input" placeholder="Nhập tên" required>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-category" class="control-form__form-lable">Loại sản phẩm</label>
+                            <div class="control-form_form-box">
+                                <label for="product-category" class="control-form_form-lable">Loại sản phẩm</label>
                                 <select name="" id="product-category">
-                                    <option value="iphone">iPhone</option>
-                                    <option value="ipad">iPad</option>
-                                    <option value="macbook">MacBook</option>
-                                    <option value="apple-watch">Apple Watch</option>
+                                    <option value="chicken">Gà rán</option>
+                                    <option value="drink">Thức uống </option>
+                                    <option value="side-dish">Phần ăn phụ</option>
                                 </select>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-detail-category" class="control-form__form-lable">Chi tiết loại sản phẩm</label>
-                                <input id="product-detail-category" type="text" class="control-form__form-input" placeholder="Nhập chi tiết loại sản phẩm" required>
+                            <div class="control-form_form-box">
+                                <label for="product-detail-category" class="control-form_form-lable">Chi tiết loại sản phẩm</label>
+                                <input id="product-detail-category" type="text" class="control-form_form-input" placeholder="Nhập chi tiết loại sản phẩm" required>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-old-price" class="control-form__form-lable">Giá niêm yết</label>
-                                <input id="product-old-price" type="number" class="control-form__form-input" placeholder="Nhập giá niêm yết" required>
+                            <div class="control-form_form-box">
+                                <label for="product-old-price" class="control-form_form-lable">Giá niêm yết</label>
+                                <input id="product-old-price" type="number" class="control-form_form-input" placeholder="Nhập giá niêm yết" required>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-current-price" class="control-form__form-lable">Giá bán</label>
-                                <input id="product-current-price" type="number" class="control-form__form-input" placeholder="Nhập giá bán" required>
+                            <div class="control-form_form-box">
+                                <label for="product-current-price" class="control-form_form-lable">Giá bán</label>
+                                <input id="product-current-price" type="number" class="control-form_form-input" placeholder="Nhập giá bán" required>
                             </div>
 
-                            <button class="control-form___form-btn add" onclick="addProduct()">Thêm sản phẩm</button>
+                            <button class="control-form__form-btn add" onclick="addProduct()">Thêm sản phẩm</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Edit product -->
                 <div id="edit-product" class="control-form">
-                    <span class="close" onclick="document.getElementById('product-control-modal').style.display='none'">
+                    <span class="close" onclick="document.getElementById('product-control-Model').style.display='none'">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <div class="control-form__container">
-                        <div class="control-form__heading">
+                    <div class="control-form_container">
+                        <div class="control-form_heading">
                             <h3>Sửa thông tin sản phẩm</h3>
                         </div>
-                        <div class="control-form__upload">
-                            <button class="upload-img-btn" onclick="openEditFileBtnActive()">Upload ảnh</button>
+                        <div class="control-form_upload">
+                            <button class="upload-img-btn" onclick="openEditFileBtnActive()">Chọn ảnh</button>
                             <input type="file" name="" id="open-file" hidden>
                             <div class="edit upload-box">
                                 <img src="" alt="" class="upload-img" id="product-img">
@@ -345,55 +343,55 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="control-form__form" onsubmit="editProductInfo(); return false">
-                            <div class="control-form__form-box">
-                                <label for="product-id" class="control-form__form-lable">ID</label>
-                                <input id="product-id" type="text" class="control-form__form-input disable" placeholder="Nhập ID" readonly>
+                        <form class="control-form_form" onsubmit="editProductInfo(); return false">
+                            <div class="control-form_form-box">
+                                <label for="product-id" class="control-form_form-lable">ID</label>
+                                <input id="product-id" type="text" class="control-form_form-input disable" placeholder="Nhập ID" readonly>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-name" class="control-form__form-lable">Tên sản phẩm</label>
-                                <input id="product-name" type="text" class="control-form__form-input" placeholder="Nhập tên" required>
+                            <div class="control-form_form-box">
+                                <label for="product-name" class="control-form_form-lable">Tên sản phẩm</label>
+                                <input id="product-name" type="text" class="control-form_form-input" placeholder="Nhập tên" required>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-category" class="control-form__form-lable">Loại sản phẩm</label>
+                            <div class="control-form_form-box">
+                                <label for="product-category" class="control-form_form-lable">Loại sản phẩm</label>
                                 <select name="" id="product-category">
-                                    <option value="iphone">iPhone</option>
-                                    <option value="ipad">iPad</option>
-                                    <option value="macbook">MacBook</option>
-                                    <option value="apple-watch">Apple Watch</option>
+                                    <option value="all" selected>Tất cả</option>
+                                    <option value="chicken">Gà rán</option>
+                                    <option value="drink">Thức uống</option>
+                                    <option value="side-dish">Phần ăn phụ</option>
                                 </select>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-detail-category" class="control-form__form-lable">Chi tiết loại sản phẩm</label>
-                                <input id="product-detail-category" type="text" class="control-form__form-input" placeholder="Nhập chi tiết loại sản phẩm" required>
+                            <div class="control-form_form-box">
+                                <label for="product-detail-category" class="control-form_form-lable">Chi tiết loại sản phẩm</label>
+                                <input id="product-detail-category" type="text" class="control-form_form-input" placeholder="Nhập chi tiết loại sản phẩm" required>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-old-price" class="control-form__form-lable">Giá niêm yết</label>
-                                <input id="product-old-price" type="number" class="control-form__form-input" placeholder="Nhập giá niêm yết" required>
+                            <div class="control-form_form-box">
+                                <label for="product-old-price" class="control-form_form-lable">Giá niêm yết</label>
+                                <input id="product-old-price" type="number" class="control-form_form-input" placeholder="Nhập giá niêm yết" required>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="product-current-price" class="control-form__form-lable">Giá bán</label>
-                                <input id="product-current-price" type="number" class="control-form__form-input" placeholder="Nhập giá bán" required>
+                            <div class="control-form_form-box">
+                                <label for="product-current-price" class="control-form_form-lable">Giá bán</label>
+                                <input id="product-current-price" type="number" class="control-form_form-input" placeholder="Nhập giá bán" required>
                             </div>
             
-                            <button class="control-form___form-btn" type="submit">Lưu chỉnh sửa</button>
+                            <button class="control-form__form-btn" type="submit">Lưu chỉnh sửa</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- Delete product -->
                 <div id="delete-product" class="control-form">
-                    <span class="close" onclick="document.getElementById('product-control-modal').style.display='none'">
+                    <span class="close" onclick="document.getElementById('product-control-Model').style.display='none'">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <div class="control-form__container">
-                        <div class="delete-form__logo">
+                    <div class="control-form_container">
+                        <div class="delete-form_logo">
                             <i class="uil uil-trash-alt"></i>
                         </div>
-                        <h3 class="delete-form__question"></h3>
-                        <div class="delete-form__control">
-                            <button class="delete-form__control-btn cancel" onclick="cacelDelete()">Hủy</button>
-                            <button class="delete-form__control-btn delete" onclick="deleteProduct()">Xóa</button>
+                        <h3 class="delete-form_question"></h3>
+                        <div class="delete-form_control">
+                            <button class="delete-form_control-btn cancel" onclick="cancelDelete()">Hủy</button>
+                            <button class="delete-form_control-btn delete" onclick="deleteProduct()">Xóa</button>
                         </div>
                     </div>
                 </div>
@@ -401,70 +399,70 @@
         </div>
 
         <!-- User control -->
-        <div id="user-control-modal" class="modal" onclick="document.getElementById('user-control-modal').style.display='none'">
-            <div class="modal-overlay"></div>
+        <div id="user-control-Model" class="Model" onclick="document.getElementById('user-control-Model').style.display='none'">
+            <div class="Model-overlay"></div>
 
-            <div class="modal-body">
+            <div class="Model-body">
                 <!-- User info -->
                 <div id="user-info" class="control-form">
-                    <span class="close" onclick="document.getElementById('user-control-modal').style.display='none'">
+                    <span class="close" onclick="document.getElementById('user-control-Model').style.display='none'">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <div class="control-form__container">
-                        <div class="control-form__heading">
+                    <div class="control-form_container">
+                        <div class="control-form_heading">
                             <h3></h3>
                         </div>
-                        <form class="control-form__form" onsubmit="EditInfo(); return false;">
-                            <div class="control-form__form-box">
-                                <label for="user-fullname" class="control-form__form-lable">Họ và tên</label>
-                                <input id="user-fullname" type="text" class="control-form__form-input disable" readonly>
+                        <form class="control-form_form" onsubmit="EditInfo(); return false;">
+                            <div class="control-form_form-box">
+                                <label for="user-fullname" class="control-form_form-lable">Họ và tên</label>
+                                <input id="user-fullname" type="text" class="control-form_form-input disable" readonly>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="user-name" class="control-form__form-lable">Tên người dùng</label>
-                                <input id="user-name" type="text" class="control-form__form-input disable" readonly>
+                            <div class="control-form_form-box">
+                                <label for="user-name" class="control-form_form-lable">Tên người dùng</label>
+                                <input id="user-name" type="text" class="control-form_form-input disable" readonly>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="user-email" class="control-form__form-lable">Email</label>
-                                <input id="user-email" type="email" class="control-form__form-input disable">
+                            <div class="control-form_form-box">
+                                <label for="user-email" class="control-form_form-lable">Email</label>
+                                <input id="user-email" type="email" class="control-form_form-input disable">
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="user-pass" class="control-form__form-lable">Mật khẩu</label>
-                                <input id="user-pass" type="text" class="control-form__form-input disable" readonly>
+                            <div class="control-form_form-box">
+                                <label for="user-pass" class="control-form_form-lable">Mật khẩu</label>
+                                <input id="user-pass" type="text" class="control-form_form-input disable" readonly>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="user-address" class="control-form__form-lable">Địa chỉ</label>
-                                <input id="user-address" type="text" class="control-form__form-input disable" readonly>
+                            <div class="control-form_form-box">
+                                <label for="user-address" class="control-form_form-lable">Địa chỉ</label>
+                                <input id="user-address" type="text" class="control-form_form-input disable" readonly>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="user-phone" class="control-form__form-lable">Số điện thoại</label>
-                                <input id="user-phone" type="text" class="control-form__form-input disable" readonly>
+                            <div class="control-form_form-box">
+                                <label for="user-phone" class="control-form_form-lable">Số điện thoại</label>
+                                <input id="user-phone" type="text" class="control-form_form-input disable" readonly>
                                 <span class="error-phone">Số điện thoại phải có 10 chữ số</span>
                             </div>
-                            <div class="control-form__form-box">
-                                <label for="user-type" class="control-form__form-lable">Chức vụ</label>
+                            <div class="control-form_form-box">
+                                <label for="user-type" class="control-form_form-lable">Chức vụ</label>
                                 <select name="" id="user-type" style="cursor: not-allowed;" disabled>
                                     <option value="admin">Admin</option>
                                     <option value="user">Người dùng</option>
                                 </select>
                             </div>
-                            <button class="control-form___form-btn" type="submit">Lưu chỉnh sửa</button>
+                            <button class="control-form__form-btn" type="submit">Lưu chỉnh sửa</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- Delete account -->
                 <div id="delete-account" class="control-form">
-                    <span class="close" onclick="document.getElementById('user-control-modal').style.display='none'">
+                    <span class="close" onclick="document.getElementById('user-control-Model').style.display='none'">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <div class="control-form__container">
-                        <div class="delete-form__logo">
+                    <div class="control-form_container">
+                        <div class="delete-form_logo">
                             <i class="uil uil-trash-alt"></i>
                         </div>
-                        <h3 class="delete-form__question"></h3>
-                        <div class="delete-form__control">
-                            <button class="delete-form__control-btn cancel" onclick="cacelDelete()">Hủy</button>
-                            <button class="delete-form__control-btn delete" onclick="deleteAccount()">Xóa</button>
+                        <h3 class="delete-form_question"></h3>
+                        <div class="delete-form_control">
+                            <button class="delete-form_control-btn cancel" onclick="cancelDelete()">Hủy</button>
+                            <button class="delete-form_control-btn delete" onclick="deleteAccount()">Xóa</button>
                         </div>
                     </div>
                 </div>

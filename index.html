@@ -21,73 +21,73 @@
         <!-- Header -->
         <header class="header"> 
             <div class="grid wide">
-                <div class="header__navbar">
-                    <a href="index.html" class="header__logo">
+                <div class="header_navbar">
+                    <a href="index.html" class="header_logo">
                         dainn<span>shop</span>
                     </a>
                     
-                    <ul class="header__navbar-list">
-                        <li class="header__navbar-item">
-                            <a href="index.html?chicken" class="header__navbar-item-link" data-value="chicken">Gà Rán</a>
+                    <ul class="header_navbar-list">
+                        <li class="header_navbar-item">
+                            <a href="index.html?chicken" class="header_navbar-item-link" data-value="chicken">Gà Rán</a>
                         </li>
-                        <li class="header__navbar-item">
-                            <a href="index.html?side-dish" class="header__navbar-item-link" data-value="side-dish">Phần Ăn Phụ</a>
+                        <li class="header_navbar-item">
+                            <a href="index.html?side-dish" class="header_navbar-item-link" data-value="side-dish">Phần Ăn Phụ</a>
                         </li>
-                        <li class="header__navbar-item">
-                            <a href="index.html?drink" class="header__navbar-item-link" data-value="drink">Thức Uống</a>
+                        <li class="header_navbar-item">
+                            <a href="index.html?drink" class="header_navbar-item-link" data-value="drink">Thức Uống</a>
                         </li>
                     </ul>
     
-                    <div class="header__right-box">
-                        <div class="header__search" onclick="document.getElementById('search-bar').style.display='flex'">
+                    <div class="header_right-box">
+                        <div class="header_search" onclick="document.getElementById('search-bar').style.display='flex'">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
 
-                        <div class="header__cart" onclick="showCartPage()">
-                            <span class="header__cart-icon material-symbols-rounded">shopping_bag</span>
-                            <span class="header__cart-quantity"></span>
+                        <div class="header_cart" onclick="showCartPage()">
+                            <span class="header_cart-icon material-symbols-rounded">shopping_bag</span>
+                            <span class="header_cart-quantity"></span>
                         </div>
 
-                        <div class="header__user-group">
-                            <div class="header__none-user" >
+                        <div class="header_user-group">
+                            <div class="header_none-user" >
                                 <i class="fa-solid fa-user"></i>
-                                <div class="header__group-menu">
-                                    <div class="header__login" onclick="eventSignIn()">Đăng nhập</div>
-                                    <div class="header__register" onclick="eventSignUp()">Đăng ký</div>
+                                <div class="header_group-menu">
+                                    <div class="header_login" onclick="eventSignIn()">Đăng nhập</div>
+                                    <div class="header_register" onclick="eventSignUp()">Đăng ký</div>
                                 </div>
                             </div>
     
-                            <div class="header__user">
-                                <span class="header__user-name"></span>
-                                <div class="header__group-menu">
-                                    <a href="index.html?order" class="header__user-order" onclick="showOrderPage()">Đơn hàng của bạn</a>
-                                    <div id="log-out" class="header__log-out" onclick="LogOut()">Đăng xuất</div>
+                            <div class="header_user">
+                                <span class="header_user-name"></span>
+                                <div class="header_group-menu">
+                                    <a href="index.html?order" class="header_user-order" onclick="showOrderPage()">Đơn hàng của bạn</a>
+                                    <div id="log-out" class="header_log-out" onclick="LogOut()">Đăng xuất</div>
                                 </div>
                             </div>
     
-                            <div class="header__admin">
+                            <div class="header_admin">
                                 <span>Admin</span>
-                                <div class="header__group-menu">
-                                    <div class="header__admin-interface" onclick="ToAdminPage()">Trang quản trị</div>
-                                    <a href="index.html?order" class="header__user-order" onclick="showOrderPage()">Đơn hàng của bạn</a>
-                                    <div id="log-out" class="header__log-out" onclick="LogOut()">Đăng xuất</div>
+                                <div class="header_group-menu">
+                                    <div class="header_admin-interface" onclick="ToAdminPage()">Trang quản trị</div>
+                                    <a href="index.html?order" class="header_user-order" onclick="showOrderPage()">Đơn hàng của bạn</a>
+                                    <div id="log-out" class="header_log-out" onclick="LogOut()">Đăng xuất</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Mobile & Tablet-->
-                        <div class="mobile__menu">
-                            <span class="mobile__menu-btn">
+                        <div class="mobile_menu">
+                            <span class="mobile_menu-btn">
                                 <i class="fa-solid fa-bars"></i>
                             </span>       
                             
-                            <div class="mobile__list scrollbar">
+                            <div class="mobile_list scrollbar">
                                 <span class="close">
                                     <i class="close-btn fa-solid fa-xmark"></i>
                                 </span>
 
-                               <div class="mobile__header">
-                                    <img src="./img/logo.png" alt="" class="mobile__header-logo">
+                               <div class="mobile_header">
+                                    <img src="./img/logo.png" alt="" class="mobile_header-logo">
                                </div>
 
                                <div class="hello-user">
@@ -95,59 +95,59 @@
                                     <p></p>
                                </div>
 
-                                <div class="mobile__box user-account">
-                                    <h3 class="mobile__box-header">TÀI KHOẢN</h3>
-                                    <ul class="header__navbar-list">
-                                        <li class="header__navbar-item">
+                                <div class="mobile_box user-account">
+                                    <h3 class="mobile_box-header">TÀI KHOẢN</h3>
+                                    <ul class="header_navbar-list">
+                                        <li class="header_navbar-item">
                                             <span class="material-symbols-rounded mobile-icon">person</span>
-                                            <div id="mobile-sign-up" class="header__navbar-item-link">Đăng ký</div>
+                                            <div id="mobile-sign-up" class="header_navbar-item-link">Đăng ký</div>
                                         </li>
-                                        <li class="header__navbar-item">
+                                        <li class="header_navbar-item">
                                             <span class="material-symbols-rounded mobile-icon">login</span>
-                                            <div id="mobile-sign-in" class="header__navbar-item-link">Đăng nhập</div>
+                                            <div id="mobile-sign-in" class="header_navbar-item-link">Đăng nhập</div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="mobile__box user-info">
-                                        <h3 class="mobile__box-header">THÔNG TIN TÀI KHOẢN</h3>
-                                        <ul class="header__navbar-list">
-                                            <li class="header__navbar-item admin-interface">
+                                <div class="mobile_box user-info">
+                                        <h3 class="mobile_box-header">THÔNG TIN TÀI KHOẢN</h3>
+                                        <ul class="header_navbar-list">
+                                            <li class="header_navbar-item admin-interface">
                                                 <span class="material-symbols-rounded mobile-icon">settings</span>
-                                                <a href="admin.html" class="header__navbar-item-link">Trang quản trị</a>
+                                                <a href="admin.html" class="header_navbar-item-link">Trang quản trị</a>
                                             </li>
-                                            <li class="header__navbar-item mobile-cart">
-                                                <span class="header__cart-icon material-symbols-rounded mobile-icon">shopping_bag</span>
-                                                <span class="header__cart-quantity mobile-cart-quantity"></span>
-                                                <a href="index.html?cart" class="header__navbar-item-link">Giỏ hàng của bạn</a>
+                                            <li class="header_navbar-item mobile-cart">
+                                                <span class="header_cart-icon material-symbols-rounded mobile-icon">shopping_bag</span>
+                                                <span class="header_cart-quantity mobile-cart-quantity"></span>
+                                                <a href="index.html?cart" class="header_navbar-item-link">Giỏ hàng của bạn</a>
                                             </li>
-                                            <li class="header__navbar-item">
+                                            <li class="header_navbar-item">
                                                 <span class="material-symbols-rounded mobile-icon">assignment</span>
-                                                <a href="index.html?order" class="header__navbar-item-link">Đơn hàng của bạn</a>
+                                                <a href="index.html?order" class="header_navbar-item-link">Đơn hàng của bạn</a>
                                             </li>
-                                            <li class="header__navbar-item">
+                                            <li class="header_navbar-item">
                                                 <span class="material-symbols-rounded mobile-icon">logout</span>
-                                                <div id="log-out" class="header__navbar-item-link" onclick="LogOut()">Đăng xuất</div>
+                                                <div id="log-out" class="header_navbar-item-link" onclick="LogOut()">Đăng xuất</div>
                                             </li>
                                         </ul>
                                 </div>
-                                <div class="mobile__box">
-                                    <h3 class="mobile__box-header">CATEGORIES</h3>
-                                    <ul class="header__navbar-list">
-                                        <li class="header__navbar-item">
+                                <div class="mobile_box">
+                                    <h3 class="mobile_box-header">CATEGORIES</h3>
+                                    <ul class="header_navbar-list">
+                                        <li class="header_navbar-item">
                                             <span class="material-symbols-rounded mobile-icon">phone_android</span>
-                                            <a href="index.html?iphone" class="header__navbar-item-link">iPhone</a>
+                                            <a href="index.html?iphone" class="header_navbar-item-link">iPhone</a>
                                         </li>
-                                        <li class="header__navbar-item">
+                                        <li class="header_navbar-item">
                                             <span class="material-symbols-rounded mobile-icon">tablet_mac</span>
-                                            <a href="index.html?ipad" class="header__navbar-item-link">iPad</a>
+                                            <a href="index.html?ipad" class="header_navbar-item-link">iPad</a>
                                         </li>
-                                        <li class="header__navbar-item">
+                                        <li class="header_navbar-item">
                                             <span class="material-symbols-rounded mobile-icon">laptop_mac</span>
-                                            <a href="index.html?macbook" class="header__navbar-item-link">MacBook</a>
+                                            <a href="index.html?macbook" class="header_navbar-item-link">MacBook</a>
                                         </li>
-                                        <li class="header__navbar-item">
+                                        <li class="header_navbar-item">
                                             <span class="material-symbols-rounded mobile-icon">watch</span>
-                                            <a href="index.html?apple-watch" class="header__navbar-item-link">AppleWatch</a>
+                                            <a href="index.html?apple-watch" class="header_navbar-item-link">AppleWatch</a>
                                         </li>
                                     </ul>
                                 </div>                               
@@ -158,11 +158,11 @@
                         <!--  -->
                     </div>
                     
-                    <div id="search-bar" class="header__searchbar">
-                        <div class="header__searcbar-container">
+                    <div id="search-bar" class="header_searchbar">
+                        <div class="header_searcbar-container">
                             <i class="fa-solid fa-magnifying-glass" style="color: #333333;"></i>
-                            <input id="search-info" type="text" class="header__search-input" placeholder="Nhập tên sản phẩm">
-                            <span onclick="document.getElementById('search-bar').style.display='none'" class="header__searchbar-close">
+                            <input id="search-info" type="text" class="header_search-input" placeholder="Nhập tên sản phẩm">
+                            <span onclick="document.getElementById('search-bar').style.display='none'" class="header_searchbar-close">
                                 <i class="fa-solid fa-xmark"></i>
                             </span>
                         </div>
@@ -175,28 +175,28 @@
         <div id="body" class="product">
             <!-- Slider -->
             <div class="slider">
-                <div class="slide__box">
-                    <img src="./img/slide/slide1.png" alt="" class="slide__img">
+                <div class="slide_box">
+                    <img src="./img/slide/slide1.png" alt="" class="slide_img">
                 </div>
-                <div class="slide__box">
-                    <img src="./img/slide/slide2.png" alt="" class="slide__img">
+                <div class="slide_box">
+                    <img src="./img/slide/slide2.png" alt="" class="slide_img">
                 </div>
-                <div class="slide__box">
-                    <img src="./img/slide/slide3.png" alt="" class="slide__img">
+                <div class="slide_box">
+                    <img src="./img/slide/slide3.png" alt="" class="slide_img">
                 </div>
             </div>
 
             <div class="grid wide">
-                <div class="product__header">
-                    <div class="product__logo">
-                        <i class="product__logo-icon fa fa-drumstick-bite"></i>
+                <div class="product_header">
+                    <div class="product_logo">
+                        <i class="product_logo-icon fa fa-drumstick-bite"></i>
                         <!-- <i class="fas fa-drumstick-bite"></i> -->
-                        <span class="product__logo-name"></span>
+                        <span class="product_logo-name"></span>
                     </div>
                 </div>
                 
                 <!-- Product filter -->
-                <ul class="product__filter">
+                <ul class="product_filter">
   
                 </ul>
                 
@@ -206,22 +206,22 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="product__pagination">
+                <div class="product_pagination">
                     <div class="pagination-prev">
-                        <i class="pagination-prev__icon fa-solid fa-arrow-left"></i>
+                        <i class="pagination-prev_icon fa-solid fa-arrow-left"></i>
                     </div>
-                    <div class="product__pagination-list">
+                    <div class="product_pagination-list">
 
                     </div>
                     <div class="pagination-next">
-                        <i class="pagination-next__icon fa-solid fa-arrow-right"></i>
+                        <i class="pagination-next_icon fa-solid fa-arrow-right"></i>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Product detail -->
-        <div class="product__detail">
+        <div class="product_detail">
             <div class="grid wide">
                 <div id="show-product-detail" class="row">
 
@@ -230,78 +230,78 @@
         </div>
 
         <!-- Search empty -->
-        <div id="search__empty">
+        <div id="search_empty">
             
         </div>
 
         <!-- Cart -->
         <div class="cart">
             <div class="grid wide">
-                <div class="cart__wrapper">
-                    <div class="cart__header">
-                        <h3 class="cart__heading">Đơn đặt hàng</h3>
+                <div class="cart_wrapper">
+                    <div class="cart_header">
+                        <h3 class="cart_heading">Đơn đặt hàng</h3>
                     </div>
                     <div class="row cart-box">                    
                         <div class="col l-4 m-12 c-12">
-                            <div class="cart__product">  
-                                <div class="cart__product-header">
-                                    <h3 class="cart__product__heading">Giỏ hàng của bạn</h3>
+                            <div class="cart_product">  
+                                <div class="cart_product-header">
+                                    <h3 class="cart_product_heading">Giỏ hàng của bạn</h3>
                                 </div>               
-                                <ul class="cart__product-list ">
+                                <ul class="cart_product-list ">
 
                                 </ul>
-                                <div class="cart__product-total">
-                                    <h5 class="cart__product-total-text">Tổng tiền:</h5>
-                                    <h5 class="cart__product-total-price"></h5>
+                                <div class="cart_product-total">
+                                    <h5 class="cart_product-total-text">Tổng tiền:</h5>
+                                    <h5 class="cart_product-total-price"></h5>
                                 </div>
                             </div>        
                         </div>   
                         <div class="col l-8 m-12 c-12">
-                            <form class="cart__form" onsubmit="orderProduct(); return false">
-                                <div class="cart__form-select">
-                                    <h5 class="cart__form-header">Thông tin khách hàng</h5>
-                                    <div class="cart__form-select-box">
-                                        <input id="men" class="cart__form-select-input" type="radio" value="" name="sex" required>
-                                        <label for="men" class="cart__form-select-label">Anh</label>
-                                        <input id="women" class="cart__form-select-input" type="radio" value="" name="sex" required>
-                                        <label for="women" class="cart__form-select-label">Chị</label>
+                            <form class="cart_form" onsubmit="orderProduct(); return false">
+                                <div class="cart_form-select">
+                                    <h5 class="cart_form-header">Thông tin khách hàng</h5>
+                                    <div class="cart_form-select-box">
+                                        <input id="men" class="cart_form-select-input" type="radio" value="" name="sex" required>
+                                        <label for="men" class="cart_form-select-label">Anh</label>
+                                        <input id="women" class="cart_form-select-input" type="radio" value="" name="sex" required>
+                                        <label for="women" class="cart_form-select-label">Chị</label>
                                     </div>
                                 </div>
                 
-                                <div class="cart__form-info">
-                                    <div class="cart__form-info-box">
-                                        <label for="fullname" class="cart__form-info-lable">Họ tên: *</label>
-                                        <input id="fullname" class="cart__form-info-input" type="text" placeholder="Nhập họ tên" required>
+                                <div class="cart_form-info">
+                                    <div class="cart_form-info-box">
+                                        <label for="fullname" class="cart_form-info-lable">Họ tên: *</label>
+                                        <input id="fullname" class="cart_form-info-input" type="text" placeholder="Nhập họ tên" required>
                                     </div>
-                                    <div class="cart__form-info-box">
-                                        <label for="phone"class="cart__form-info-lable">Số điện thoại: *</label>
-                                        <input id="phone" class="cart__form-info-input" type="text" placeholder="Nhập số điện thoại" required>
+                                    <div class="cart_form-info-box">
+                                        <label for="phone"class="cart_form-info-lable">Số điện thoại: *</label>
+                                        <input id="phone" class="cart_form-info-input" type="text" placeholder="Nhập số điện thoại" required>
                                         <span class="error-phone">Số điện thoại phải có 10 chữ số</span>
                                     </div>
-                                    <div class="cart__form-info-box">
-                                        <label for="address"class="cart__form-info-lable">Địa chỉ: *</label>
-                                        <input id="address" class="cart__form-info-input" type="text" placeholder="Nhập địa chỉ" required>
+                                    <div class="cart_form-info-box">
+                                        <label for="address"class="cart_form-info-lable">Địa chỉ: *</label>
+                                        <input id="address" class="cart_form-info-input" type="text" placeholder="Nhập địa chỉ" required>
                                     </div>
                                 </div>
 
-                                <div class="cart__form-select">
-                                    <h5 class="cart__form-header">Hình thức nhận hàng</h5>
-                                    <div class="cart__form-select-box">
-                                        <input id="home" class="cart__form-select-input" type="radio" value="" name="ship" required>
-                                        <label for="home" class="cart__form-select-label">Giao tận nơi</label>
-                                        <input id="shop" class="cart__form-select-input" type="radio" value="" name="ship" required>
-                                        <label for="shop" class="cart__form-select-label">Nhận tại cửa hàng</label>
+                                <div class="cart_form-select">
+                                    <h5 class="cart_form-header">Hình thức nhận hàng</h5>
+                                    <div class="cart_form-select-box">
+                                        <input id="home" class="cart_form-select-input" type="radio" value="" name="ship" required>
+                                        <label for="home" class="cart_form-select-label">Giao tận nơi</label>
+                                        <input id="shop" class="cart_form-select-input" type="radio" value="" name="ship" required>
+                                        <label for="shop" class="cart_form-select-label">Nhận tại cửa hàng</label>
                                     </div>
                                 </div>
 
-                                <button class="cart__buy-btn" type="submit">Đặt hàng</button>
+                                <button class="cart_purchase-btn" type="submit">Đặt hàng</button>
                             </form> 
                         </div>  
                     </div>
                 </div>
 
                 <!-- Cart empty -->
-                <div class="empty cart__empty">
+                <div class="empty cart_empty">
                     <h3 class="empty-noti">Giỏ hàng của bạn chưa có sản phẩm nào!</h3>
                     <img src="./img/cart-empty.png" alt="" class="empty-img">
                     <div style="height: 200px"></div>
@@ -312,9 +312,9 @@
         <!-- Order -->
         <div class="order">
             <div class="grid wide">
-                <div class="order__wrapper">
-                    <div class="oder__header">
-                        <h3 class="order__heading">Đơn hàng đã đặt</h3>
+                <div class="order_wrapper">
+                    <div class="oder_header">
+                        <h3 class="order_heading">Đơn hàng đã đặt</h3>
                     </div>
                     <div class="show-order">
 
@@ -322,7 +322,7 @@
                 </div>
 
                 <!-- Order empty -->
-                <div class="empty order__empty">
+                <div class="empty order_empty">
                     <h3 class="empty-noti">Bạn không có đơn hàng nào!</h3>
                     <img src="./img/order-empty.png" alt="" class="empty-img" style="width: 200px;">
                     <div style="height: 200px"></div>
@@ -340,46 +340,46 @@
             <div class="grid wide">
                 <div class="row">
                     <div class="col l-12 c-12">
-                        <div class="footer__logo">
-                            <img src="./img/logo.png" alt="" class="footer__logo-img">
+                        <div class="footer_logo">
+                            <img src="./img/logo.png" alt="" class="footer_logo-img">
                         </div>
                     </div>
                     <div class="col l-4 c-12">
-                        <h3 class="footer__heading">LIÊN HỆ VỚI CHÚNG TÔI</h3>
-                        <ul class="footer__list">
-                            <li class="footer__item">
+                        <h3 class="footer_heading">LIÊN HỆ VỚI CHÚNG TÔI</h3>
+                        <ul class="footer_list">
+                            <li class="footer_item">
                                 Điện thoại:
-                                <a href="tel:0976124506" class="footer__item-link footer__phone">0976124506</a>
+                                <a href="tel:0976124506" class="footer_item-link footer_phone">0976124506</a>
                             </li>
-                            <li class="footer__item">
+                            <li class="footer_item">
                                 Email:
-                                <a href="mailto:highhhhtech@gmail.com" class="footer__item-link footer__email">highhhhtech@gmail.com</a>
+                                <a href="mailto:highhhhtech@gmail.com" class="footer_item-link footer_email">highhhhtech@gmail.com</a>
                             </li>
-                            <li class="footer__item">
-                                Địa chỉ: 273 An Dương Vương, Quận 5, Hồ Chí Minh
+                            <li class="footer_item">
+                                Địa chỉ: 273 An Dương Vương, Phường 3, Quận 5, TP.Hồ Chí Minh
                             </li>    
                         </ul>
                     </div>
                     <div class="col l-4 c-12">
-                        <h3 class="footer__heading">THEO DÕI CHÚNG TÔI TRÊN</h3>
-                        <ul class="footer__list social">
-                            <li class="footer__item">
-                                <a href="" class="footer__item-link">
-                                    <i class="footer__item-icon fa-brands fa-facebook"></i>
+                        <h3 class="footer_heading">THEO DÕI CHÚNG TÔI TRÊN</h3>
+                        <ul class="footer_list social">
+                            <li class="footer_item">
+                                <a href="" class="footer_item-link">
+                                    <i class="footer_item-icon fa-brands fa-facebook"></i>
                                     <span>Facebook</span>
                                     
                                 </a>
                             </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__item-link">
-                                    <i class="footer__item-icon fa-brands fa-instagram"></i>
+                            <li class="footer_item">
+                                <a href="" class="footer_item-link">
+                                    <i class="footer_item-icon fa-brands fa-instagram"></i>
                                     <span>Instagram</span>
                                     
                                 </a>
                             </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__item-link">
-                                    <i class="footer__item-icon fa-brands fa-tiktok"></i>
+                            <li class="footer_item">
+                                <a href="" class="footer_item-link">
+                                    <i class="footer_item-icon fa-brands fa-tiktok"></i>
                                     <span>TikTok</span>
                                     
                                 </a>
@@ -387,112 +387,112 @@
                         </ul>
                     </div>
                     <div class="col l-4 c-12">
-                        <h3 class="footer__heading">CÔNG TY CỔ PHẦN HIGHTECH</h3>
-                        <ul class="footer__list">
-                            <li class="footer__item">Ngày thành lập: 18/10/2022</li>                           
-                            <li class="footer__item">HighTech đảm bảo uy tín và chất lượng những sản phẩm mang lại giá trị cho cộng đồng.</li>                   
+                        <h3 class="footer_heading">CÔNG TY CỔ PHẦN HIGHTECH</h3>
+                        <ul class="footer_list">
+                            <li class="footer_item">Ngày thành lập: 21/10/2024</li>                           
+                            <li class="footer_item">HighTech đảm bảo uy tín và chất lượng những sản phẩm mang lại giá trị cho cộng đồng.</li>                   
                         </ul>
                     </div>
                     <div class="col l-12 c-12">
-                        <p class="footer__copyright">© 2022 - Bản quyền thuộc về Công ty TNHH HighTech</p>
+                        <p class="footer_copyright">© 2024 - Bản quyền thuộc về Công ty TNHH HighTech</p>
                     </div>
                 </div>
             </div>
         </footer>
 
-        <!-- Account Modal -->
-        <div id="account__modal" class="modal" onclick="document.getElementById('account__modal').style.display='none'">
-            <div class="modal-overlay"></div>
+        <!-- Account Model -->
+        <div id="account_Model" class="Model" onclick="document.getElementById('account_Model').style.display='none'">
+            <div class="Model-overlay"></div>
 
-            <div class="modal-body">
+            <div class="Model-body">
                 <!-- Sign up -->
                 <div id="sign-up" class="account-form">
-                    <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
+                    <span onclick="document.getElementById('account_Model').style.display='none'" class="close">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <form class="account-form__container" onsubmit="return createAccount()">
-                        <div class="account-form__header">
-                            <h3 class="account-form__heading">Đăng ký</h3>
+                    <form class="account-form_container" onsubmit="return createAccount()">
+                        <div class="account-form_header">
+                            <h3 class="account-form_heading">Đăng ký</h3>
                         </div>
 
-                        <div class="account-form__form">
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-user"></i>
-                                <input id="user-name" type="text" class="account-form__input" placeholder="Tên người dùng" required>
+                        <div class="account-form_form">
+                            <div class="account-form_box">
+                                <i class="account-form_box-icon uil uil-user"></i>
+                                <input id="user-name" type="text" class="account-form_input" placeholder="Tên người dùng" required>
                             </div>
 
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-envelope"></i>
-                                <input id="email" type="email" class="account-form__input" placeholder="Email của bạn" required>
+                            <div class="account-form_box">
+                                <i class="account-form_box-icon uil uil-envelope"></i>
+                                <input id="email" type="email" class="account-form_input" placeholder="Email của bạn" required>
                                 <span class="error email"></span>
                             </div>
     
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-lock-alt"></i>
-                                <input id="true-password" type="password" class="account-form__input password" placeholder="Nhập mật khẩu" required>
+                            <div class="account-form_box">
+                                <i class="account-form_box-icon uil uil-lock-alt"></i>
+                                <input id="true-password" type="password" class="account-form_input password" placeholder="Nhập mật khẩu" required>
                             </div>
 
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-lock-alt"></i>
-                                <input id="re-password" type="password" class="account-form__input password" placeholder="Nhập lại mật khẩu" required>
-                                <span class="account-form__box-showpass sign-up-showpass" onclick="showPassword()">
+                            <div class="account-form_box">
+                                <i class="account-form_box-icon uil uil-lock-alt"></i>
+                                <input id="re-password" type="password" class="account-form_input password" placeholder="Nhập lại mật khẩu" required>
+                                <span class="account-form_box-showpass sign-up-showpass" onclick="showPassword()">
                                     <i class="uil uil-eye-slash show-hide"></i>
                                 </span>
                                 <span class="error password"></span>
                             </div>
                         </div>  
 
-                        <div class="account-form__policy">
+                        <div class="account-form_policy">
                             <input type="checkbox" name="" id="policy_check" required>
-                            <label for="policy_check" class="account-form__policy-lable">
-                                <p class="account-form__policy-text">
+                            <label for="policy_check" class="account-form_policy-lable">
+                                <p class="account-form_policy-text">
                                     Tôi đồng ý với 
-                                    <strong class="account-form__policy-info">Điều khoản dịch vụ</strong>  
+                                    <strong class="account-form_policy-info">Điều khoản dịch vụ</strong>  
                                     & 
-                                    <strong class="account-form__policy-info">Chính sách bảo mật</strong>
+                                    <strong class="account-form_policy-info">Chính sách bảo mật</strong>
                                 </p>
                             </label>
                         </div>
 
-                        <button class="account-form__btn" type="submit">Đăng ký</button>
+                        <button class="account-form_btn" type="submit">Đăng ký</button>
 
-                        <div class="account-form__switch">
+                        <div class="account-form_switch">
                             Bạn đã có tài khoản? 
-                            <span id="sign-in-btn" class="account-form__switch-btn" onclick="showSignIn()">Đăng nhập</span>
+                            <span id="sign-in-btn" class="account-form_switch-btn" onclick="showSignIn()">Đăng nhập</span>
                         </div>
                     </form>
                 </div>
 
                 <!-- Sign in -->
                 <div id="sign-in" class="account-form">
-                    <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
+                    <span onclick="document.getElementById('account_Model').style.display='none'" class="close">
                         <i class="close-btn close fa-solid fa-xmark"></i>
                     </span>
-                    <form class="account-form__container" onsubmit="LogIn(); return false">
-                        <div class="account-form__header">
-                            <h3 class="account-form__heading">Đăng nhập</h3>
+                    <form class="account-form_container" onsubmit="LogIn(); return false">
+                        <div class="account-form_header">
+                            <h3 class="account-form_heading">Đăng nhập</h3>
                         </div>
 
-                        <div class="account-form__form">
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-envelope"></i>
-                                <input id="sign-in-email" type="email" class="account-form__input" placeholder="Email của bạn" required>
+                        <div class="account-form_form">
+                            <div class="account-form_box">
+                                <i class="account-form_box-icon uil uil-envelope"></i>
+                                <input id="sign-in-email" type="email" class="account-form_input" placeholder="Email của bạn" required>
                             </div>
     
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-lock-alt"></i>
-                                <input id="sign-in-password" type="password" class="account-form__input" placeholder="Mật khẩu" required>
-                                <span class="account-form__box-showpass sign-in-showpass" onclick="showSignInPassword()">
+                            <div class="account-form_box">
+                                <i class="account-form_box-icon uil uil-lock-alt"></i>
+                                <input id="sign-in-password" type="password" class="account-form_input" placeholder="Mật khẩu" required>
+                                <span class="account-form_box-showpass sign-in-showpass" onclick="showSignInPassword()">
                                     <i class="uil uil-eye-slash show-hide"></i>
                                 </span>
                             </div>
                         </div>
 
-                        <button class="account-form__btn">Đăng nhập</button>
+                        <button class="account-form_btn">Đăng nhập</button>
 
-                        <div class="account-form__switch">
+                        <div class="account-form_switch">
                             Bạn chưa có tài khoản? 
-                            <span id="sign-up-btn" class="account-form__switch-btn" onclick="showSignUp()">Đăng ký</span>
+                            <span id="sign-up-btn" class="account-form_switch-btn" onclick="showSignUp()">Đăng ký</span>
                         </div>
                     </form>
                 </div>

@@ -35,9 +35,9 @@ function showStatisticsPage() {
     userPage.style.display = 'none';
 
     showCurrentContent('statistics');
-    document.querySelector('.admin__content-header h3').innerHTML = 'Thống kê';
+    document.querySelector('.admin_content-header h3').innerHTML = 'Thống kê';
 
-    var statisSumInfo = document.querySelectorAll('.admin__statis-sum-box-info p');
+    var statisSumInfo = document.querySelectorAll('.admin_statis-sum-box-info p');
     var orderQuantity = getOrderQuantity();
     var productQuantity = getOrderProductQuantity();
     var total = getTotalOrderPrice();
@@ -62,8 +62,8 @@ function htmlChart(orderPercent, productPercent, totalPercent, month) {
     }
 
     var html = `
-        <div class="admin__statis-chart-item">
-            <div class="admin__statis-chart-box">
+        <div class="admin_statis-chart-item">
+            <div class="admin_statis-chart-box">
                 <div style="--percent-height: ${tmp1}%">
                     <span class="info-quantity">${orderPercent.toFixed(2)}</span>
                 </div>
@@ -74,7 +74,7 @@ function htmlChart(orderPercent, productPercent, totalPercent, month) {
                     <span class="info-quantity">${totalPercent.toFixed(2)}</span>
                 </div>
             </div>
-            <span class="admin__statis-chart-month">Tháng ${month}</span>
+            <span class="admin_statis-chart-month">Tháng ${month}</span>
         </div>
     `;
     return html;
@@ -166,7 +166,7 @@ function showChart(category) {
         emptyNoti.style.textAlign = 'center';
         emptyNoti.style.fontSize = '32px';
         emptyNoti.style.margin = '32px auto';
-        document.querySelector('.admin__statis-chart').appendChild(emptyNoti);
+        document.querySelector('.admin_statis-chart').appendChild(emptyNoti);
     } else {
         var orderPercent, productPercent, totalPercent;
         var orderSum = getOrderQuantity(), productSum = getOrderProductQuantity(), totalSum = covertPriceToNumber(getTotalOrderPrice());
@@ -181,6 +181,6 @@ function showChart(category) {
             html.push(htmlChart(orderPercent, productPercent, totalPercent, i));
         }
     
-        document.querySelector('.admin__statis-chart').innerHTML = html.join('');
+        document.querySelector('.admin_statis-chart').innerHTML = html.join('');
     }
 }

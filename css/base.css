@@ -22,10 +22,10 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
 
-.header__search-input:-webkit-autofill,
-.header__search-input:-webkit-autofill:hover,
-.header__search-input:-webkit-autofill:focus,
-.header__search-input:-webkit-autofill:active {
+.header_search-input:-webkit-autofill,
+.header_search-input:-webkit-autofill:hover,
+.header_search-input:-webkit-autofill:focus,
+.header_search-input:-webkit-autofill:active {
     -webkit-text-fill-color: #fff;
 }
 
@@ -88,7 +88,7 @@ html::-webkit-scrollbar-thumb,
     border-color: #47d864;
 }
 
-.toast-message.success .toast__icon {
+.toast-message.success .toast_icon {
     color: #47d864;
 }
 
@@ -96,33 +96,33 @@ html::-webkit-scrollbar-thumb,
     border-color: #ff623d;
 }
 
-.toast-message.fail .toast__icon {
+.toast-message.fail .toast_icon {
     color: #ff623d;
 }
 
-.toast__body {
+.toast_body {
     margin-right: 50px;
 }
 
-.toast__body h3 {
+.toast_body h3 {
     font-size: 16px;
     margin-bottom: 8px;
 }
 
-.toast__body p {
+.toast_body p {
     font-size: 14px;
 }
 
-.toast__icon, 
-.toast__close {
+.toast_icon, 
+.toast_close {
     padding: 0 16px;
 }
 
-.toast__icon i {
+.toast_icon i {
     font-size: 24px;
 }
 
-.toast__close i {
+.toast_close i {
     cursor: pointer;
     font-size: 20px;
     color: #0000004d;
@@ -201,7 +201,7 @@ html::-webkit-scrollbar-thumb,
     }
 }
 
-@keyframes ModalfadeIn {
+@keyframes ModelfadeIn {
     from {
         opacity: 0;
         transform: translateY(-150px);
@@ -256,8 +256,8 @@ html::-webkit-scrollbar-thumb,
     }
 }
 
-/* Modal */
-.modal {
+/* Model */
+.Model {
     position: fixed;
     top: 0;
     right: 0;
@@ -267,14 +267,14 @@ html::-webkit-scrollbar-thumb,
     display: none;
 }
 
-.modal-overlay {
+.Model-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.modal-body {
+.Model-body {
     z-index: 3;
     margin: auto;
 }

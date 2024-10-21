@@ -1,6 +1,6 @@
 var orderList = JSON.parse(localStorage.getItem('orderList'));
-var orderEmtpyPage = document.querySelector('.admin__order-empty');
-var showOrderList = document.querySelector('.admin__order-wrapper');
+var orderEmtpyPage = document.querySelector('.admin_order-empty');
+var showOrderList = document.querySelector('.admin_order-wrapper');
 
 function htmlAdminOrder(orderItem, array) {
     var total = getTotalPrice(array);
@@ -9,11 +9,11 @@ function htmlAdminOrder(orderItem, array) {
     var productList = '';
     for (var i = 0; i < array.length; i++) {
         productList +=  `
-            <li class="order__item">
-                <img src="${array[i].img}" alt="" class="order__item-img">
-                <span class="order__item-name">${array[i].name}</span>
-                <span class="order__item-price">${array[i].currentPrice}</span>
-                <span class="order__item-quantity">${array[i].quantity}</span>
+            <li class="order_item">
+                <img src="${array[i].img}" alt="" class="order_item-img">
+                <span class="order_item-name">${array[i].name}</span>
+                <span class="order_item-price">${array[i].currentPrice}</span>
+                <span class="order_item-quantity">${array[i].quantity}</span>
             </li>
         `;
         quantity += array[i].quantity;
@@ -29,31 +29,31 @@ function htmlAdminOrder(orderItem, array) {
     }
 
     var html = `
-        <div class="order__box">
-            <div class="order__box-title" onclick="showAdminOrderDetail(${orderItem.orderID})">
-                <div class="order__box-item">
+        <div class="order_box">
+            <div class="order_box-title" onclick="showAdminOrderDetail(${orderItem.orderID})">
+                <div class="order_box-item">
                     <i class="uil uil-arrow-down"></i>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Đơn hàng #${orderItem.orderID}</h3>
                     <span>${quantity} sản phẩm</span>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Tổng tiền</h3>
                     <span>${total}</span>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Tên người dùng</h3>
                     <span>${orderItem.userAccount.userName}</span>
                 </div>
-                <div class="order__box-item">
+                <div class="order_box-item">
                     <h3>Ngày đặt hàng</h3>
                     <span>${orderItem.orderDate}</span>
                 </div>
-                <div class="order__box-item order__status">
+                <div class="order_box-item order_status">
                     <span class="status ${switchActive}">${status}</span>
                 </div>
-                <div class="order__box-item switch-status ${switchActive}" value="${orderItem.orderID}">
+                <div class="order_box-item switch-status ${switchActive}" value="${orderItem.orderID}">
                     <div class="switch-status-btn ${switchActive}">
                         <span class="${switchActive}"></span>
                     </div>
@@ -61,15 +61,15 @@ function htmlAdminOrder(orderItem, array) {
             </div>
 
             <div class="order_detail scrollbar" value="${orderItem.orderID}">
-                <div class="order__user-info">
+                <div class="order_user-info">
                     <h3>THÔNG TIN KHÁCH HÀNG:</h3>
-                    <div class="order__user-info-box">
+                    <div class="order_user-info-box">
                         <span><b>Họ tên:</b> ${orderItem.userAccount.userFullName}</span>
                         <span><b>Địa chỉ:</b> ${orderItem.userAccount.userAddress}</span>
                         <span><b>Số điện thoại:</b> ${orderItem.userAccount.userPhone}</span>
                     </div>
                 </div>
-                <ul class="admin-order__list">
+                <ul class="admin-order_list">
                     <h3>SẢN PHẨM ĐÃ ĐẶT</h3>
                     ${productList}
                 </ul>
@@ -129,7 +129,7 @@ function showAdminOrder() {
     statisticsPage.style.display = 'none';
     userPage.style.display = 'none';
     
-    var status = document.querySelector('.admin__order-status select');
+    var status = document.querySelector('.admin_order-status select');
     for (var i = 0; i < status.options.length; i++) {
         if (status.options[i].selected == true) {
             array = getStatusOrder(status.options[i].value);
@@ -139,7 +139,7 @@ function showAdminOrder() {
 
     if (orderList && orderList.length > 0) {
         orderEmtpyPage.style.display = 'none';
-        document.querySelector('.admin__content-header h3').innerHTML = 'Quản lý đơn hàng';
+        document.querySelector('.admin_content-header h3').innerHTML = 'Quản lý đơn hàng';
 
         var html = array.map(function(orderItem) {
             var tmpArray = createNewCartProductArray(orderItem.userAccount.cartList);
@@ -183,7 +183,7 @@ function showAdminOrderDetail(id) {
 
 // Switch status    
 function switchStatus() {
-    var orderBox = document.querySelectorAll('.order__box');
+    var orderBox = document.querySelectorAll('.order_box');
     
     orderBox.forEach(function(item, index) {
         var switchBox = item.querySelector('.switch-status');

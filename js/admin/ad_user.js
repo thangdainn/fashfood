@@ -1,5 +1,5 @@
 var userAccount = JSON.parse(localStorage.getItem('userAccount'));
-var userList = document.querySelector('.admin__user-account-list');
+var userList = document.querySelector('.admin_user-account-list');
 
 function htmlUser(account) {
     var icon = {
@@ -8,33 +8,33 @@ function htmlUser(account) {
     };
 
     var html = `
-        <div class="admin__user-account-item">
-            <div class="admin__user-account-item-box">
+        <div class="admin_user-account-item">
+            <div class="admin_user-account-item-box">
                 <i class="${icon[account.type]}"></i>
             </div>
-            <div class="admin__user-account-item-box">
+            <div class="admin_user-account-item-box">
                 <img src="./img/account-logo.png" alt="">
             </div>
-            <div class="admin__user-account-item-box">
+            <div class="admin_user-account-item-box">
                 <h3>${account.userName}</h3>
                 <p>${account.userEmail}</p>
             </div>
-            <div class="admin__user-account-item-box">
+            <div class="admin_user-account-item-box">
                 <h3>Ngày đăng ký</h3>
                 <p>${account.userDate}</p>
             </div>
-            <div class="admin__user-account-item-box control">
+            <div class="admin_user-account-item-box control">
                 <i class="fa-solid fa-ellipsis-vertical"></i>
-                <div class="admin__user-account-control">
-                    <div class="admin__user-account-control-item" onclick="showSeeInfoModal('${account.userEmail}')">
+                <div class="admin_user-account-control">
+                    <div class="admin_user-account-control-item" onclick="showSeeInfoModel('${account.userEmail}')">
                         <i class="uil uil-info-circle"></i>
                         <span>Xem thông tin</span>
                     </div>
-                    <div class="admin__user-account-control-item" onclick="showEditInfoModal('${account.userEmail}')">
+                    <div class="admin_user-account-control-item" onclick="showEditInfoModel('${account.userEmail}')">
                         <i class="uil uil-edit"></i>
                         <span>Sửa thông tin</span>
                     </div>
-                    <div class="admin__user-account-control-item" onclick="showDeleteAccountModal('${account.userEmail}')">
+                    <div class="admin_user-account-control-item" onclick="showDeleteAccountModel('${account.userEmail}')">
                         <i class="uil uil-user-times"></i>
                         <span>Xóa tài khoản</span>
                     </div>
@@ -64,18 +64,18 @@ function showUserPage() {
     document.querySelector('.admin-account-quantity').innerHTML = adminAccount.length;
     document.querySelector('.user-account-quantity').innerHTML = userAccount.length - adminAccount.length;
 
-    document.querySelector('.admin__content-header h3').innerHTML = 'Quản lý khách hàng';
+    document.querySelector('.admin_content-header h3').innerHTML = 'Quản lý khách hàng';
     userList.innerHTML = html.join('');
     showControl();
     autoCloseControlPage();
 }
 
 function showControl() {
-    var controlBtn = document.querySelectorAll('.admin__user-account-item-box.control');
+    var controlBtn = document.querySelectorAll('.admin_user-account-item-box.control');
     var prevControlPage;
     controlBtn.forEach(function(control) {
         control.addEventListener('click', function(event) {
-            var controlPage = control.querySelector('.admin__user-account-control');
+            var controlPage = control.querySelector('.admin_user-account-control');
             controlPage.classList.toggle('active');
 
             if (prevControlPage && prevControlPage != controlPage) {
@@ -88,8 +88,8 @@ function showControl() {
 }
 
 function autoCloseControlPage() {
-    var controlPage = document.querySelectorAll('.admin__user-account-control');
-    var content = document.querySelector('.admin__content-wrapper');
+    var controlPage = document.querySelectorAll('.admin_user-account-control');
+    var content = document.querySelector('.admin_content-wrapper');
     content.addEventListener('click', function(event) {
         controlPage.forEach(function(item) {
             item.classList.remove('active');
@@ -99,7 +99,7 @@ function autoCloseControlPage() {
 }
 
 // Search account
-var searhInfo = document.querySelector('.admin__user-search-input');
+var searhInfo = document.querySelector('.admin_user-search-input');
 
 searhInfo.addEventListener('keyup', function() {
     var searchAccount = userAccount.filter(function(account) {
@@ -113,9 +113,9 @@ searhInfo.addEventListener('keyup', function() {
 })
 
 // Show user control
-var userControlModal = document.getElementById('user-control-modal');
-var infoModal = document.getElementById('user-info');
-var deleteAccountModal = document.getElementById('delete-account');
+var userControlModel = document.getElementById('user-control-Model');
+var infoModel = document.getElementById('user-info');
+var deleteAccountModel = document.getElementById('delete-account');
 
 // See info
 var userFullName = document.getElementById('user-fullname');
@@ -161,10 +161,10 @@ function enableEdit() {
     userType.disabled = false;
 }
 
-function showSeeInfoModal(email) {
-    userControlModal.style.display = 'flex';
-    infoModal.style.display = 'block';
-    deleteAccountModal.style.display = 'none';
+function showSeeInfoModel(email) {
+    userControlModel.style.display = 'flex';
+    infoModel.style.display = 'block';
+    deleteAccountModel.style.display = 'none';
 
     var userInfo = userAccount.find(function(account, index) {
         editIndex = index;
@@ -186,16 +186,16 @@ function showSeeInfoModal(email) {
     }
 
     disableEdit();
-    document.querySelector('#user-info .control-form__heading h3').innerHTML = 'Xem thông tin';
-    document.querySelector('#user-info .control-form___form-btn').style.display = 'none';
+    document.querySelector('#user-info .control-form_heading h3').innerHTML = 'Xem thông tin';
+    document.querySelector('#user-info .control-form__form-btn').style.display = 'none';
 }
 
 // Edit info
-function showEditInfoModal(email) {
-    showSeeInfoModal(email);
+function showEditInfoModel(email) {
+    showSeeInfoModel(email);
     enableEdit();
-    document.querySelector('#user-info .control-form__heading h3').innerHTML = 'Sửa thông tin';
-    document.querySelector('#user-info .control-form___form-btn').style.display = 'block';
+    document.querySelector('#user-info .control-form_heading h3').innerHTML = 'Sửa thông tin';
+    document.querySelector('#user-info .control-form__form-btn').style.display = 'block';
 }
 
 function checkPhone() {
@@ -226,7 +226,7 @@ function EditInfo() {
         document.querySelector('#user-info .error-phone').style.display = 'none';
 
         showToast('success', 'Thành công!', `Đã lưu thông tin mới của tài khoản ${userAccount[editIndex].userEmail}`);
-        userControlModal.style.display = 'none';
+        userControlModel.style.display = 'none';
         showUserPage();
     } else {
         document.querySelector('#user-info .error-phone').style.display = 'block';
@@ -236,10 +236,10 @@ function EditInfo() {
 // Delete account
 var deleteIndex;
 
-function showDeleteAccountModal(email) {
-    userControlModal.style.display = 'flex';
-    deleteAccountModal.style.display = 'block';
-    infoModal.style.display = 'none';
+function showDeleteAccountModel(email) {
+    userControlModel.style.display = 'flex';
+    deleteAccountModel.style.display = 'block';
+    infoModel.style.display = 'none';
 
     userAccount.forEach(function(account, index) {
         if (account.userEmail == email) {
@@ -247,11 +247,11 @@ function showDeleteAccountModal(email) {
         }
     });
 
-    document.querySelector('#delete-account .delete-form__question').innerHTML = `Bạn có muốn xóa tài khoản "${email}" không ?`;
+    document.querySelector('#delete-account .delete-form_question').innerHTML = `Bạn có muốn xóa tài khoản "${email}" không ?`;
 }
 
 function isAdminAccount(account) {
-    if (account.type == 'admin')
+    if (account.type == 'admin' || account.userName == 'Admin')
         return true;
     return false;
 }
@@ -269,6 +269,6 @@ function deleteAccount() {
     
         showToast('success', 'Thành công!', `Xóa thành công tài khoản ${tmpAccount.userEmail}`);   
     }
-    userControlModal.style.display = 'none';
+    userControlModel.style.display = 'none';
     showUserPage();
 }
