@@ -61,21 +61,8 @@ function prevNameCategory(name) {
     return name;
 }
 
-// function UpperCaseFirstCharacter(str) {
-//     return str.charAt(0).toUpperCase() + str.slice(1);
-// }
 
-// function renderString(name) {
-//     var tmp = name.split(' ');
-//     tmp[0] = ReName(tmp[0]);
-//     for (var i = 1; i < tmp.length; i++) {
-//         tmp[i] = UpperCaseFirstCharacter(tmp[i]);
-//     }
-//     name = tmp.join(' ');
-//     return name;
-// }
-
-// tạo mảng tạm lưu số sản phẩm 1 trang
+// store list products at current page
 function createTempArray(start, array) {
     var tmp = [], cnt = 0;
     start = (start - 1) * productPerPage;

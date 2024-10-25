@@ -753,6 +753,7 @@
     width: 200px;
     margin: 24px 0 12px 0;
     object-fit: cover;
+    height: 58%;
 }
 
 .product__item-name {

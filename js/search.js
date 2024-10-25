@@ -5,10 +5,12 @@ var products = JSON.parse(localStorage.getItem('products'));
 
 search.addEventListener('keyup', function(event) {
     if (event.keyCode == 13 && search.value.length > 0) {
+        let searchValue = removeAccents(search.value).toLowerCase();
         localStorage.setItem('search', search.value);
         products.forEach(function(product) {
-            if (product.name.toLowerCase().replaceAll(' ', '').includes(search.value.toLowerCase().replaceAll(' ', ''))) {
-                searchProduct.push(product);                                   
+            let productName = removeAccents(product.name).toLowerCase();
+            if (productName.includes(searchValue)) {
+                searchProduct.push(product);                              
             }
         });  
         localStorage.setItem('searchProduct', JSON.stringify(searchProduct));
@@ -16,6 +18,10 @@ search.addEventListener('keyup', function(event) {
         window.location.href = 'index.html?search';
     }
 });
+
+function removeAccents(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+}
 
 function showCategory() {
     searchProduct = JSON.parse(localStorage.getItem('searchProduct'));
@@ -54,12 +60,17 @@ function showCategory() {
 }
 
 function showCurrentCategory(name) {
+
+    // rename category to vietnamese
+    name = reNameCategory(name);
+    
     var currentFilter = document.querySelectorAll('.product__filter-item-btn');
     for (var i = 0; i < currentFilter.length; i++) {
         currentFilter[i].classList.remove('product__filter-item-btn--active');
     }
     for (var i = 0; i < currentFilter.length; i++) {
-        if (currentFilter[i].innerText.toLowerCase() == name.replaceAll('-', ' ')) {
+        
+        if (currentFilter[i].innerText.toLowerCase() == name.toLowerCase()) {
             currentFilter[i].classList.add('product__filter-item-btn--active');
             break;
         }
@@ -94,7 +105,6 @@ function showSearchProduct(start) {
         document.getElementById('body').style.display = 'none';
         document.getElementById('search__empty').innerHTML = `
             <div class="grid wide">
-                <p class="search__empty-notice">Không tìm thấy kết quả nào phù hợp với từ khóa "${localStorage.getItem('search')}"</p>
                 <div class="search__empty-box">
                     <ul class="search__empty-list">
                         <h3 class="search__empty-list-heading">Để tìm được kết quả chính xác hơn, bạn vui lòng:</h3>
@@ -112,8 +122,10 @@ function showSearchProduct(start) {
         search.value = localStorage.getItem('search');
         localStorage.setItem('categoryName', 'Tất cả');
 
-        document.querySelector('.product__logo-name').innerHTML = `Tìm thấy các sản phẩm có từ khóa "${search.value}"`;
+        // document.querySelector('.product__logo-name').innerHTML = `Tìm thấy các sản phẩm có từ khóa "${search.value}"`;
         showCategory();
+        // paginationElm.style.display = 'flex';
+
         showSearchPagination(searchProduct);
         showCurrentPage(start);
 

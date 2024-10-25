@@ -1,5 +1,6 @@
 var prevBtn = document.querySelector('.pagination-prev'); 
 var nextBtn = document.querySelector('.pagination-next');
+var paginationElm = document.querySelector('.product__pagination');
 
 prevBtn.addEventListener('click', function() {
     var number = localStorage.getItem('currentPage');
@@ -111,14 +112,10 @@ function showPagination(array) {
                 </div>
             `;
         }
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
         document.querySelector('.product__pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
         document.querySelector('.product__pagination-list').innerHTML = '';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
     }
 }
 
@@ -135,21 +132,16 @@ function showFilterPagination(array, category, filterName) {
                 </div>
             `;
         }
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
         document.querySelector('.product__pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
         document.querySelector('.product__pagination-list').innerHTML = '';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
     }
     
 }
 
 //search pagination
 function showSearchPagination(array) {
-    if (array.length > productPerPage) {
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
@@ -160,19 +152,10 @@ function showSearchPagination(array) {
                 </div>
             `;
         }
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
         document.querySelector('.product__pagination-list').innerHTML = s;
-    } else {
-        localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-    }
 }
 
 function showCategoryPagination(array, name) {
-    if (array.length > productPerPage) {
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
@@ -183,13 +166,5 @@ function showCategoryPagination(array, name) {
                 </div>
             `;
         }
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
         document.querySelector('.product__pagination-list').innerHTML = s;
-    } else {
-        localStorage.setItem('totalPage', 0);
-        document.querySelector('.product__pagination-list').innerHTML = '';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-    }
 } 

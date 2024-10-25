@@ -61,7 +61,7 @@ function showCurrentNavbar(str) {
         currentNavbar[i].classList.remove('header__navbar-item-link--active');
     }
     for (var i = 0; i < currentNavbar.length; i++) {
-        if (currentNavbar[i].getAttribute('data-value').toLowerCase() == str.replaceAll('-', '-').toLowerCase()) {
+        if (currentNavbar[i].getAttribute('data-value').toLowerCase() == str.toLowerCase()) {
             currentNavbar[i].classList.add('header__navbar-item-link--active');
             break;
         }
@@ -123,7 +123,6 @@ function showFilterProduct(category, filterName, start) {
     })
     localStorage.setItem('filterName', filterName);
 
-    // category = reNameCategory(category);
     showCurrentFilter(filterName);
     showFilterPagination(filterArr, category, filterName);
     showCurrentPage(start);
@@ -139,7 +138,7 @@ function showFilterProduct(category, filterName, start) {
     document.getElementById('show-product').innerHTML = arr.join('');
     document.querySelector('.product__header').scrollIntoView();
 
-    // Xử lý page(disable prev, next)
+    // handle page(disable prev, next)
     Pagination();
 }
 
@@ -156,28 +155,30 @@ function showProduct(start) {
         document.querySelector('.slider').style.display = 'none';
 
         showCurrentNavbar(category);
+        
         showFilter(category);
+
+        paginationElm.style.display = 'flex';
+        showPagination(productArray);
+        showCurrentPage(start);
+
+        Pagination();
+
     } else {
         document.querySelector('.slider').style.display = 'block';
         productArray = products.filter(function(product) {
             return product.state == 'new';
         });
         category = 'Món mới';
+        paginationElm.style.display = 'none';
     }
     localStorage.setItem('filterName', "Tất cả");
 
-    showPagination(productArray);
-    showCurrentPage(start);
-    category = reNameCategory(category);
-
-    var arr = createTempArray(start, productArray); //tạo mảng tạm chứa sản phẩm ở trang hiện tại
+    var arr = createTempArray(start, productArray); //array store list products at current page
     document.getElementById('body').style.display = 'block';
-    // document.querySelector('.product__logo-name').innerHTML = category;
     document.getElementById('show-product').innerHTML = arr.join('');
     if (category != 'Món mới'){
         document.querySelector('.product__header').scrollIntoView();
     }
     
-    // Xử lý page
-    Pagination();
 }
