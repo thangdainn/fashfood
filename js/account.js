@@ -62,8 +62,8 @@ var fullName = document.getElementById('full-name');
 
 if (!userAccount) {
     userAccount = [
-        {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin'},
-        {cartList: [], userName: 'Random', userEmail: 'random@gmail.com', userPassword: 'random', userFullName: 'Random', userPhone: '0123456789', userAddress: 'Random', userDate: '20/11/2022', type: 'user'},
+        {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin', status: 1},
+        {cartList: [], userName: 'User', userEmail: 'user@gmail.com', userPassword: 'user', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
     ];
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }

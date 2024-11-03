@@ -39,11 +39,7 @@ function htmlProduct(product) {
     var html = `
         <div class="col l-3 m-4 c-6">
             <div class="product__item">
-<<<<<<< HEAD
                 <a href="index.html?${tmpName}" class="product__item-link">
-=======
-                 <a href="index.html?${tmpName}" class="product__item-link">
->>>>>>> 9da2a1e (đẩy lại code cũ không plugin)
                     <img src = "${product.img}" class = "product__item-img"></img>
                     <h3 class="product__item-name">${product.name}</h3>
                     <div class="product__item-price">
