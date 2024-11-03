@@ -1,4 +1,3 @@
-
 var products = JSON.parse(localStorage.getItem('products'));
 if (!products) {
     products = [
