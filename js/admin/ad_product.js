@@ -5,7 +5,7 @@ function htmlAdminProduct(product) {
     if (product.oldPrice == '') {
         product.oldPrice = product.currentPrice;
     }
-    product.category = ReName(product.category);
+    product.category = reNameCategory(product.category);
 
     var tmpName = product.name.replace('"', '');
     tmpName = tmpName.replaceAll(' ', '-');

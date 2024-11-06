@@ -150,23 +150,25 @@ function createAccount() {
         return false;
     } else {
         document.querySelector('.error.password').innerHTML = '';
-        
         // Push new account data to userAccount
+        
         userAccount.push({
             cartList: [],
             userName: myName.value,
             userEmail: email.value,
             userPassword: password.value,
-            userFullName: fullName.value, // Include full name
-            userPhone: userPhone.value,  // Include phone number
-            userAddress: userAddress.value, // Include address
+            userFullName: "", // Include full name
+            userPhone: "",  // Include phone number
+            userAddress: "", // Include address
             userDate: today,
-            type: 'user'
+            type: 'user',
+            status: 1
         });
         
         localStorage.setItem('userAccount', JSON.stringify(userAccount));
         localStorage.setItem('isLogIn', 1);
         localStorage.setItem('userAccountIndex', userAccount.length - 1);
+
     }
 }
 
@@ -207,23 +209,18 @@ var user =  document.querySelector('.header__user');
 var admin = document.querySelector('.header__admin');
 var index;
 
-function showUserGroup(name, name1, name2) { 
+function showUserGroup(name, name1) { 
     name.style.display = 'block';
     name1.style.display = 'none';
-    name2.style.display = 'none';
 }   
 
 var isLogIn = localStorage.getItem('isLogIn');
 if (isLogIn == 1) {
     index = JSON.parse(localStorage.getItem('userAccountIndex'));
     
-    if (userAccount[index].type == 'admin') {
-        showUserGroup(admin, noneUser, user);
-    } else {
-        var changeUserName = document.querySelector('.header__user .header__user-name');
-        changeUserName.innerHTML = userAccount[index].userName;
-        showUserGroup(user, noneUser, admin);
-    }
+    var changeUserName = document.querySelector('.header__user .header__user-name');
+    changeUserName.innerHTML = userAccount[index].userName;
+    showUserGroup(user, noneUser);
 } else {
-    showUserGroup(noneUser, user, admin);
+    showUserGroup(noneUser, user);
 }
