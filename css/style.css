@@ -227,7 +227,7 @@
     width: 100%;
     outline: none;
     border: none;
-    color: #fff;
+    /* color: #fff; */
     background-color: #eeeeee;
     font-size: 14px;
     padding: 0 12px;
@@ -671,7 +671,8 @@
 }
 
 .product__logo-name {
-    font-size: 32px;
+    /* font-size: 32px; */
+    font-size: 18px;
     text-transform: capitalize;
 
 }
@@ -752,6 +753,7 @@
     width: 200px;
     margin: 24px 0 12px 0;
     object-fit: cover;
+    height: 58%;
 }
 
 .product__item-name {
