@@ -258,23 +258,18 @@ var index;
 // } else {
 //     showUserGroup(noneUser, user);
 // }
-function showUserGroup(name, name1, name2) { 
+function showUserGroup(name, name1) { 
     name.style.display = 'block';
     name1.style.display = 'none';
-    name2.style.display = 'none';
+    // name2.style.display = 'none';
 }   
 
 var isLogIn = localStorage.getItem('isLogIn');
 if (isLogIn == 1) {
     index = JSON.parse(localStorage.getItem('userAccountIndex'));
-    
-    if (userAccount[index].type == 'admin') {
-        showUserGroup(admin, noneUser, user);
-    } else {
-        var changeUserName = document.querySelector('.header__user .header__user-name');
-        changeUserName.innerHTML = userAccount[index].userName;
-        showUserGroup(user, noneUser, admin);
-    }
+    var changeUserName = document.querySelector('.header__user .header__user-name');
+    changeUserName.innerHTML = userAccount[index].userName;
+    showUserGroup(user, noneUser, admin);
 } else {
     showUserGroup(noneUser, user, admin);
 }
