@@ -285,6 +285,7 @@ function showCartProduct() {
 var orderList = JSON.parse(localStorage.getItem('orderList'));
 if (orderList == null) {
     orderList = [];
+    localStorage.setItem('orderList', JSON.stringify(orderList));
 }
 
 function checkUser() {

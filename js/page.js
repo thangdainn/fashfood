@@ -168,3 +168,26 @@ function showCategoryPagination(array, name) {
         }
         document.querySelector('.product__pagination-list').innerHTML = s;
 } 
+
+function showAdProductPagination(array) {
+    if (array.length > productPerPage) {
+        var pageNumber = Math.ceil(array.length / productPerPage);
+        localStorage.setItem('totalPage', pageNumber);
+        var s = '';
+        for (var i = 1; i <= pageNumber; i++) {
+            s += `
+                <div class="pagination-item" onclick="showAdminProduct(${i})">
+                    <span value="${i}" class="pagination-item__page">${i}</span>
+                </div>
+            `;
+        }
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+        document.querySelector('.product__pagination-list').innerHTML = s;
+    } else {
+        localStorage.setItem('totalPage', 0);
+        document.querySelector('.product__pagination-list').innerHTML = '';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+}
