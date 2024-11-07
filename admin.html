@@ -483,13 +483,25 @@
                                 <label for="user-fullname" class="control-form__form-lable">Họ và tên</label>
                                 <input id="user-fullname" type="text" class="control-form__form-input disable" readonly>
                             </div>
-                            <div class="control-form__form-box">
+                            <!-- <div class="control-form__form-box">
                                 <label for="user-name" class="control-form__form-lable">Tên đăng nhập</label>
                                 <input id="user-name" type="text" class="control-form__form-input disable" readonly>
                             </div>
                             <div class="control-form__form-box">
                                 <label for="user-email" class="control-form__form-lable">Email</label>
                                 <input id="user-email" type="email" class="control-form__form-input disable">
+                            </div> -->
+                            <div class="control-form__form-box">
+                                <label for="user-name" class="control-form__form-lable">Tên người dùng</label>
+                                <input id="user-name" type="text" class="control-form__form-input disable" readonly>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="user-email" class="control-form__form-lable">Email</label>
+                                <input id="user-email" type="email" class="control-form__form-input disable" readonly>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="user-pass" class="control-form__form-lable">Mật khẩu</label>
+                                <input id="user-pass" type="password" class="control-form__form-input disable" readonly>
                             </div>
                             <div class="control-form__form-box">
                                 <label for="user-address" class="control-form__form-lable">Địa chỉ</label>
@@ -524,7 +536,8 @@
                         <h3 class="delete-form__question"></h3>
                         <div class="delete-form__control">
                             <button class="delete-form__control-btn cancel" onclick="cacelDelete()">Hủy</button>
-                            <button class="delete-form__control-btn delete" onclick="deleteAccount()">Khóa</button>
+                            <!-- <button class="delete-form__control-btn delete" onclick="deleteAccount()">Khóa tài khoản</button> -->
+                            <button class="delete-form__control-btn delete" onclick="lockAccount()">Khóa tài khoản</button>
                         </div>
                     </div>
                 </div>
