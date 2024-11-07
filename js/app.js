@@ -195,10 +195,9 @@ if (signUpBtn && signInBtn && accountModal && helloBox && helloText && userAccou
     }
 }
 
-// Random orderList(id, date, status, userAccount)
-// for (var i = 1; i <= 30; i++) {
-//     randomOrder();
-// }
+for (var i = 1; i <= 30; i++) {
+    randomOrder();
+}
 function randomOrder() {
     var products = JSON.parse(localStorage.getItem('products'));
     var orderList = JSON.parse(localStorage.getItem('orderList'));
