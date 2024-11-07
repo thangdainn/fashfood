@@ -152,19 +152,30 @@ function createAccount() {
         document.querySelector('.error.password').innerHTML = '';
         // Push new account data to userAccount
         
+        // userAccount.push({
+        //     cartList: [],
+        //     userName: myName.value,
+        //     userEmail: email.value,
+        //     userPassword: password.value,
+        //     userFullName: "", // Include full name
+        //     userPhone: "",  // Include phone number
+        //     userAddress: "", // Include address
+        //     userDate: today,
+        //     type: 'user',
+        //     status: 1
+        // });
         userAccount.push({
             cartList: [],
-            userName: myName.value,
+            userName: document.getElementById('user-name').value,
             userEmail: email.value,
             userPassword: password.value,
-            userFullName: "", // Include full name
-            userPhone: "",  // Include phone number
-            userAddress: "", // Include address
-            userDate: today,
+            userFullName: document.getElementById('full-name').value, // Họ và tên
+            userPhone: document.getElementById('user-phone').value,  // Số điện thoại
+            userAddress: document.getElementById('user-address').value, // Địa chỉ
+            userDate: new Date().toLocaleDateString(), // Ngày đăng ký
             type: 'user',
             status: 1
         });
-        
         localStorage.setItem('userAccount', JSON.stringify(userAccount));
         localStorage.setItem('isLogIn', 1);
         localStorage.setItem('userAccountIndex', userAccount.length - 1);
@@ -176,16 +187,33 @@ function createAccount() {
 var signInEmail = document.getElementById('sign-in-email');
 var signInPassword = document.getElementById('sign-in-password');
 
+// function checkLogIn() {
+//     if (userAccount != null) {
+//         for (var i = 0; i < userAccount.length; i++) {
+//             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
+//                 localStorage.setItem('userAccountIndex', i);
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
 function checkLogIn() {
     if (userAccount != null) {
         for (var i = 0; i < userAccount.length; i++) {
             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
-                localStorage.setItem('userAccountIndex', i);
-                return true;
+                // Kiểm tra nếu tài khoản có status là 1 (tài khoản đang hoạt động)
+                if (userAccount[i].status === 1) {
+                    localStorage.setItem('userAccountIndex', i);
+                    return true; // Đăng nhập thành công
+                } else {
+                    showToast('fail', 'Tài khoản đã bị khóa!', 'Tài khoản của bạn đã bị khóa. Vui lòng liên hệ với quản trị viên.');
+                    return false; // Tài khoản đã bị khóa
+                }
             }
         }
     }
-    return false;
+    return false; // Nếu không tìm thấy email hoặc mật khẩu đúng
 }
 
 function LogIn() {
@@ -209,18 +237,39 @@ var user =  document.querySelector('.header__user');
 var admin = document.querySelector('.header__admin');
 var index;
 
+// function showUserGroup(name, name1) { 
+//     name.style.display = 'block';
+//     name1.style.display = 'none';
+// }   
+// function showUserGroup(name, name1, name2) { 
+//     name.style.display = 'block';
+//     name1.style.display = 'none';
+//     name2.style.display = 'none';
+// }   
+
+
+// var isLogIn = localStorage.getItem('isLogIn');
+// if (isLogIn == 1) {
+//     index = JSON.parse(localStorage.getItem('userAccountIndex'));
+    
+//     var changeUserName = document.querySelector('.header__user .header__user-name');
+//     changeUserName.innerHTML = userAccount[index].userName;
+//     showUserGroup(user, noneUser);
+// } else {
+//     showUserGroup(noneUser, user);
+// }
 function showUserGroup(name, name1) { 
     name.style.display = 'block';
     name1.style.display = 'none';
+    // name2.style.display = 'none';
 }   
 
 var isLogIn = localStorage.getItem('isLogIn');
 if (isLogIn == 1) {
     index = JSON.parse(localStorage.getItem('userAccountIndex'));
-    
     var changeUserName = document.querySelector('.header__user .header__user-name');
     changeUserName.innerHTML = userAccount[index].userName;
-    showUserGroup(user, noneUser);
+    showUserGroup(user, noneUser, admin);
 } else {
-    showUserGroup(noneUser, user);
+    showUserGroup(noneUser, user, admin);
 }
