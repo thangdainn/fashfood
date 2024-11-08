@@ -55,6 +55,7 @@ var userAccount = JSON.parse(localStorage.getItem('userAccount'));
 var email = document.getElementById('email');
 var passwords = document.querySelectorAll('.password');
 var myName = document.getElementById('user-name');
+<<<<<<< HEAD
 var userPhone = document.getElementById('user-phone');
 var userAddress = document.getElementById('user-address');
 var fullName = document.getElementById('full-name');
@@ -64,6 +65,13 @@ if (!userAccount) {
     userAccount = [
         {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin', status: 1},
         {cartList: [], userName: 'User', userEmail: 'user@gmail.com', userPassword: 'user', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
+=======
+
+if (!userAccount) {
+    userAccount = [
+        {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin'},
+        {cartList: [], userName: 'Random', userEmail: 'random@gmail.com', userPassword: 'random', userFullName: 'Random', userPhone: '0123456789', userAddress: 'Random', userDate: '20/11/2022', type: 'user'},
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     ];
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
@@ -77,6 +85,7 @@ function checkSameAccount(email) {
     return false;
 }
 
+<<<<<<< HEAD
 // function createAccount() {
 //     var rePassword = document.getElementById('re-password');
 //     var password = document.getElementById('true-password');
@@ -134,6 +143,8 @@ function checkSameAccount(email) {
 //         localStorage.setItem('userAccountIndex', userAccount.length - 1);
 //     }
 // }
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function createAccount() {
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
@@ -150,6 +161,7 @@ function createAccount() {
         return false;
     } else {
         document.querySelector('.error.password').innerHTML = '';
+<<<<<<< HEAD
         // Push new account data to userAccount
         
         // userAccount.push({
@@ -180,6 +192,12 @@ function createAccount() {
         localStorage.setItem('isLogIn', 1);
         localStorage.setItem('userAccountIndex', userAccount.length - 1);
 
+=======
+        userAccount.push({cartList: [], userName: myName.value, userEmail: email.value, userPassword: password.value, userFullName: '', userPhone: '', userAddress: '', userDate: today, type: 'user'});
+        localStorage.setItem('userAccount', JSON.stringify(userAccount));
+        localStorage.setItem('isLogIn', 1);
+        localStorage.setItem('userAccountIndex', userAccount.length - 1);
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     }
 }
 
@@ -187,6 +205,7 @@ function createAccount() {
 var signInEmail = document.getElementById('sign-in-email');
 var signInPassword = document.getElementById('sign-in-password');
 
+<<<<<<< HEAD
 // function checkLogIn() {
 //     if (userAccount != null) {
 //         for (var i = 0; i < userAccount.length; i++) {
@@ -198,10 +217,13 @@ var signInPassword = document.getElementById('sign-in-password');
 //     }
 //     return false;
 // }
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function checkLogIn() {
     if (userAccount != null) {
         for (var i = 0; i < userAccount.length; i++) {
             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
+<<<<<<< HEAD
                 // Kiểm tra nếu tài khoản có status là 1 (tài khoản đang hoạt động)
                 if (userAccount[i].status === 1) {
                     localStorage.setItem('userAccountIndex', i);
@@ -214,6 +236,14 @@ function checkLogIn() {
         }
     }
     return false; // Nếu không tìm thấy email hoặc mật khẩu đúng
+=======
+                localStorage.setItem('userAccountIndex', i);
+                return true;
+            }
+        }
+    }
+    return false;
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 }
 
 function LogIn() {
@@ -237,6 +267,7 @@ var user =  document.querySelector('.header__user');
 var admin = document.querySelector('.header__admin');
 var index;
 
+<<<<<<< HEAD
 // function showUserGroup(name, name1) { 
 //     name.style.display = 'block';
 //     name1.style.display = 'none';
@@ -262,14 +293,31 @@ function showUserGroup(name, name1) {
     name.style.display = 'block';
     name1.style.display = 'none';
     // name2.style.display = 'none';
+=======
+function showUserGroup(name, name1, name2) { 
+    name.style.display = 'block';
+    name1.style.display = 'none';
+    name2.style.display = 'none';
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 }   
 
 var isLogIn = localStorage.getItem('isLogIn');
 if (isLogIn == 1) {
     index = JSON.parse(localStorage.getItem('userAccountIndex'));
+<<<<<<< HEAD
     var changeUserName = document.querySelector('.header__user .header__user-name');
     changeUserName.innerHTML = userAccount[index].userName;
     showUserGroup(user, noneUser, admin);
+=======
+    
+    if (userAccount[index].type == 'admin') {
+        showUserGroup(admin, noneUser, user);
+    } else {
+        var changeUserName = document.querySelector('.header__user .header__user-name');
+        changeUserName.innerHTML = userAccount[index].userName;
+        showUserGroup(user, noneUser, admin);
+    }
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 } else {
     showUserGroup(noneUser, user, admin);
 }

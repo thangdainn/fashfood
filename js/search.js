@@ -2,6 +2,7 @@ var searchProduct = [];
 var search = document.getElementById('search-info');
 var products = JSON.parse(localStorage.getItem('products'));
 
+<<<<<<< HEAD
 
 search.addEventListener('keyup', function(event) {
     if (event.keyCode == 13 && search.value.length > 0) {
@@ -11,6 +12,24 @@ search.addEventListener('keyup', function(event) {
             let productName = removeAccents(product.name).toLowerCase();
             if (productName.includes(searchValue)) {
                 searchProduct.push(product);                              
+=======
+getNewLabel();
+function getNewLabel() {
+    for (var i = 0; i < products.length; i++) {
+        if (products[i].state == 'new')
+            products[i]['label'] = 'product__item-new-label';
+        else
+            products[i]['label'] = 'no-label';
+    }
+}
+
+search.addEventListener('keyup', function(event) {
+    if (event.keyCode == 13 && search.value.length > 0) {
+        localStorage.setItem('search', search.value);
+        products.forEach(function(product) {
+            if (product.name.toLowerCase().replaceAll(' ', '').includes(search.value.toLowerCase().replaceAll(' ', ''))) {
+                searchProduct.push(product);                                   
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
             }
         });  
         localStorage.setItem('searchProduct', JSON.stringify(searchProduct));
@@ -19,10 +38,13 @@ search.addEventListener('keyup', function(event) {
     }
 });
 
+<<<<<<< HEAD
 function removeAccents(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
 }
 
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function showCategory() {
     searchProduct = JSON.parse(localStorage.getItem('searchProduct'));
 
@@ -36,7 +58,11 @@ function showCategory() {
     categoryList = [...new Set(categoryList)];
 
     for (var i = 0; i < categoryList.length; i++) {
+<<<<<<< HEAD
         categoryList[i] = reNameCategory(categoryList[i]);
+=======
+        categoryList[i] = ReName(categoryList[i]);
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     }
 
     if (categoryList.length > 1) {
@@ -48,7 +74,11 @@ function showCategory() {
         var html = categoryList.map(function(category) {
             return `
                 <li class="product__filter-item">
+<<<<<<< HEAD
                     <button class="product__filter-item-btn" onclick="showCategoryProduct('${prevNameCategory(category)}', 1)">${category}</button>
+=======
+                    <button class="product__filter-item-btn" onclick="showCategoryProduct('${category.toLowerCase().replaceAll(' ', '-')}', 1)">${category}</button>
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
                 </li>
             `;
         });
@@ -60,17 +90,24 @@ function showCategory() {
 }
 
 function showCurrentCategory(name) {
+<<<<<<< HEAD
 
     // rename category to vietnamese
     name = reNameCategory(name);
     
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     var currentFilter = document.querySelectorAll('.product__filter-item-btn');
     for (var i = 0; i < currentFilter.length; i++) {
         currentFilter[i].classList.remove('product__filter-item-btn--active');
     }
     for (var i = 0; i < currentFilter.length; i++) {
+<<<<<<< HEAD
         
         if (currentFilter[i].innerText.toLowerCase() == name.toLowerCase()) {
+=======
+        if (currentFilter[i].innerText.toLowerCase() == name.replaceAll('-', ' ')) {
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
             currentFilter[i].classList.add('product__filter-item-btn--active');
             break;
         }
@@ -105,6 +142,10 @@ function showSearchProduct(start) {
         document.getElementById('body').style.display = 'none';
         document.getElementById('search__empty').innerHTML = `
             <div class="grid wide">
+<<<<<<< HEAD
+=======
+                <p class="search__empty-notice">Không tìm thấy kết quả nào phù hợp với từ khóa "${localStorage.getItem('search')}"</p>
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
                 <div class="search__empty-box">
                     <ul class="search__empty-list">
                         <h3 class="search__empty-list-heading">Để tìm được kết quả chính xác hơn, bạn vui lòng:</h3>
@@ -118,6 +159,7 @@ function showSearchProduct(start) {
         `;   
     } else {
         document.querySelector('.slider').style.display = 'none';
+<<<<<<< HEAD
 
         search.value = localStorage.getItem('search');
         localStorage.setItem('categoryName', 'Tất cả');
@@ -126,6 +168,14 @@ function showSearchProduct(start) {
         showCategory();
         // paginationElm.style.display = 'flex';
 
+=======
+        // searchProduct = JSON.parse(localStorage.getItem('searchProduct'));
+        search.value = localStorage.getItem('search');
+        localStorage.setItem('categoryName', 'Tất cả');
+
+        document.querySelector('.product__logo-name').innerHTML = `Tìm thấy các sản phẩm có từ khóa "${search.value}"`;
+        showCategory();
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
         showSearchPagination(searchProduct);
         showCurrentPage(start);
 

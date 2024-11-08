@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 /* Header */
 .header {
     height: var(--header-height);
@@ -228,7 +231,11 @@
     width: 100%;
     outline: none;
     border: none;
+<<<<<<< HEAD
     /* color: #fff; */
+=======
+    color: #fff;
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     background-color: #eeeeee;
     font-size: 14px;
     padding: 0 12px;
@@ -549,7 +556,11 @@
     justify-content: center;
     align-items: center;
     padding: 12px 24px;
+<<<<<<< HEAD
     border-bottom: 3px solid #ccc;
+=======
+    border-bottom: 3px solid #000;
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 }
 
 .order__box-item {
@@ -672,7 +683,11 @@
 }
 
 .product__logo-name {
+<<<<<<< HEAD
     font-size: 18px;
+=======
+    font-size: 32px;
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     text-transform: capitalize;
 
 }
@@ -753,7 +768,10 @@
     width: 200px;
     margin: 24px 0 12px 0;
     object-fit: cover;
+<<<<<<< HEAD
     height: 58%;
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 }
 
 .product__item-name {
@@ -1172,4 +1190,8 @@
 
 .mobile-cart {
     position: relative;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec

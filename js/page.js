@@ -1,6 +1,9 @@
 var prevBtn = document.querySelector('.pagination-prev'); 
 var nextBtn = document.querySelector('.pagination-next');
+<<<<<<< HEAD
 var paginationElm = document.querySelector('.product__pagination');
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 
 prevBtn.addEventListener('click', function() {
     var number = localStorage.getItem('currentPage');
@@ -99,7 +102,10 @@ if (screen.width <= 1023) {
     }
 }
 
+<<<<<<< HEAD
 // general pagination html in home page
+=======
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function showPagination(array) {
     if (array.length > 0) {
         var pageNumber = Math.ceil(array.length / productPerPage);
@@ -112,36 +118,68 @@ function showPagination(array) {
                 </div>
             `;
         }
+<<<<<<< HEAD
+=======
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
         document.querySelector('.product__pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
         document.querySelector('.product__pagination-list').innerHTML = '';
+<<<<<<< HEAD
     }
 }
 
 // general pagination filters html
+=======
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+}
+
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function showFilterPagination(array, category, filterName) {
     if (array.length > 0) {
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
+<<<<<<< HEAD
         for (let i = 1; i <= pageNumber; i++) {
+=======
+        for (var i = 1; i <= pageNumber; i++) {
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
             s += `
                 <div class="pagination-item" onclick="showFilterProduct('${category}', '${filterName}', ${i})">
                     <span value="${i}" class="pagination-item__page">${i}</span>
                 </div>
             `;
         }
+<<<<<<< HEAD
+=======
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
         document.querySelector('.product__pagination-list').innerHTML = s;
     } else {
         localStorage.setItem('totalPage', 0);
         document.querySelector('.product__pagination-list').innerHTML = '';
+<<<<<<< HEAD
     }
     
+=======
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 }
 
 //search pagination
 function showSearchPagination(array) {
+<<<<<<< HEAD
+=======
+    if (array.length > productPerPage) {
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
@@ -152,10 +190,26 @@ function showSearchPagination(array) {
                 </div>
             `;
         }
+<<<<<<< HEAD
         document.querySelector('.product__pagination-list').innerHTML = s;
 }
 
 function showCategoryPagination(array, name) {
+=======
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+        document.querySelector('.product__pagination-list').innerHTML = s;
+    } else {
+        localStorage.setItem('totalPage', 0);
+        document.querySelector('.product__pagination-list').innerHTML = '';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+}
+
+function showCategoryPagination(array, name) {
+    if (array.length > productPerPage) {
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
         var pageNumber = Math.ceil(array.length / productPerPage);
         localStorage.setItem('totalPage', pageNumber);
         var s = '';
@@ -166,9 +220,24 @@ function showCategoryPagination(array, name) {
                 </div>
             `;
         }
+<<<<<<< HEAD
         document.querySelector('.product__pagination-list').innerHTML = s;
 } 
 
+=======
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+        document.querySelector('.product__pagination-list').innerHTML = s;
+    } else {
+        localStorage.setItem('totalPage', 0);
+        document.querySelector('.product__pagination-list').innerHTML = '';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+} 
+
+// Admin product pagination
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function showAdProductPagination(array) {
     if (array.length > productPerPage) {
         var pageNumber = Math.ceil(array.length / productPerPage);
@@ -190,4 +259,8 @@ function showAdProductPagination(array) {
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
