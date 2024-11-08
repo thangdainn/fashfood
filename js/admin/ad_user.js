@@ -318,32 +318,82 @@ function checkPhone() {
         return false;
     }
 }
+function removeSpecialChars(input) {
+    input.value = input.value.replace(/[!@#\$%\^\&\*\(\),\.\?":{}|<>]/g, '');
+}
 
+// function EditInfo() {
+//     if (checkPhone()) {
+//         userAccount[editIndex].userFullName = userFullName.value;
+//         userAccount[editIndex].userName = userName.value;
+//         // userAccount[editIndex].userEmail = userEmail.value;
+//         // userAccount[editIndex].userPassword = userPass.value;
+//         userAccount[editIndex].userAddress = userAddress.value;
+//         userAccount[editIndex].userPhone = userPhone.value;
+        
+//         for (var i = 0; i < userType.options.length; i++) {
+//             if (userType.options[i].selected == true) {
+//                 userAccount[editIndex].type = userType.options[i].value;
+//                 break;
+//             }
+//         }
+        
+//         localStorage.setItem('userAccount', JSON.stringify(userAccount));
+//         document.querySelector('#user-info .error-phone').style.display = 'none';
+
+//         showToast('success', 'Thành công!', `Đã lưu thông tin mới của tài khoản ${userAccount[editIndex].userEmail}`);
+//         userControlModal.style.display = 'none';
+//         showUserPage();
+//     } else {
+//         document.querySelector('#user-info .error-phone').style.display = 'block';
+//     }
+// }
+// Hàm kiểm tra ký tự đặc biệt
+function containsSpecialChars(str) {
+    const specialChars = /[!@#$%^&*(),.?":{}|<>]/g; // Biểu thức chính quy để tìm ký tự đặc biệt
+    return specialChars.test(str);
+}
+
+// Edit info
 function EditInfo() {
-    if (checkPhone()) {
-        userAccount[editIndex].userFullName = userFullName.value;
-        userAccount[editIndex].userName = userName.value;
-        // userAccount[editIndex].userEmail = userEmail.value;
-        // userAccount[editIndex].userPassword = userPass.value;
-        userAccount[editIndex].userAddress = userAddress.value;
-        userAccount[editIndex].userPhone = userPhone.value;
-        
-        for (var i = 0; i < userType.options.length; i++) {
-            if (userType.options[i].selected == true) {
-                userAccount[editIndex].type = userType.options[i].value;
-                break;
-            }
-        }
-        
-        localStorage.setItem('userAccount', JSON.stringify(userAccount));
-        document.querySelector('#user-info .error-phone').style.display = 'none';
-
-        showToast('success', 'Thành công!', `Đã lưu thông tin mới của tài khoản ${userAccount[editIndex].userEmail}`);
-        userControlModal.style.display = 'none';
-        showUserPage();
-    } else {
+    // Kiểm tra số điện thoại
+    if (!checkPhone()) {
         document.querySelector('#user-info .error-phone').style.display = 'block';
+        return;
+    } else {
+        document.querySelector('#user-info .error-phone').style.display = 'none';
     }
+
+    // Kiểm tra ký tự đặc biệt trong Họ và tên
+    if (containsSpecialChars(userFullName.value)) {
+        showToast('fail', 'Lỗi!', 'Họ và tên không được chứa ký tự đặc biệt!');
+        return;
+    }
+
+    // Kiểm tra ký tự đặc biệt trong Tên người dùng
+    if (containsSpecialChars(userName.value)) {
+        showToast('fail', 'Lỗi!', 'Tên người dùng không được chứa ký tự đặc biệt!');
+        return;
+    }
+
+    // Cập nhật thông tin người dùng nếu không có lỗi
+    userAccount[editIndex].userFullName = userFullName.value;
+    userAccount[editIndex].userName = userName.value;
+    userAccount[editIndex].userAddress = userAddress.value;
+    userAccount[editIndex].userPhone = userPhone.value;
+
+    for (var i = 0; i < userType.options.length; i++) {
+        if (userType.options[i].selected == true) {
+            userAccount[editIndex].type = userType.options[i].value;
+            break;
+        }
+    }
+
+    localStorage.setItem('userAccount', JSON.stringify(userAccount));
+
+    showToast('success', 'Thành công!', `Đã lưu thông tin mới của tài khoản ${userAccount[editIndex].userEmail}`);
+    userControlModal.style.display = 'none';
+    showUserPage();
 }
 
 // Delete account
@@ -389,18 +439,7 @@ function showDeleteAccountModal(email) {
         }
     });
 }
-// function lockAccount() {
-//     userAccount.forEach(function(account) {
-//         if (account.userEmail === deleteEmail) {
-//             account.status = 0; // Đặt trạng thái là 0 để khóa tài khoản
-//         }
-//     });
-//     localStorage.setItem('userAccount', JSON.stringify(userAccount));
-    
-//     showToast('success', 'Thành công!', "Khóa tài khoản thành công");   
-//     userControlModal.style.display = 'none';
-//     showUserPage(); // Cập nhật lại danh sách người dùng
-// }
+
 function lockAccount() {
     userAccount.forEach(function(account) {
         if (account.userEmail === deleteEmail) {
