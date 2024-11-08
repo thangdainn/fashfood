@@ -39,7 +39,8 @@ function htmlProduct(product) {
     var html = `
         <div class="col l-3 m-4 c-6">
             <div class="product__item">
-                <a href="index.html?${tmpName}" class="product__item-link">
+                <a href="index.html?${product.category}?${tmpName}" class="product__item-link">
+                    
                     <img src = "${product.img}" class = "product__item-img"></img>
                     <h3 class="product__item-name">${product.name}</h3>
                     <div class="product__item-price">
@@ -53,9 +54,73 @@ function htmlProduct(product) {
     return html;
 }
 
+function showProductDetail() {
+    document.querySelector('.cart').style.display = 'none';
+    document.querySelector('.order').style.display = 'none';
+
+    var url = decodeURI(window.location.href);
+
+    var s = url.split('?');
+    console.log("Product: " + s);
+    var detailProduct = products.find(function(product) {
+        var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
+        
+        return tmpName == s[2];
+    });
+
+    var html = `
+        <div class="col l-6 m-12 c-12">
+            <div class="product__detail-img-box">
+                <img src="${detailProduct.img}" alt="" class="product__detail-img">
+            </div>
+        </div>
+        <div class="col l-6 m-12 c-12">
+            <div class="product__detail-info">
+                <span class="product__detail-name">${detailProduct.name}</span>
+                <div class="product__detail-price">
+                    <p class="product__detail-current-price">${detailProduct.currentPrice}</p>
+                    <p class="product__detail-old-price">${detailProduct.oldPrice}</p>
+                </div>
+                <div class="product__detail-policy">
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-box"></i>
+                        <span class="product__detail-policy-text">Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Cáp Lightning - Type C</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-shield-check"></i>
+                        <span class="product__detail-policy-text">Bảo hành chính hãng 2 năm</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-truck"></i>
+                        <span class="product__detail-policy-text">Giao hàng nhanh toàn quốc</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-phone"></i>
+                        <span class="product__detail-policy-text">
+                            Tổng đài:
+                            <a href="tel:0976124506" class="product__detail-phone">0123456789</a>                                      
+                        </span>
+                    </div>
+                </div>
+                <div class="product__detail-pay">
+                    <button class="product__detail-add-cart">Thêm vào giỏ</button>
+                    <button class="product__detail-buy">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    ` ;
+
+    document.getElementById('body').style.display = 'none';
+    document.getElementById('show-product-detail').innerHTML = html;
+
+    haveToLogin();
+    addToCart();
+}
+
 
 function showCurrentNavbar(str) {
     var currentNavbar = document.querySelectorAll('.header__navbar-item-link');
+    console.log(currentNavbar);
     for (var i = 0; i < currentNavbar.length; i++) {
         currentNavbar[i].classList.remove('header__navbar-item-link--active');
     }
@@ -115,6 +180,23 @@ function showFilter(category) {
     
 }
 
+function haveToLogin() {
+    var buyBtn = document.querySelector('.product__detail-buy');
+    var notUser = document.querySelector('.header__none-user');
+
+    buyBtn.addEventListener('click', function() {
+        if (notUser.style.display == 'block') {
+            showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để mua sản phẩm!');
+            setTimeout(function() {
+                document.getElementById('account__modal').style.display = 'flex';
+            }, 1000);
+        } else {
+            getCurrentProduct();
+            window.location.href = 'index.html?cart';
+        }
+    });
+}
+
 // show products in current page, filters
 function showFilterProduct(category, filterName, start) {
     var productArr = products.filter(function(product) {
@@ -154,8 +236,9 @@ function showProduct(start) {
         productArray = products.filter(function(product) {
             return product.category == category;
         });
-        document.querySelector('.slider').style.display = 'none';
 
+        document.querySelector('.slider').style.display = 'none';
+        console.log(category);
         showCurrentNavbar(category);
         
         showFilter(category);

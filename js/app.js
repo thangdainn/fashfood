@@ -39,11 +39,7 @@ function converPriceToString(price) {
 //     localStorage.setItem('products', JSON.stringify(products));
 // }
 
-<<<<<<< HEAD
 function reNameCategory(name) {
-=======
-function ReName(name) {
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     if (name == 'chicken') {
         name = 'Gà rán';
     } else if (name == 'drink') {
@@ -65,26 +61,8 @@ function prevNameCategory(name) {
     return name;
 }
 
-<<<<<<< HEAD
 
 // store list products at current page
-=======
-// function UpperCaseFirstCharacter(str) {
-//     return str.charAt(0).toUpperCase() + str.slice(1);
-// }
-
-// function renderString(name) {
-//     var tmp = name.split(' ');
-//     tmp[0] = ReName(tmp[0]);
-//     for (var i = 1; i < tmp.length; i++) {
-//         tmp[i] = UpperCaseFirstCharacter(tmp[i]);
-//     }
-//     name = tmp.join(' ');
-//     return name;
-// }
-
-// tạo mảng tạm lưu số sản phẩm 1 trang
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function createTempArray(start, array) {
     var tmp = [], cnt = 0;
     start = (start - 1) * productPerPage;
@@ -244,8 +222,4 @@ function randomOrder() {
     userAccount[1].cartList = cartListArray;
     orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'not', userAccount: userAccount[1]});
     localStorage.setItem('orderList', JSON.stringify(orderList));
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
