@@ -34,41 +34,44 @@ if (!products) {
     localStorage.setItem('products', JSON.stringify(products));
 }
 
-// function htmlProduct(product) {
-//     var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
-//     var html = `
-//         <div class="col l-3 m-4 c-6">
-//             <div class="product__item">
-//                 <a href="index.html?${tmpName}" class="product__item-link">
-//                     <img src = "${product.img}" class = "product__item-img"></img>
-//                     <h3 class="product__item-name">${product.name}</h3>
-//                     <div class="product__item-price">
-//                         <p class="product__item-current-price">${product.currentPrice}đ</p>
-//                         <p class="product__item-old-price">${product.oldPrice}</p>
-//                     </div>
-//                 </a>
-//             </div>
-//         </div>
-//     `;
-//     return html;
-// }
 function htmlProduct(product) {
-    var tmpName = product.name.replace(/"/g, '').replace(/ /g, '-');
-    return `
+    var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
+    var html = `
         <div class="col l-3 m-4 c-6">
             <div class="product__item">
-                <a href="index.html?productName=${tmpName}" class="product__item-link">
-                    <img src="${product.img}" class="product__item-img" alt="${product.name}">
+                <a href="index.html?${tmpName}" class="product__item-link">
+                    <img src = "${product.img}" class = "product__item-img"></img>
                     <h3 class="product__item-name">${product.name}</h3>
                     <div class="product__item-price">
                         <p class="product__item-current-price">${product.currentPrice}đ</p>
-                        <p class="product__item-old-price">${product.oldPrice || ''}</p>
+                        <p class="product__item-old-price">${product.oldPrice}</p>
                     </div>
                 </a>
             </div>
         </div>
     `;
+    return html;
 }
+// function htmlProduct(product) {
+//     var tmpName = product.name.replace(/"/g, '').replace(/ /g, '-');
+//     console.log("1 + 2");
+//     return `
+//         <div class="col l-3 m-4 c-6">
+//             <div class="product__item">
+//                 <a href="index.html?productName=${tmpName}" class="product__item-link">
+//                     <img src="${product.img}" class="product__item-img" alt="${product.name}">
+//                     <h3 class="product__item-name">${product.name}</h3>
+//                     <div class="product__item-price">
+//                         <p class="product__item-current-price">${product.currentPrice}đ</p>
+//                         <p class="product__item-old-price">${product.oldPrice || ''}</p>
+//                     </div>
+//                 </a>
+//             </div>
+//         </div>
+//     `;
+
+    
+// }
 
 
 
@@ -224,48 +227,56 @@ function showProduct(start) {
     }
     
 }
-
 function showProductDetail() {
-    console.log("Hàm showProductDetail được gọi"); // Thêm dòng này để kiểm tra
     document.querySelector('.cart').style.display = 'none';
     document.querySelector('.order').style.display = 'none';
 
-    // Parse the product name from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const productName = urlParams.get('productName');
-
+    var url = window.location.href;
+    var s = url.split('?');
     var detailProduct = products.find(function(product) {
-        // Replace spaces with '-' for matching purposes
-        return product.name.replace(/ /g, '-') === productName;
+        var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
+        return tmpName == s[2];
     });
 
-    if (!detailProduct) {
-        console.error("Product not found");
-        return;
-    }
-
-    // Generate the detailed product HTML
     var html = `
         <div class="col l-6 m-12 c-12">
             <div class="product__detail-img-box">
-                <img src="${detailProduct.img}" alt="${detailProduct.name}" class="product__detail-img">
+                <img src="${detailProduct.img}" alt="" class="product__detail-img">
             </div>
         </div>
         <div class="col l-6 m-12 c-12">
             <div class="product__detail-info">
                 <span class="product__detail-name">${detailProduct.name}</span>
                 <div class="product__detail-price">
-                    <p class="product__detail-current-price">${detailProduct.currentPrice}đ</p>
-                    <p class="product__detail-old-price">${detailProduct.oldPrice || ''}</p>
+                    <p class="product__detail-current-price">${detailProduct.currentPrice}</p>
+                    <p class="product__detail-old-price">${detailProduct.oldPrice}</p>
                 </div>
                 <div class="product__detail-policy">
                     <div class="product__detail-policy-item">
-                        <i class="uil uil-truck"></i>
-                        <span class="product__detail-policy-text">Giao hàng nhanh trong vòng 30 phút</span>
+                        <i class="uil uil-box"></i>
+                        <span class="product__detail-policy-text">Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Cáp Lightning - Type C</span>
                     </div>
-                    <!-- Additional policy items -->
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-sync"></i>
+                        <span class="product__detail-policy-text">Hư gì đổi nấy trong 12 tháng</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-shield-check"></i>
+                        <span class="product__detail-policy-text">Bảo hành chính hãng 2 năm</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-truck"></i>
+                        <span class="product__detail-policy-text">Giao hàng nhanh toàn quốc</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-phone"></i>
+                        <span class="product__detail-policy-text">
+                            Tổng đài:
+                            <a href="tel:0976124506" class="product__detail-phone">0976124506</a>                                      
+                        </span>
+                    </div>
                 </div>
-                   <div class="product__detail-pay">
+                <div class="product__detail-pay">
                     <button class="product__detail-add-cart">Thêm vào giỏ</button>
                     <button class="product__detail-buy">Mua ngay</button>
                 </div>
@@ -280,6 +291,68 @@ function showProductDetail() {
     haveToLogin();
     addToCart();
 }
+
+
+// function showProductDetail() {
+//     console.log("Hàm showProductDetail được gọi"); // Thêm dòng này để kiểm tra
+//     document.querySelector('.cart').style.display = 'none';
+//     document.querySelector('.order').style.display = 'none';
+
+//     // Parse the product name from the URL
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const productName = urlParams.get('productName');
+
+//     console.log(urlParams);
+//     console.log(productName);
+//     console.log("1 + 1");
+
+//     var detailProduct = products.find(function(product) {
+//         // Replace spaces with '-' for matching purposes
+//         return product.name.replace(/ /g, '-') === productName;
+//     });
+
+//     if (!detailProduct) {
+//         console.error("Product not found");
+//         return;
+//     }
+
+
+//     // Generate the detailed product HTML
+//     var html = `
+//         <div class="col l-6 m-12 c-12">
+//             <div class="product__detail-img-box">
+//                 <img src="${detailProduct.img}" alt="${detailProduct.name}" class="product__detail-img">
+//             </div>
+//         </div>
+//         <div class="col l-6 m-12 c-12">
+//             <div class="product__detail-info">
+//                 <span class="product__detail-name">${detailProduct.name}</span>
+//                 <div class="product__detail-price">
+//                     <p class="product__detail-current-price">${detailProduct.currentPrice}đ</p>
+//                     <p class="product__detail-old-price">${detailProduct.oldPrice || ''}</p>
+//                 </div>
+//                 <div class="product__detail-policy">
+//                     <div class="product__detail-policy-item">
+//                         <i class="uil uil-truck"></i>
+//                         <span class="product__detail-policy-text">Giao hàng nhanh trong vòng 30 phút</span>
+//                     </div>
+//                     <!-- Additional policy items -->
+//                 </div>
+//                    <div class="product__detail-pay">
+//                     <button class="product__detail-add-cart">Thêm vào giỏ</button>
+//                     <button class="product__detail-buy">Mua ngay</button>
+//                 </div>
+//             </div>
+//         </div>
+//     `;
+
+//     document.getElementById('body').style.display = 'none';
+//     document.getElementById('show-product-detail').innerHTML = html;
+
+//     //Xử lý buy, addcart
+//     haveToLogin();
+//     addToCart();
+// }
 
 
 
