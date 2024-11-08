@@ -34,24 +34,44 @@ if (!products) {
     localStorage.setItem('products', JSON.stringify(products));
 }
 
+// function htmlProduct(product) {
+//     var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
+//     var html = `
+//         <div class="col l-3 m-4 c-6">
+//             <div class="product__item">
+//                 <a href="index.html?${tmpName}" class="product__item-link">
+//                     <img src = "${product.img}" class = "product__item-img"></img>
+//                     <h3 class="product__item-name">${product.name}</h3>
+//                     <div class="product__item-price">
+//                         <p class="product__item-current-price">${product.currentPrice}đ</p>
+//                         <p class="product__item-old-price">${product.oldPrice}</p>
+//                     </div>
+//                 </a>
+//             </div>
+//         </div>
+//     `;
+//     return html;
+// }
 function htmlProduct(product) {
-    var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
-    var html = `
+    var tmpName = product.name.replace(/"/g, '').replace(/ /g, '-');
+    return `
         <div class="col l-3 m-4 c-6">
             <div class="product__item">
-                <a href="index.html?${tmpName}" class="product__item-link">
-                    <img src = "${product.img}" class = "product__item-img"></img>
+                <a href="index.html?productName=${tmpName}" class="product__item-link">
+                    <img src="${product.img}" class="product__item-img" alt="${product.name}">
                     <h3 class="product__item-name">${product.name}</h3>
                     <div class="product__item-price">
                         <p class="product__item-current-price">${product.currentPrice}đ</p>
-                        <p class="product__item-old-price">${product.oldPrice}</p>
+                        <p class="product__item-old-price">${product.oldPrice || ''}</p>
                     </div>
                 </a>
             </div>
         </div>
     `;
-    return html;
 }
+
+
+
 
 
 function showCurrentNavbar(str) {
@@ -173,11 +193,99 @@ function showProduct(start) {
     }
     localStorage.setItem('filterName', "Tất cả");
 
-    var arr = createTempArray(start, productArray); //array store list products at current page
+    var arr = createTempArray(start, productArray); 
     document.getElementById('body').style.display = 'block';
     document.getElementById('show-product').innerHTML = arr.join('');
     if (category != 'Món mới'){
         document.querySelector('.product__header').scrollIntoView();
     }
     
+}
+
+function showProductDetail() {
+    document.querySelector('.cart').style.display = 'none';
+    document.querySelector('.order').style.display = 'none';
+
+    // Parse the product name from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('productName');
+
+    var detailProduct = products.find(function(product) {
+        // Replace spaces with '-' for matching purposes
+        return product.name.replace(/ /g, '-') === productName;
+    });
+
+    if (!detailProduct) {
+        console.error("Product not found");
+        return;
+    }
+
+    // Generate the detailed product HTML
+    var html = `
+        <div class="col l-6 m-12 c-12">
+            <div class="product__detail-img-box">
+                <img src="${detailProduct.img}" alt="${detailProduct.name}" class="product__detail-img">
+            </div>
+        </div>
+        <div class="col l-6 m-12 c-12">
+            <div class="product__detail-info">
+                <span class="product__detail-name">${detailProduct.name}</span>
+                <div class="product__detail-price">
+                    <p class="product__detail-current-price">${detailProduct.currentPrice}đ</p>
+                    <p class="product__detail-old-price">${detailProduct.oldPrice || ''}</p>
+                </div>
+                <div class="product__detail-policy">
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-truck"></i>
+                        <span class="product__detail-policy-text">Giao hàng nhanh trong vòng 30 phút</span>
+                    </div>
+                    <!-- Additional policy items -->
+                </div>
+                <div class="product__detail-pay">
+                    <button class="product__detail-add-cart" onclick="addToCart('${detailProduct.id}')">Thêm vào giỏ</button>
+                    <button class="product__detail-buy" onclick="buyNow('${detailProduct.id}')">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('body').style.display = 'none';
+    document.getElementById('show-product-detail').innerHTML = html;
+
+    // Handle additional features like login check
+    haveToLogin();
+}
+
+
+
+
+function haveToLogin() {
+    var buyBtn = document.querySelector('.product__detail-buy');
+    var notUser = document.querySelector('.header__none-user');
+
+    buyBtn.addEventListener('click', function() {
+        if (notUser.style.display == 'block') {
+            showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để mua sản phẩm!');
+            setTimeout(function() {
+                document.getElementById('account__modal').style.display = 'flex';
+            }, 1000);
+        } else {
+            getCurrentProduct();
+            window.location.href = 'index.html?cart';
+        }
+    });
+}
+
+function getCurrentProduct() {
+    var url = window.location.href;
+    var s = url.split('?')[2];
+
+    var userAccount = JSON.parse(localStorage.getItem('userAccount'));
+    var index = localStorage.userAccountIndex;
+    var cartProduct = products.find(function(product) {
+        return product.name.replace('"', '').replaceAll(' ', '-') == s;
+    })
+
+    userAccount[index].cartList.push(cartProduct);
+    localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
