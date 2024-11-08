@@ -74,18 +74,41 @@ function htmlProduct(product) {
 
 
 
+// function showCurrentNavbar(str) {
+//     var currentNavbar = document.querySelectorAll('.header__navbar-item-link');
+//     for (var i = 0; i < currentNavbar.length; i++) {
+//         currentNavbar[i].classList.remove('header__navbar-item-link--active');
+//     }
+//     for (var i = 0; i < currentNavbar.length; i++) {
+//         if (currentNavbar[i].getAttribute('data-value').toLowerCase() == str.toLowerCase()) {
+//             currentNavbar[i].classList.add('header__navbar-item-link--active');
+//             break;
+//         }
+//     }
+// }
 function showCurrentNavbar(str) {
     var currentNavbar = document.querySelectorAll('.header__navbar-item-link');
+    
+    // Kiểm tra nếu 'str' có giá trị
+    if (!str) {
+        console.error("Giá trị truyền vào không hợp lệ:", str);
+        return;
+    }
+
     for (var i = 0; i < currentNavbar.length; i++) {
         currentNavbar[i].classList.remove('header__navbar-item-link--active');
     }
+
     for (var i = 0; i < currentNavbar.length; i++) {
-        if (currentNavbar[i].getAttribute('data-value').toLowerCase() == str.toLowerCase()) {
+        // Kiểm tra nếu 'data-value' tồn tại trước khi gọi 'toLowerCase'
+        const dataValue = currentNavbar[i].getAttribute('data-value');
+        if (dataValue && dataValue.toLowerCase() === str.toLowerCase()) {
             currentNavbar[i].classList.add('header__navbar-item-link--active');
             break;
         }
     }
 }
+
 
 // visible filter is selected
 function showCurrentFilter(name) {
@@ -203,6 +226,7 @@ function showProduct(start) {
 }
 
 function showProductDetail() {
+    console.log("Hàm showProductDetail được gọi"); // Thêm dòng này để kiểm tra
     document.querySelector('.cart').style.display = 'none';
     document.querySelector('.order').style.display = 'none';
 
@@ -260,33 +284,70 @@ function showProductDetail() {
 
 
 //này để chặn không cho xem giỏ hàng khi chưa đăng nhập 
+// function haveToLogin() {
+//     var buyBtn = document.querySelector('.product__detail-buy');
+//     var notUser = document.querySelector('.header__none-user');
+
+//     buyBtn.addEventListener('click', function() {
+//         if (notUser.style.display == 'block') {
+//             showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để mua sản phẩm!');
+//             setTimeout(function() {
+//                 document.getElementById('account__modal').style.display = 'flex';
+//             }, 1000);
+//         } else {
+//             getCurrentProduct();
+//             window.location.href = 'index.html?cart';
+//         }
+//     });
+// }
 function haveToLogin() {
     var buyBtn = document.querySelector('.product__detail-buy');
     var notUser = document.querySelector('.header__none-user');
 
     buyBtn.addEventListener('click', function() {
+        // Kiểm tra người dùng đã đăng nhập hay chưa
         if (notUser.style.display == 'block') {
+            // Hiển thị thông báo yêu cầu đăng nhập
             showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để mua sản phẩm!');
             setTimeout(function() {
                 document.getElementById('account__modal').style.display = 'flex';
             }, 1000);
         } else {
+            // Nếu đã đăng nhập, thêm sản phẩm vào giỏ hàng và chuyển hướng đến giỏ hàng
             getCurrentProduct();
             window.location.href = 'index.html?cart';
         }
     });
 }
 
+
+// function getCurrentProduct() {
+//     var url = window.location.href;
+//     var s = url.split('?')[2];
+
+//     var userAccount = JSON.parse(localStorage.getItem('userAccount'));
+//     var index = localStorage.userAccountIndex;
+//     var cartProduct = products.find(function(product) {
+//         return product.name.replace('"', '').replaceAll(' ', '-') == s;
+//     })
+
+//     userAccount[index].cartList.push(cartProduct);
+//     localStorage.setItem('userAccount', JSON.stringify(userAccount));
+// }
 function getCurrentProduct() {
     var url = window.location.href;
     var s = url.split('?')[2];
 
     var userAccount = JSON.parse(localStorage.getItem('userAccount'));
     var index = localStorage.userAccountIndex;
+
+    // Tìm sản phẩm hiện tại dựa trên tên sản phẩm trong URL
     var cartProduct = products.find(function(product) {
         return product.name.replace('"', '').replaceAll(' ', '-') == s;
-    })
+    });
 
+    // Thêm sản phẩm vào giỏ hàng của người dùng hiện tại
     userAccount[index].cartList.push(cartProduct);
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
+

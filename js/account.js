@@ -77,6 +77,20 @@ function checkSameAccount(email) {
     return false;
 }
 
+function containsSpecialChars(str) {
+    const regex = /[^a-zA-Z0-9 ]/g; // Chỉ cho phép chữ cái, số và khoảng trắng
+    return regex.test(str);
+}
+
+function validatePhoneNumber(phone) {
+    const phoneRegex = /^[0-9]{10}$/; // Chỉ cho phép 10 chữ số
+    return phoneRegex.test(phone);
+}
+
+function isEmptyField(value) {
+    return value.trim() === ''; // Kiểm tra xem trường có rỗng hay chỉ chứa khoảng trắng không
+}
+
 // function createAccount() {
 //     var rePassword = document.getElementById('re-password');
 //     var password = document.getElementById('true-password');
@@ -93,95 +107,90 @@ function checkSameAccount(email) {
 //         return false;
 //     } else {
 //         document.querySelector('.error.password').innerHTML = '';
-//         userAccount.push({cartList: [], userName: myName.value, userEmail: email.value, userPassword: password.value, userFullName: '', userPhone: '', userAddress: '', userDate: today, type: 'user'});
-//         localStorage.setItem('userAccount', JSON.stringify(userAccount));
-//         localStorage.setItem('isLogIn', 1);
-//         localStorage.setItem('userAccountIndex', userAccount.length - 1);
-//     }
-// }
-// function createAccount() {
-//     var rePassword = document.getElementById('re-password');
-//     var password = document.getElementById('true-password');
-
-//     if (checkSameAccount(email.value)) {
-//         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
-//         return false;
-//     } else {
-//         document.querySelector('.error.email').innerHTML = '';
-//     }
-
-//     if (rePassword.value != password.value) {
-//         document.querySelector('.error.password').innerHTML = 'Mật khẩu không trùng khớp!';
-//         return false;
-//     } else {
-//         document.querySelector('.error.password').innerHTML = '';
-        
-//         // Push new account data to userAccount
+ 
 //         userAccount.push({
 //             cartList: [],
-//             userName: myName.value,
+//             userName: document.getElementById('user-name').value,
 //             userEmail: email.value,
 //             userPassword: password.value,
-//             userFullName: '',
-//             userPhone: userPhone.value,  // Include phone number
-//             userAddress: userAddress.value, // Include address
-//             userDate: today,
-//             type: 'user'
+//             userFullName: document.getElementById('full-name').value, // Họ và tên
+//             userPhone: document.getElementById('user-phone').value,  // Số điện thoại
+//             userAddress: document.getElementById('user-address').value, // Địa chỉ
+//             userDate: new Date().toLocaleDateString(), // Ngày đăng ký
+//             type: 'user',
+//             status: 1
 //         });
-        
 //         localStorage.setItem('userAccount', JSON.stringify(userAccount));
 //         localStorage.setItem('isLogIn', 1);
 //         localStorage.setItem('userAccountIndex', userAccount.length - 1);
+
 //     }
 // }
 function createAccount() {
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
+    var userName = document.getElementById('user-name').value.trim();
+    var fullName = document.getElementById('full-name').value.trim();
+    var phone = document.getElementById('user-phone').value.trim();
+    var address = document.getElementById('user-address').value.trim();
+    var emailValue = email.value.trim();
 
-    if (checkSameAccount(email.value)) {
+    // Kiểm tra xem trường có bị bỏ trống hay không
+    if (isEmptyField(fullName) || isEmptyField(userName) || isEmptyField(emailValue) || 
+        isEmptyField(phone) || isEmptyField(address) || isEmptyField(password.value)) {
+        showToast('fail', 'Lỗi', 'Không được để trống bất kỳ trường nào.');
+        return false;
+    }
+
+    // Kiểm tra ký tự đặc biệt trong họ tên và tên người dùng
+    if (containsSpecialChars(fullName) || containsSpecialChars(userName)) {
+        showToast('fail', 'Lỗi', 'Họ và tên hoặc Tên người dùng không được chứa ký tự đặc biệt.');
+        return false;
+    }
+
+    // Kiểm tra định dạng số điện thoại
+    if (!validatePhoneNumber(phone)) {
+        showToast('fail', 'Lỗi', 'Số điện thoại phải gồm 10 chữ số.');
+        return false;
+    }
+
+    // Kiểm tra email đã tồn tại
+    if (checkSameAccount(emailValue)) {
         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
         return false;
     } else {
         document.querySelector('.error.email').innerHTML = '';
     }
 
-    if (rePassword.value != password.value) {
+    // Kiểm tra mật khẩu trùng khớp
+    if (rePassword.value !== password.value) {
         document.querySelector('.error.password').innerHTML = 'Mật khẩu không trùng khớp!';
         return false;
     } else {
         document.querySelector('.error.password').innerHTML = '';
-        // Push new account data to userAccount
-        
-        // userAccount.push({
-        //     cartList: [],
-        //     userName: myName.value,
-        //     userEmail: email.value,
-        //     userPassword: password.value,
-        //     userFullName: "", // Include full name
-        //     userPhone: "",  // Include phone number
-        //     userAddress: "", // Include address
-        //     userDate: today,
-        //     type: 'user',
-        //     status: 1
-        // });
-        userAccount.push({
-            cartList: [],
-            userName: document.getElementById('user-name').value,
-            userEmail: email.value,
-            userPassword: password.value,
-            userFullName: document.getElementById('full-name').value, // Họ và tên
-            userPhone: document.getElementById('user-phone').value,  // Số điện thoại
-            userAddress: document.getElementById('user-address').value, // Địa chỉ
-            userDate: new Date().toLocaleDateString(), // Ngày đăng ký
-            type: 'user',
-            status: 1
-        });
-        localStorage.setItem('userAccount', JSON.stringify(userAccount));
-        localStorage.setItem('isLogIn', 1);
-        localStorage.setItem('userAccountIndex', userAccount.length - 1);
-
     }
+
+    // Đăng ký tài khoản mới
+    userAccount.push({
+        cartList: [],
+        userName: userName,
+        userEmail: emailValue,
+        userPassword: password.value,
+        userFullName: fullName,
+        userPhone: phone,
+        userAddress: address,
+        userDate: new Date().toLocaleDateString(),
+        type: 'user',
+        status: 1
+    });
+    
+    localStorage.setItem('userAccount', JSON.stringify(userAccount));
+    localStorage.setItem('isLogIn', 1);
+    localStorage.setItem('userAccountIndex', userAccount.length - 1);
+
+    
 }
+
 
 // Check và Login
 var signInEmail = document.getElementById('sign-in-email');
