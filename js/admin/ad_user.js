@@ -1,7 +1,6 @@
 var userAccount = JSON.parse(localStorage.getItem('userAccount'));
 var userList = document.querySelector('.admin__user-account-list');
 
-<<<<<<< HEAD
 // function htmlUser(account) {
 //     var icon = {
 //         admin: 'fa-solid fa-screwdriver-wrench',
@@ -89,21 +88,16 @@ var userList = document.querySelector('.admin__user-account-list');
 //     return html;
 // }
 
-=======
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function htmlUser(account) {
     var icon = {
         admin: 'fa-solid fa-screwdriver-wrench',
         user: 'fa-solid fa-user'
     };
 
-<<<<<<< HEAD
     var lockUnlockButton = account.status === 1 
         ? '<div class="admin__user-account-control-item" onclick="showDeleteAccountModal(\'' + account.userEmail + '\')"><i class="uil uil-user-times"></i><span>Khóa tài khoản</span></div>' 
         : '<div class="admin__user-account-control-item" onclick="showDeleteAccountModal(\'' + account.userEmail + '\')"><i class="uil uil-user-check"></i><span>Mở khóa tài khoản</span></div>';
 
-=======
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     var html = `
         <div class="admin__user-account-item">
             <div class="admin__user-account-item-box">
@@ -131,14 +125,7 @@ function htmlUser(account) {
                         <i class="uil uil-edit"></i>
                         <span>Sửa thông tin</span>
                     </div>
-<<<<<<< HEAD
                     ${lockUnlockButton} <!-- Thêm nút khóa/mở khóa -->
-=======
-                    <div class="admin__user-account-control-item" onclick="showDeleteAccountModal('${account.userEmail}')">
-                        <i class="uil uil-user-times"></i>
-                        <span>Xóa tài khoản</span>
-                    </div>
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
                 </div>
             </div>
         </div>
@@ -228,7 +215,6 @@ var userPhone = document.getElementById('user-phone');
 var userType = document.getElementById('user-type');
 var editIndex;
 
-<<<<<<< HEAD
 // function disableEdit() {
 //     console.log("disableEdit");
     
@@ -247,8 +233,6 @@ var editIndex;
 //     userType.style.cursor = 'not-allowed';
 //     userType.disabled = true;
 // }
-=======
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function disableEdit() {
     userFullName.classList.add('disable');
     userFullName.readOnly = true;
@@ -265,16 +249,11 @@ function disableEdit() {
     userType.style.cursor = 'not-allowed';
     userType.disabled = true;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 function enableEdit() {
     userFullName.classList.remove('disable');
     userFullName.readOnly = false;
     userName.classList.remove('disable');
     userName.readOnly = false;
-<<<<<<< HEAD
     // userEmail.classList.remove('disable');
     // userEmail.readOnly = false;
     // userPass.classList.remove('disable');
@@ -283,12 +262,6 @@ function enableEdit() {
     userEmail.readOnly = true; // Keep email readonly
     userPass.classList.add('disable'); // Ensure password is still disabled
     userPass.readOnly = true; // Keep password readonly
-=======
-    userEmail.classList.remove('disable');
-    userEmail.readOnly = false;
-    userPass.classList.remove('disable');
-    userPass.readOnly = false;
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     userAddress.classList.remove('disable');
     userAddress.readOnly = false;
     userPhone.classList.remove('disable');
@@ -305,26 +278,17 @@ function showSeeInfoModal(email) {
     var userInfo = userAccount.find(function(account, index) {
         editIndex = index;
         return account.userEmail == email;
-<<<<<<< HEAD
     });
 
     // Set user information in the input fields
     userFullName.value = userInfo.userFullName; // This line sets the full name
-=======
-    })
-
-    userFullName.value = userInfo.userFullName;
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     userName.value = userInfo.userName;
     userEmail.value = userInfo.userEmail;
     userPass.value = userInfo.userPassword;
     userAddress.value = userInfo.userAddress;
     userPhone.value = userInfo.userPhone;
     
-<<<<<<< HEAD
     // Set user type
-=======
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
     for (var i = 0; i < userType.options.length; i++) {
         if (userType.options[i].value == userInfo.type) {
             userType.options[i].selected = true;
@@ -332,7 +296,6 @@ function showSeeInfoModal(email) {
         }
     }
 
-<<<<<<< HEAD
     // Disable editing fields for viewing only
     disableEdit();
     document.querySelector('#user-info .control-form__heading h3').innerHTML = 'Xem thông tin người dùng';
@@ -340,13 +303,6 @@ function showSeeInfoModal(email) {
 }
 
 
-=======
-    disableEdit();
-    document.querySelector('#user-info .control-form__heading h3').innerHTML = 'Xem thông tin';
-    document.querySelector('#user-info .control-form___form-btn').style.display = 'none';
-}
-
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 // Edit info
 function showEditInfoModal(email) {
     showSeeInfoModal(email);
@@ -367,13 +323,8 @@ function EditInfo() {
     if (checkPhone()) {
         userAccount[editIndex].userFullName = userFullName.value;
         userAccount[editIndex].userName = userName.value;
-<<<<<<< HEAD
         // userAccount[editIndex].userEmail = userEmail.value;
         // userAccount[editIndex].userPassword = userPass.value;
-=======
-        userAccount[editIndex].userEmail = userEmail.value;
-        userAccount[editIndex].userPassword = userPass.value;
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
         userAccount[editIndex].userAddress = userAddress.value;
         userAccount[editIndex].userPhone = userPhone.value;
         
@@ -396,7 +347,6 @@ function EditInfo() {
 }
 
 // Delete account
-<<<<<<< HEAD
 var deleteEmail;
 
 // function showDeleteAccountModal(email) {
@@ -423,16 +373,12 @@ function deleteAccount() {
     showUserPage();
 }
 // Khóa tài khoản
-=======
-var deleteIndex;
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 
 function showDeleteAccountModal(email) {
     userControlModal.style.display = 'flex';
     deleteAccountModal.style.display = 'block';
     infoModal.style.display = 'none';
 
-<<<<<<< HEAD
     deleteEmail = email;
 
     // Cập nhật nội dung câu hỏi trong modal
@@ -471,36 +417,3 @@ function lockAccount() {
     userControlModal.style.display = 'none';
     showUserPage(); // Cập nhật lại danh sách người dùng
 }
-=======
-    userAccount.forEach(function(account, index) {
-        if (account.userEmail == email) {
-            deleteIndex = index;
-        }
-    });
-
-    document.querySelector('#delete-account .delete-form__question').innerHTML = `Bạn có muốn xóa tài khoản "${email}" không ?`;
-}
-
-function isAdminAccount(account) {
-    if (account.type == 'admin')
-        return true;
-    return false;
-}
-
-function deleteAccount() {
-    var tmpAccount = userAccount[deleteIndex];
-    if (isAdminAccount(tmpAccount)) {
-        showToast('fail', 'Thất bại!', 'Không có quyền xóa tài khoản admin!');
-    } else {
-        for (var i = deleteIndex; i < userAccount.length - 1; i++) {
-            userAccount[i] = userAccount[i + 1];
-        }
-        userAccount.length--;
-        localStorage.setItem('userAccount', JSON.stringify(userAccount));
-    
-        showToast('success', 'Thành công!', `Xóa thành công tài khoản ${tmpAccount.userEmail}`);   
-    }
-    userControlModal.style.display = 'none';
-    showUserPage();
-}
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec

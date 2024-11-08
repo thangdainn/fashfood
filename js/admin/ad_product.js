@@ -5,11 +5,7 @@ function htmlAdminProduct(product) {
     if (product.oldPrice == '') {
         product.oldPrice = product.currentPrice;
     }
-<<<<<<< HEAD
     product.category = reNameCategory(product.category);
-=======
-    product.category = ReName(product.category);
->>>>>>> 8f4a32d2abd7b2d558e3b5f014ad424b6dd50dec
 
     var tmpName = product.name.replace('"', '');
     tmpName = tmpName.replaceAll(' ', '-');
