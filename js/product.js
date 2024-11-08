@@ -241,9 +241,9 @@ function showProductDetail() {
                     </div>
                     <!-- Additional policy items -->
                 </div>
-                <div class="product__detail-pay">
-                    <button class="product__detail-add-cart" onclick="addToCart('${detailProduct.id}')">Thêm vào giỏ</button>
-                    <button class="product__detail-buy" onclick="buyNow('${detailProduct.id}')">Mua ngay</button>
+                   <div class="product__detail-pay">
+                    <button class="product__detail-add-cart">Thêm vào giỏ</button>
+                    <button class="product__detail-buy">Mua ngay</button>
                 </div>
             </div>
         </div>
@@ -252,13 +252,14 @@ function showProductDetail() {
     document.getElementById('body').style.display = 'none';
     document.getElementById('show-product-detail').innerHTML = html;
 
-    // Handle additional features like login check
+    //Xử lý buy, addcart
     haveToLogin();
+    addToCart();
 }
 
 
 
-
+//này để chặn không cho xem giỏ hàng khi chưa đăng nhập 
 function haveToLogin() {
     var buyBtn = document.querySelector('.product__detail-buy');
     var notUser = document.querySelector('.header__none-user');
