@@ -61,7 +61,6 @@ function showProductDetail() {
     var url = decodeURI(window.location.href);
 
     var s = url.split('?');
-    console.log("Product: " + s);
     var detailProduct = products.find(function(product) {
         var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
         
@@ -120,7 +119,6 @@ function showProductDetail() {
 
 function showCurrentNavbar(str) {
     var currentNavbar = document.querySelectorAll('.header__navbar-item-link');
-    console.log(currentNavbar);
     for (var i = 0; i < currentNavbar.length; i++) {
         currentNavbar[i].classList.remove('header__navbar-item-link--active');
     }
@@ -238,7 +236,6 @@ function showProduct(start) {
         });
 
         document.querySelector('.slider').style.display = 'none';
-        console.log(category);
         showCurrentNavbar(category);
         
         showFilter(category);
