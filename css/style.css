@@ -822,7 +822,6 @@
 /* Product detail */
 .product__detail {
     margin-top: calc(var(--header-height) + 16px);
-    background-color: #333; 
 }
 
 .product__detail-img-box {
@@ -831,7 +830,6 @@
 
 .product__detail-img {
     width: 500px;
-    max-width: 100%; 
 }
 
 .product__detail-info {
@@ -840,8 +838,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #fff; 
-  
 }
 
 .product__detail-name {
@@ -915,6 +911,7 @@
 .product__detail-buy {
     background-color: #0071e3;
 }
+
 
 /* Account */
 .account-form {

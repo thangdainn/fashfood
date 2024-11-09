@@ -1098,3 +1098,11 @@ tr {
     height: 547px;
     margin-top: 14px;
 }
+.error-phone,
+.error-fullname,
+.error-username {
+    display: block;
+    color: red;
+    font-size: 0.875em;
+    margin-top: 5px;
+}
