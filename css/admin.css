@@ -994,3 +994,12 @@ tr {
     color: #EE4D2D;
     text-align: center;
 }
+
+.error-phone,
+.error-fullname,
+.error-username {
+    display: block;
+    color: red;
+    font-size: 0.875em;
+    margin-top: 5px;
+}

@@ -83,49 +83,19 @@ function containsSpecialChars(str) {
 }
 
 function validatePhoneNumber(phone) {
-    const phoneRegex = /^[0-9]{10}$/; // Chỉ cho phép 10 chữ số
+    // Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số
+    const phoneRegex = /^0[0-9]{9}$/;
     return phoneRegex.test(phone);
 }
+
 
 function isEmptyField(value) {
     return value.trim() === ''; // Kiểm tra xem trường có rỗng hay chỉ chứa khoảng trắng không
 }
-
-// function createAccount() {
-//     var rePassword = document.getElementById('re-password');
-//     var password = document.getElementById('true-password');
-
-//     if (checkSameAccount(email.value)) {
-//         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
-//         return false;
-//     } else {
-//         document.querySelector('.error.email').innerHTML = '';
-//     }
-
-//     if (rePassword.value != password.value) {
-//         document.querySelector('.error.password').innerHTML = 'Mật khẩu không trùng khớp!';
-//         return false;
-//     } else {
-//         document.querySelector('.error.password').innerHTML = '';
- 
-//         userAccount.push({
-//             cartList: [],
-//             userName: document.getElementById('user-name').value,
-//             userEmail: email.value,
-//             userPassword: password.value,
-//             userFullName: document.getElementById('full-name').value, // Họ và tên
-//             userPhone: document.getElementById('user-phone').value,  // Số điện thoại
-//             userAddress: document.getElementById('user-address').value, // Địa chỉ
-//             userDate: new Date().toLocaleDateString(), // Ngày đăng ký
-//             type: 'user',
-//             status: 1
-//         });
-//         localStorage.setItem('userAccount', JSON.stringify(userAccount));
-//         localStorage.setItem('isLogIn', 1);
-//         localStorage.setItem('userAccountIndex', userAccount.length - 1);
-
-//     }
-// }
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Định dạng email cơ bản
+    return emailRegex.test(email);
+}
 function createAccount() {
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
@@ -135,39 +105,53 @@ function createAccount() {
     var address = document.getElementById('user-address').value.trim();
     var emailValue = email.value.trim();
 
-    // Kiểm tra xem trường có bị bỏ trống hay không
-    if (isEmptyField(fullName) || isEmptyField(userName) || isEmptyField(emailValue) || 
-        isEmptyField(phone) || isEmptyField(address) || isEmptyField(password.value)) {
-        showToast('fail', 'Lỗi', 'Không được để trống bất kỳ trường nào.');
+    // Xóa các thông báo lỗi cũ
+    document.querySelector('.error.full-name').textContent = '';
+    document.querySelector('.error.user-name').textContent = '';
+    document.querySelector('.error.phone').textContent = '';
+    document.querySelector('.error.email').textContent = '';
+    document.querySelector('.error.password').textContent = '';
+
+    // Thêm màu đỏ cho các thông báo lỗi
+    const errorElements = document.querySelectorAll('.error');
+    errorElements.forEach(element => {
+        element.style.color = 'red';
+    });
+
+    // Kiểm tra ký tự đặc biệt trong họ tên
+    if (containsSpecialChars(fullName)) {
+        document.querySelector('.error.full-name').textContent = 'Họ và tên không được chứa ký tự đặc biệt.';
         return false;
     }
 
-    // Kiểm tra ký tự đặc biệt trong họ tên và tên người dùng
-    if (containsSpecialChars(fullName) || containsSpecialChars(userName)) {
-        showToast('fail', 'Lỗi', 'Họ và tên hoặc Tên người dùng không được chứa ký tự đặc biệt.');
+    // Kiểm tra ký tự đặc biệt trong tên người dùng
+    if (containsSpecialChars(userName)) {
+        document.querySelector('.error.user-name').textContent = 'Tên người dùng không được chứa ký tự đặc biệt.';
         return false;
     }
 
     // Kiểm tra định dạng số điện thoại
     if (!validatePhoneNumber(phone)) {
-        showToast('fail', 'Lỗi', 'Số điện thoại phải gồm 10 chữ số.');
+        document.querySelector('.error.phone').textContent = 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.';
+        return false;
+    }
+
+    // Kiểm tra định dạng email
+    if (!validateEmail(emailValue)) {
+        document.querySelector('.error.email').textContent = 'Email không đúng định dạng!';
         return false;
     }
 
     // Kiểm tra email đã tồn tại
     if (checkSameAccount(emailValue)) {
-        document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
+        document.querySelector('.error.email').textContent = 'Email đã tồn tại!';
         return false;
-    } else {
-        document.querySelector('.error.email').innerHTML = '';
     }
 
     // Kiểm tra mật khẩu trùng khớp
     if (rePassword.value !== password.value) {
-        document.querySelector('.error.password').innerHTML = 'Mật khẩu không trùng khớp!';
+        document.querySelector('.error.password').textContent = 'Mật khẩu không trùng khớp!';
         return false;
-    } else {
-        document.querySelector('.error.password').innerHTML = '';
     }
 
     // Đăng ký tài khoản mới
@@ -183,13 +167,17 @@ function createAccount() {
         type: 'user',
         status: 1
     });
-    
+
+    // Lưu dữ liệu vào localStorage
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
     localStorage.setItem('isLogIn', 1);
     localStorage.setItem('userAccountIndex', userAccount.length - 1);
 
-    
+    return true;
 }
+
+
+
 
 
 // Check và Login
@@ -246,27 +234,6 @@ var user =  document.querySelector('.header__user');
 var admin = document.querySelector('.header__admin');
 var index;
 
-// function showUserGroup(name, name1) { 
-//     name.style.display = 'block';
-//     name1.style.display = 'none';
-// }   
-// function showUserGroup(name, name1, name2) { 
-//     name.style.display = 'block';
-//     name1.style.display = 'none';
-//     name2.style.display = 'none';
-// }   
-
-
-// var isLogIn = localStorage.getItem('isLogIn');
-// if (isLogIn == 1) {
-//     index = JSON.parse(localStorage.getItem('userAccountIndex'));
-    
-//     var changeUserName = document.querySelector('.header__user .header__user-name');
-//     changeUserName.innerHTML = userAccount[index].userName;
-//     showUserGroup(user, noneUser);
-// } else {
-//     showUserGroup(noneUser, user);
-// }
 function showUserGroup(name, name1) { 
     name.style.display = 'block';
     name1.style.display = 'none';
