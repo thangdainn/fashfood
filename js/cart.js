@@ -217,15 +217,15 @@ function showCartQuantity() {
 function getTotalPrice(array) {
     var s = 0;
     for (var i = 0; i < array.length; i++) {
-        var price = array[i].currentPrice;
-        price = price.replaceAll('.', '').replace('₫', '');
+        var price = array[i].product.currentPrice;
+        price = parseFloat(price.replace(/\./g, ''));
         s += price * array[i].quantity;
     }
 
     var tmp = Intl.NumberFormat('en-US');
     var strPrice = tmp.format(s);
     strPrice = strPrice.replaceAll(',', '.');
-    return strPrice + '₫';
+    return strPrice;
 }
 
 //tạo array mới có thuộc tính quantity là số lượng của product 

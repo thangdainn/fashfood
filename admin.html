@@ -86,16 +86,15 @@
     <div id="admin-content">
     <div id="admin-main">
         <!-- side bar -->
-        <div class="side-bar side-bar--close">
+        <div class="side-bar">
             <a href="index.html" class="side-bar__logo">
-                <img src="./img/logo-black.png" alt="" class="side-bar__logo-img">
-                <img src="./img/logo-icon.png" alt="" class="side-bar__logo-img-close">
+                dainn<span>shop</span>
             </a>
 
-            <span class="side-bar-switch">
+            <!-- <span class="side-bar-switch">
                 <i class="right bx bx-chevron-right"></i>
                 <i class="left bx bx-chevron-left"></i>
-            </span>
+            </span> -->
 
             <div class="side-bar-list">
                 <ul class="side-bar__top">
@@ -108,7 +107,7 @@
                         <span class="side-bar__item-text">Quản lý đơn hàng</span>
                     </li>
                     <li class="side-bar__item" value="product" onclick="showAdminProduct(1)">
-                        <i class="uil uil-server"></i>
+                        <i class="fa fa-drumstick-bite"></i>
                         <span class="side-bar__item-text">Quản lý sản phẩm</span>
                     </li>
                     <li class="side-bar__item" value="user" onclick="showUserPage()">
@@ -120,7 +119,7 @@
                 <ul class="side-bar__bottom">
                     <li class="side-bar__item" value="homepage" onclick="backHomePage()">
                         <i class="uil uil-estate"></i>
-                        <span class="side-bar__item-text">Trở về trang chủ</span>
+                        <span class="side-bar__item-text">Trang chủ</span>
                     </li>
                     <li class="side-bar__item" value="" onclick="LogOut()">
                         <i class="bx bx-log-out"></i>
@@ -152,7 +151,7 @@
                         </div>
                         <div class="admin__statis-sum-box">
                             <div class="admin__statis-sum-box-icon sum-product">
-                                <i class="uil uil-apple"></i>
+                                <i class="fa fa-drumstick-bite"></i>
                             </div>
                             <div class="admin__statis-sum-box-info">
                                 <h3>Sản phẩm đã bán</h3>
@@ -170,17 +169,24 @@
                         </div>
                     </div>
 
-                    <div class="admin__statis-filter">
-                        <h3>Chọn loại sản phẩm:</h3>
+                    <!-- <div class="admin__statis-filter">
+                        <h3>Lọc theo thời gian:</h3>
                         <select name="" id="" onchange="showChart(this.value)">
                             <option value="all" selected>Tất cả</option>
                             <option value="chicken">Gà rán</option>
                             <option value="side-dish">Phần ăn phụ</option>
                             <option value="drink">Thức uống</option>
                         </select>
+                    </div> -->
+                    <div class="admin__statis-date">
+                        <h3 style="display: inline-block; margin-right: 16px;">Khoảng thời gian:</h3>
+                        <label for="statis__start-date">Từ</label>
+                        <input type="date" id="statis__start-date" value="2024-01-01" min="2024-01-01" onchange="showChart('none')">
+                        <label for="statis__end-date">đến</label>
+                        <input type="date" id="statis__end-date" value="" min="2024-01-01" onchange="showChart('none')">
                     </div>
 
-                    <div class="admin__statis-chart-wrapper">
+                    <!-- <div class="admin__statis-chart-wrapper">
                         <div class="admin__statis-chart-header">
                             <h3>Biểu đồ thống kê</h3>
                         </div>
@@ -203,10 +209,26 @@
                             </div>       
                         </div>
 
-                        <div class="admin__statis-chart">
+                        <div class="admin__statis-chart"></div>
+                    </div> -->
+                    <div class="admin__statis-product" style="margin-top: 3rem;">
+                        <table class="admin__statis-product-list">
+                            <thead class="admin__statis-product-list-header">
+                                <tr>
+                                    <th class="admin__statis-product-list-header-item">Ảnh</th>
+                                    <th class="admin__statis-product-list-header-item">ID</th>
+                                    <th class="admin__statis-product-list-header-item">Tên sản phẩm</th>
+                                    <th class="admin__statis-product-list-header-item">Số lượng đã bán</th>
+                                    <th class="admin__statis-product-list-header-item">Doanh thu</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody class="admin__statis-product-item">
 
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
 
                 <!-- Product -->
@@ -263,9 +285,9 @@
                         <div class="admin__order-date">
                             <h3>Khoảng thời gian:</h3>
                             <label for="start-date">Từ</label>
-                            <input type="date" id="start-date" value="2022-01-01" min="2022-01-01" onchange="showAdminOrder()">
+                            <input type="date" id="start-date" value="2024-01-01" min="2024-01-01" onchange="showAdminOrder()">
                             <label for="end-date">đến</label>
-                            <input type="date" id="end-date" value="" min="2022-01-01" onchange="showAdminOrder()">
+                            <input type="date" id="end-date" value="" min="2024-01-01" onchange="showAdminOrder()">
                         </div>
                         
                         <div class="admin__order-status">
