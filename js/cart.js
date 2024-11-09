@@ -282,29 +282,37 @@ function showCartProduct() {
 }
 
 //show order
+// Lấy danh sách đơn hàng từ localStorage
 var orderList = JSON.parse(localStorage.getItem('orderList'));
+// Nếu không có danh sách đơn hàng thì khởi tạo mảng trống
 if (orderList == null) {
     orderList = [];
     localStorage.setItem('orderList', JSON.stringify(orderList));
 }
 
+
 function checkUser() {
+    // Kiểm tra xem có đơn hàng nào trong danh sách orderList không
     if (orderList.length > 0) {
+        // Lặp qua các đơn hàng để kiểm tra email người dùng có trùng khớp
         for (var i = 0; i < orderList.length; i++) {
             if (userAccount[index].userEmail == orderList[i].userAccount.userEmail) {
-                return true;
+                return true; // Đã có đơn hàng của người dùng
             }
         }
     }
-    return false;
+    return false; // Không có đơn hàng của người dùng
 }
 
+
 function showOrderPage() {
+    // Thay đổi màu nền của trang
     document.querySelector('html').style.backgroundColor = '#f0f0f0';
     document.getElementById('body').style.display = 'none';
     showCart.style.display = 'none';
     showOrder.style.display = 'block';
     
+    // Kiểm tra người dùng đã có đơn hàng chưa
     if (checkUser()) {
         document.querySelector('.order__wrapper').style.display = 'block';
         document.querySelector('.order__empty').style.display = 'none';
@@ -322,6 +330,7 @@ function showOrderPage() {
 
         document.querySelector('.show-order').innerHTML = html.join('');
     } else {
+        // Nếu người dùng chưa có đơn hàng
         document.querySelector('.order__wrapper').style.display = 'none';
         document.querySelector('.order__empty').style.display = 'block';
     }
@@ -343,12 +352,15 @@ if (userAccount[index]) {
 }
 
 function minusProduct(name) {
+    // Lọc sản phẩm trong giỏ theo tên
     var newArray = tmpArray.filter(function(product) {
         return product.name.replace('"', '').replaceAll(' ', '-') == name;
     }); 
 
+    // Giảm số lượng sản phẩm
     newArray.length--;
 
+    // Cập nhật lại giỏ hàng
     tmpArray = tmpArray.filter(function(product) {
         return product.name.replace('"', '').replaceAll(' ', '-') != name;
     });
@@ -356,21 +368,23 @@ function minusProduct(name) {
     tmpArray = tmpArray.concat(newArray);
 
     userAccount[index].cartList = tmpArray;
-    userAccount[index].cartList.length = tmpArray.length;
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
-    showCartQuantity();
-    showCartProduct();
-}   
+    showCartQuantity(); // Cập nhật số lượng giỏ hàng
+    showCartProduct();  // Cập nhật danh sách sản phẩm trong giỏ
+}
 
 function plusProduct(name) {
+    // Lọc sản phẩm trong giỏ theo tên
     var newArray = tmpArray.filter(function(product) {
         return product.name.replace('"', '').replaceAll(' ', '-') == name;
     }); 
 
+    // Tăng số lượng sản phẩm
     newArray.length++;
     newArray[newArray.length - 1] = newArray[newArray.length - 2];
 
+    // Cập nhật lại giỏ hàng
     tmpArray = tmpArray.filter(function(product) {
         return product.name.replace('"', '').replaceAll(' ', '-') != name;
     });
@@ -378,12 +392,12 @@ function plusProduct(name) {
     tmpArray = tmpArray.concat(newArray);
 
     userAccount[index].cartList = tmpArray;
-    userAccount[index].cartList.length = tmpArray.length;
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
-    showCartQuantity();
-    showCartProduct();
-}  
+    showCartQuantity(); // Cập nhật số lượng giỏ hàng
+    showCartProduct();  // Cập nhật danh sách sản phẩm trong giỏ
+}
+
 
 // get user info
 var fullName = document.getElementById('fullname');
@@ -391,37 +405,56 @@ var phone = document.getElementById('phone');
 var address = document.getElementById('address');
 
 function checkPhone() {
-    if (parseInt(phone.value) && phone.value.length == 10) {
+    // Sử dụng biểu thức chính quy để kiểm tra số điện thoại
+    var phonePattern = /^0\d{9}$/;
+    
+    // Kiểm tra xem số điện thoại có là số có 10 chữ số và bắt đầu bằng 0 hay không
+    if (phonePattern.test(phone.value)) {
         return true;
     } else {
         return false;
     }
 }
 
-// order product
+
 function orderProduct() {
     if (checkPhone()) {
         document.querySelector('.error-phone').style.display = 'none';
 
+        // Cập nhật thông tin người dùng
         userAccount[index].userFullName = fullName.value;
         userAccount[index].userPhone = phone.value;
         userAccount[index].userAddress = address.value;
 
+        // Thêm thông tin đơn hàng
         orderList.push({orderID: '', orderDate: today, orderStatus: 'not', userAccount: userAccount[index]});
         localStorage.setItem('orderList', JSON.stringify(orderList));
 
+        // Xóa giỏ hàng sau khi đặt hàng
         userAccount[index].cartList = [];
         localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
-        alert('Đặt hàng thành công!');
-        window.location.href = 'index.html?order';
+        // Hiển thị thông báo dạng toast khi đặt hàng thành công
+        showToast('success', 'Thành công!', 'Đặt hàng thành công!');
+
+        // Chờ 3 giây rồi mới chuyển hướng sang trang đơn hàng
+        setTimeout(() => {
+            window.location.href = 'index.html?order';
+        }, 3000); // 3000ms = 3 giây
     } else {
+        // Hiển thị lỗi nếu số điện thoại không hợp lệ
         document.querySelector('.error-phone').style.display = 'block';
     }
 }
 
+
+
+
+
 //show order product
+//xem chi tiết đơn đã mua khi nhấn nút mũi tên chỉ xuống
 function showOrderProduct(id) {
+    // Lấy danh sách sản phẩm trong đơn hàng theo ID
     var orderProducts = document.querySelectorAll('.order__list');
     var showProduct;
     for (var i = 0; i < orderProducts.length; i++) {
@@ -431,6 +464,7 @@ function showOrderProduct(id) {
         }
     }
 
+    // Mở rộng hoặc thu gọn danh sách sản phẩm
     if (showProduct.offsetHeight == 0) {
         showProduct.classList.add('active');
     } else {
