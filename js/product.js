@@ -63,7 +63,6 @@ function showProductDetail() {
     var s = url.split('?');
     var detailProduct = products.find(function(product) {
         var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
-        
         return tmpName == s[2];
     });
 
@@ -74,7 +73,7 @@ function showProductDetail() {
             </div>
         </div>
         <div class="col l-6 m-12 c-12">
-            <div class="product__detail-info">
+            <div class="product__detail-info" style="color: #000;">
                 <span class="product__detail-name">${detailProduct.name}</span>
                 <div class="product__detail-price">
                     <p class="product__detail-current-price">${detailProduct.currentPrice}</p>
@@ -82,22 +81,22 @@ function showProductDetail() {
                 </div>
                 <div class="product__detail-policy">
                     <div class="product__detail-policy-item">
-                        <i class="uil uil-box"></i>
+                        <i class="uil uil-box" style="color: #000;"></i>
                         <span class="product__detail-policy-text">Đóng gói cẩn thận, bảo quản đúng cách</span>
                     </div>
                     <div class="product__detail-policy-item">
-                        <i class="uil uil-shield-check"></i>
+                        <i class="uil uil-shield-check" style="color: #000;"></i>
                         <span class="product__detail-policy-text">Chất lượng thực phẩm đảm bảo an toàn</span>
                     </div>
                     <div class="product__detail-policy-item">
-                        <i class="uil uil-truck"></i>
+                        <i class="uil uil-truck" style="color: #000;"></i>
                         <span class="product__detail-policy-text">Giao hàng nhanh chóng, giữ tươi lâu</span>
                     </div>
                     <div class="product__detail-policy-item">
-                        <i class="uil uil-phone"></i>
+                        <i class="uil uil-phone" style="color: #000;"></i>
                         <span class="product__detail-policy-text">
                             Tổng đài:
-                            <a href="tel:0976124506" class="product__detail-phone">0123456789</a>                                      
+                            <a href="tel:0976124506" class="product__detail-phone">0123456789</a>
                         </span>
                     </div>
                 </div>
