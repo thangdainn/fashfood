@@ -10,9 +10,9 @@ function htmlAdminOrder(orderItem, array) {
     for (var i = 0; i < array.length; i++) {
         productList +=  `
             <li class="order__item">
-                <img src="${array[i].img}" alt="" class="order__item-img">
-                <span class="order__item-name">${array[i].name}</span>
-                <span class="order__item-price">${array[i].currentPrice}</span>
+                <img src="${array[i].product.img}" alt="" class="order__item-img">
+                <span class="order__item-name">${array[i].product.name}</span>
+                <span class="order__item-price">${array[i].product.currentPrice}</span>
                 <span class="order__item-quantity">${array[i].quantity}</span>
             </li>
         `;
@@ -20,8 +20,8 @@ function htmlAdminOrder(orderItem, array) {
     }
 
     var status, switchActive;
-    if (orderItem.orderStatus == 'not') {
-        status = 'Chưa xử lý';
+    if (orderItem.orderStatus == 'processing') {
+        status = 'Đang xử lý';
         switchActive = '';
     } else {
         status = 'Đã xử lý';
@@ -70,7 +70,6 @@ function htmlAdminOrder(orderItem, array) {
                     </div>
                 </div>
                 <ul class="admin-order__list">
-                    <h3>SẢN PHẨM ĐÃ ĐẶT</h3>
                     ${productList}
                 </ul>
             </div>
@@ -140,10 +139,13 @@ function showAdminOrder() {
     if (orderList && orderList.length > 0) {
         orderEmtpyPage.style.display = 'none';
         document.querySelector('.admin__content-header h3').innerHTML = 'Quản lý đơn hàng';
-
-        var html = array.map(function(orderItem) {
-            var tmpArray = createNewCartProductArray(orderItem.userAccount.cartList);
-            return htmlAdminOrder(orderItem, tmpArray);
+        orderList.sort((a, b) => {
+            let dateA = new Date(a.orderDate.split('/').reverse().join('-'));
+            let dateB = new Date(b.orderDate.split('/').reverse().join('-'));
+            return dateB - dateA;
+        });
+        var html = orderList.map(function(orderItem) {
+            return htmlAdminOrder(orderItem, orderItem.orderDetails);
         });
 
         if (html[0] == undefined) {

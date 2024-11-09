@@ -411,22 +411,35 @@ tr {
     overflow-y: auto;
 }
 
-.admin__product-list {
+.admin__product-list,
+.admin__statis-product-list {
     width: 100%;
 }
 
-.admin__product-list-header-item {
+.admin__product-list-header-item,
+.admin__statis-product-list-header-item {
     font-size: 18px;
 }
 
-.admin__product-item img {
+.admin__product-item img,
+.admin__statis-product-item img {
     width: 70px;
     margin-top: 12px;
 }
 
-.admin__product-item i {
+.admin__product-item i,
+.admin__statis-product-item i {
     font-size: 20px;
     cursor: pointer;
+}
+
+.admin__statis-product-list-header th {
+    border-bottom: 1px solid #c5c5c5;
+    padding-bottom: 14px;
+}
+
+.admin__statis-product-list {
+    border-collapse: collapse;
 }
 
 .edit-product {
@@ -703,11 +716,11 @@ tr {
 .order_detail {
     max-height: 0;
     overflow-y: auto;
-    transition: all linear 0.2s;
+    transition: all linear 0.3s;
 }
 
 .order_detail.active {
-    max-height: 200px;
+    max-height: 20rem;
 }
 
 .order__user-info {

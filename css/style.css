@@ -20,7 +20,8 @@
     height: var(--header-height);
 }
 
-.header__logo {
+.header__logo,
+.side-bar__logo {
     font-size: 22px;
     color: #1e1e27;
     font-weight: 700;
@@ -28,7 +29,8 @@
     text-decoration: none;
 }
 
-.header__logo span {
+.header__logo span,
+.side-bar__logo span {
     color: #fe4c50;
 }
 
