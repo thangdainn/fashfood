@@ -1048,6 +1048,7 @@ tr {
     border: 1px solid #888;
     width: 54%;
     min-height: 80%;
+    border-radius: 5px;
 }
 
 /* Close button */
@@ -1062,11 +1063,12 @@ tr {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    border-radius: 0 5px 0 0;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #fff;
     text-decoration: none;
     cursor: pointer;
 }
