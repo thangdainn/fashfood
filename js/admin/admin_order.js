@@ -85,24 +85,17 @@ function setEndDate() {
 }
 
 function getOrderInDate() {
-    var startDate = document.getElementById('start-date').value;
-    var endDate = document.getElementById('end-date').value;
-
-    startDate = startDate.split('-')[1] + '/' + startDate.split('-')[2] + '/' + startDate.split('-')[0];
-    endDate = endDate.split('-')[1] + '/' + endDate.split('-')[2] + '/' + endDate.split('-')[0];
+    let startDate = document.getElementById('start-date').value;
+    let endDate = document.getElementById('end-date').value;
 
     startDate = new Date(startDate);
     endDate = new Date(endDate)
 
-    var orderInDate = orderList.filter(function(order) {
-        var orderDate = order.orderDate;
-        orderDate = orderDate.split('/')[1] + '/' + orderDate.split('/')[0] + '/' + orderDate.split('/')[2];
-        orderDate = new Date(orderDate);
-
-        if (orderDate.getTime() >= startDate.getTime() && orderDate.getTime() <= endDate.getTime()) {
-            return order;
-        }
+    let orderInDate = orderList.filter(function(order) {
+        let orderDate = new Date(order.orderDate.split('/').reverse().join('-'));
+        return orderDate >= startDate && orderDate <= endDate;
     });
+
     return orderInDate;
 }
 
@@ -127,24 +120,28 @@ function showAdminOrder() {
     productPage.style.display = 'none';
     statisticsPage.style.display = 'none';
     userPage.style.display = 'none';
+
     
     var status = document.querySelector('.admin__order-status select');
+    let orders = orderList;
     for (var i = 0; i < status.options.length; i++) {
         if (status.options[i].selected == true) {
-            array = getStatusOrder(status.options[i].value);
+            orders = getStatusOrder(status.options[i].value);
             break;
         }
     }
 
-    if (orderList && orderList.length > 0) {
+    if (orders && orders.length > 0) {
         orderEmtpyPage.style.display = 'none';
         document.querySelector('.admin__content-header h3').innerHTML = 'Quản lý đơn hàng';
-        orderList.sort((a, b) => {
+
+        orders.sort((a, b) => {
             let dateA = new Date(a.orderDate.split('/').reverse().join('-'));
             let dateB = new Date(b.orderDate.split('/').reverse().join('-'));
             return dateB - dateA;
         });
-        var html = orderList.map(function(orderItem) {
+
+        var html = orders.map(function(orderItem) {
             return htmlAdminOrder(orderItem, orderItem.orderDetails);
         });
 

@@ -582,13 +582,13 @@
 }
 
 .order__box-item h3 {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 12px;
     user-select: none;
 }
 
 .order__box-item span {
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
     user-select: none;
 }
