@@ -24,7 +24,7 @@ function backHomePage() {
 function LogOut() {
     localStorage.setItem('isLogIn', 0);
     localStorage.setItem('userAccountIndex', '');
-    window.location.href = 'index.html';
+    window.location.href = 'admin.html';
 }
 
 // Tránh đóng modal khi thao tác trên modal-body

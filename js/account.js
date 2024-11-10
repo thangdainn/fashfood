@@ -208,7 +208,7 @@ function checkLogIn() {
                     localStorage.setItem('userAccountIndex', i);
                     return true; // Đăng nhập thành công
                 } else {
-                    showToast('fail', 'Tài khoản đã bị khóa!', 'Tài khoản của bạn đã bị khóa. Vui lòng liên hệ với quản trị viên.');
+                    showToast('fail', 'Thất bại!', 'Tài khoản của bạn đã bị khóa.');
                     return false; // Tài khoản đã bị khóa
                 }
             }
@@ -222,7 +222,7 @@ function LogIn() {
         localStorage.setItem('isLogIn', 1);
         location.reload();
     } else {
-        showToast('fail', 'Thất bại!', 'Email hoặc mật khẩu không hợp lệ. Vui lòng kiểm tra lại!');
+        showToast('fail', 'Thất bại!', 'Email hoặc mật khẩu không hợp lệ.');
     }
 }
 

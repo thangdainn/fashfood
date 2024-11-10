@@ -196,7 +196,7 @@ if (signUpBtn && signInBtn && accountModal && helloBox && helloText && userAccou
 }
 
 // Random orderList(id, date, status, userAccount)
-for (var i = 1; i <= 5; i++) {
+for (var i = 1; i <= 2; i++) {
     randomOrder();
 }
 function randomOrder() {
