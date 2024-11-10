@@ -597,11 +597,11 @@
     list-style-type: none;
     max-height: 0;
     overflow-y: auto;
-    transition: all linear 0.2s;
+    transition: all linear 0.3s;
 }
 
 .order__list.active {
-    max-height: 200px;
+    max-height: 25rem;
 }
 
 .order__item {

@@ -51,19 +51,13 @@ function showSignInPassword() {
 }
 
 // tạo tài khoản 
-var userAccount = JSON.parse(localStorage.getItem('userAccount'));
-var email = document.getElementById('email');
 var passwords = document.querySelectorAll('.password');
-var myName = document.getElementById('user-name');
-var userPhone = document.getElementById('user-phone');
-var userAddress = document.getElementById('user-address');
-var fullName = document.getElementById('full-name');
 
 
 if (!userAccount) {
     userAccount = [
         {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin', status: 1},
-        {cartList: [], userName: 'User', userEmail: 'user@gmail.com', userPassword: 'user', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
+        {cartList: [], userName: 'User', userEmail: 'user@gmail.com', userPassword: '123123', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
     ];
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
@@ -137,7 +131,14 @@ function checkSameAccount(email) {
 function createAccount() {
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
-
+    var userAccount = JSON.parse(localStorage.getItem('userAccount'));
+    var email = document.getElementById('email');
+    
+    var myName = document.getElementById('user-name');
+    var userPhone = document.getElementById('user-phone');
+    var userAddress = document.getElementById('user-address');
+    var fullName = document.getElementById('full-name');
+    
     if (checkSameAccount(email.value)) {
         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
         return false;
@@ -166,12 +167,12 @@ function createAccount() {
         // });
         userAccount.push({
             cartList: [],
-            userName: document.getElementById('user-name').value,
+            userName: myName.value,
             userEmail: email.value,
             userPassword: password.value,
-            userFullName: document.getElementById('full-name').value, // Họ và tên
-            userPhone: document.getElementById('user-phone').value,  // Số điện thoại
-            userAddress: document.getElementById('user-address').value, // Địa chỉ
+            userFullName: fullName.value, // Họ và tên
+            userPhone: userPhone.value,  // Số điện thoại
+            userAddress: userAddress.value, // Địa chỉ
             userDate: new Date().toLocaleDateString(), // Ngày đăng ký
             type: 'user',
             status: 1

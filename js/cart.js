@@ -44,9 +44,9 @@ function htmlOrderProduct(orderItem, array) {
     for (var i = 0; i < array.length; i++) {
         productList += `
             <li class="order__item">
-                <img src="${array[i].img}" alt="" class="order__item-img">
-                <span class="order__item-name">${array[i].name}</span>
-                <span class="order__item-price">${array[i].currentPrice}</span>
+                <img src="${array[i].product.img}" alt="" class="order__item-img">
+                <span class="order__item-name">${array[i].product.name}</span>
+                <span class="order__item-price">${array[i].product.currentPrice}</span>
                 <span class="order__item-quantity">${array[i].quantity}</span>
             </li>
         `;
@@ -308,11 +308,15 @@ function showOrderPage() {
     if (checkUser()) {
         document.querySelector('.order__wrapper').style.display = 'block';
         document.querySelector('.order__empty').style.display = 'none';
-        
+        orderList.sort((a, b) => {
+            let dateA = new Date(a.orderDate.split('/').reverse().join('-'));
+            let dateB = new Date(b.orderDate.split('/').reverse().join('-'));
+            return dateB - dateA;
+        });
         var html = orderList.map(function(orderItem) {
             if(orderItem.userAccount.userEmail == userAccount[index].userEmail) {
-                var tmpArray = createNewCartProductArray(orderItem.userAccount.cartList);
-                return htmlOrderProduct(orderItem, tmpArray);
+                // var tmpArray = createNewCartProductArray(orderItem.userAccount.cartList);
+                return htmlOrderProduct(orderItem, orderItem.orderDetails);
             }
         });
 
