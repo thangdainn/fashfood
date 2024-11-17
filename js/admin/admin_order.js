@@ -10,9 +10,9 @@ function htmlAdminOrder(orderItem, array) {
     for (var i = 0; i < array.length; i++) {
         productList +=  `
             <li class="order__item">
-                <img src="${array[i].product.img}" alt="" class="order__item-img">
-                <span class="order__item-name">${array[i].product.name}</span>
-                <span class="order__item-price">${array[i].product.currentPrice}</span>
+                <img src="${array[i].img}" alt="" class="order__item-img">
+                <span class="order__item-name">${array[i].name}</span>
+                <span class="order__item-price">${array[i].currentPrice}</span>
                 <span class="order__item-quantity">${array[i].quantity}</span>
             </li>
         `;
@@ -20,8 +20,8 @@ function htmlAdminOrder(orderItem, array) {
     }
 
     var status, switchActive;
-    if (orderItem.orderStatus == 'processing') {
-        status = 'Đang xử lý';
+    if (orderItem.orderStatus == 'not') {
+        status = 'Chưa xử lý';
         switchActive = '';
     } else {
         status = 'Đã xử lý';
@@ -70,6 +70,7 @@ function htmlAdminOrder(orderItem, array) {
                     </div>
                 </div>
                 <ul class="admin-order__list">
+                    <h3>SẢN PHẨM ĐÃ ĐẶT</h3>
                     ${productList}
                 </ul>
             </div>
@@ -85,17 +86,24 @@ function setEndDate() {
 }
 
 function getOrderInDate() {
-    let startDate = document.getElementById('start-date').value;
-    let endDate = document.getElementById('end-date').value;
+    var startDate = document.getElementById('start-date').value;
+    var endDate = document.getElementById('end-date').value;
+
+    startDate = startDate.split('-')[1] + '/' + startDate.split('-')[2] + '/' + startDate.split('-')[0];
+    endDate = endDate.split('-')[1] + '/' + endDate.split('-')[2] + '/' + endDate.split('-')[0];
 
     startDate = new Date(startDate);
     endDate = new Date(endDate)
 
-    let orderInDate = orderList.filter(function(order) {
-        let orderDate = new Date(order.orderDate.split('/').reverse().join('-'));
-        return orderDate >= startDate && orderDate <= endDate;
-    });
+    var orderInDate = orderList.filter(function(order) {
+        var orderDate = order.orderDate;
+        orderDate = orderDate.split('/')[1] + '/' + orderDate.split('/')[0] + '/' + orderDate.split('/')[2];
+        orderDate = new Date(orderDate);
 
+        if (orderDate.getTime() >= startDate.getTime() && orderDate.getTime() <= endDate.getTime()) {
+            return order;
+        }
+    });
     return orderInDate;
 }
 
@@ -120,29 +128,22 @@ function showAdminOrder() {
     productPage.style.display = 'none';
     statisticsPage.style.display = 'none';
     userPage.style.display = 'none';
-
     
     var status = document.querySelector('.admin__order-status select');
-    let orders = orderList;
     for (var i = 0; i < status.options.length; i++) {
         if (status.options[i].selected == true) {
-            orders = getStatusOrder(status.options[i].value);
+            array = getStatusOrder(status.options[i].value);
             break;
         }
     }
 
-    if (orders && orders.length > 0) {
+    if (orderList && orderList.length > 0) {
         orderEmtpyPage.style.display = 'none';
         document.querySelector('.admin__content-header h3').innerHTML = 'Quản lý đơn hàng';
 
-        orders.sort((a, b) => {
-            let dateA = new Date(a.orderDate.split('/').reverse().join('-'));
-            let dateB = new Date(b.orderDate.split('/').reverse().join('-'));
-            return dateB - dateA;
-        });
-
-        var html = orders.map(function(orderItem) {
-            return htmlAdminOrder(orderItem, orderItem.orderDetails);
+        var html = array.map(function(orderItem) {
+            var tmpArray = createNewCartProductArray(orderItem.userAccount.cartList);
+            return htmlAdminOrder(orderItem, tmpArray);
         });
 
         if (html[0] == undefined) {

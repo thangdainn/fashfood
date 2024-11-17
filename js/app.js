@@ -28,41 +28,45 @@ function converPriceToString(price) {
 }
 
 // sửa thành tên chuẩn
-// renderProductName();
-// function renderProductName() {
-//     var products = JSON.parse(localStorage.getItem('products'));
-//     for (var i = 0; i < products.length; i++) {
-//         products[i].name = renderString(products[i].name);
-//         products[i].category = renderString(products[i].category);
-//         products[i].detailCategory = renderString(products[i].detailCategory);
-//     }
-//     localStorage.setItem('products', JSON.stringify(products));
-// }
+renderProductName();
+function renderProductName() {
+    var products = JSON.parse(localStorage.getItem('products'));
+    for (var i = 0; i < products.length; i++) {
+        products[i].name = renderString(products[i].name);
+        products[i].category = renderString(products[i].category);
+        products[i].detailCategory = renderString(products[i].detailCategory);
+    }
+    localStorage.setItem('products', JSON.stringify(products));
+}
 
-function reNameCategory(name) {
-    if (name == 'chicken') {
-        name = 'Gà rán';
-    } else if (name == 'drink') {
-        name = 'Thức uống';
-    } else if (name == 'side-dish') {
-        name = 'Phần ăn phụ';
+function ReName(name) {
+    if (name == 'iphone') {
+        name = 'iPhone'
+    } else if (name == 'ipad') {
+        name = 'iPad';
+    } else if (name == 'macbook') {
+        name = 'MacBook';
+    } else if (name == 'apple-watch' || name == 'apple watch') {
+        name = 'Apple Watch';
     }
     return name;
 }
 
-function prevNameCategory(name) {
-    if (name == 'Gà rán') {
-        name = 'chicken';
-    } else if (name == 'Thức uống') {
-        name = 'drink';
-    } else if (name == 'Phần ăn phụ') {
-        name = 'side-dish';
+function UpperCaseFirstCharacter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function renderString(name) {
+    var tmp = name.split(' ');
+    tmp[0] = ReName(tmp[0]);
+    for (var i = 1; i < tmp.length; i++) {
+        tmp[i] = UpperCaseFirstCharacter(tmp[i]);
     }
+    name = tmp.join(' ');
     return name;
 }
 
-
-// store list products at current page
+// tạo mảng tạm lưu số sản phẩm 1 trang
 function createTempArray(start, array) {
     var tmp = [], cnt = 0;
     start = (start - 1) * productPerPage;
@@ -196,9 +200,9 @@ if (signUpBtn && signInBtn && accountModal && helloBox && helloText && userAccou
 }
 
 // Random orderList(id, date, status, userAccount)
-for (var i = 1; i <= 2; i++) {
-    randomOrder();
-}
+// for (var i = 1; i <= 30; i++) {
+//     randomOrder();
+// }
 function randomOrder() {
     var products = JSON.parse(localStorage.getItem('products'));
     var orderList = JSON.parse(localStorage.getItem('orderList'));
@@ -211,19 +215,15 @@ function randomOrder() {
     var randMonth = Math.floor(Math.random() * 12) + 1;
     randDay = String(randDay).padStart(2, 0);
     randMonth = String(randMonth).padStart(2, 0);
-    var randomDay = randDay + '/' + randMonth + '/' + '2024';
+    var randomDay = randDay + '/' + randMonth + '/' + '2022';
 
     var cartListLength = Math.floor(Math.random() * 10) + 1;
-    var orderDetails = [];
+    var cartListArray = [];
     for (var i = 0; i < cartListLength; i++) {
         var id = Math.floor(Math.random() * products.length);
-        orderDetails.push({
-            product: products[id],
-            quantity: Math.floor(Math.random() * 10) + 1
-        });
+        cartListArray.push(products[id]);
     }
-    
-    // userAccount[1].cartList = orderDetail;
-    orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'done', userAccount: userAccount[1], orderDetails: orderDetails});
+    userAccount[1].cartList = cartListArray;
+    orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'not', userAccount: userAccount[1]});
     localStorage.setItem('orderList', JSON.stringify(orderList));
 }

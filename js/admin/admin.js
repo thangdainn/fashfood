@@ -1,4 +1,4 @@
- var productPage = document.querySelector('.admin__product');
+var productPage = document.querySelector('.admin__product');
 var orderPage = document.querySelector('.admin__order');
 var statisticsPage = document.querySelector('.admin__statis');
 var userPage = document.querySelector('.admin__user');
@@ -24,7 +24,7 @@ function backHomePage() {
 function LogOut() {
     localStorage.setItem('isLogIn', 0);
     localStorage.setItem('userAccountIndex', '');
-    window.location.href = 'admin.html';
+    window.location.href = 'index.html';
 }
 
 // Tránh đóng modal khi thao tác trên modal-body
@@ -41,3 +41,11 @@ function cacelDelete() {
     productControlModal.style.display = 'none';
     userControlModal.style.display = 'none';
 }
+
+// Side bar
+var switchBtn = document.querySelector('.side-bar-switch');
+var sideBar = document.querySelector('.side-bar');
+
+switchBtn.addEventListener('click', function() {
+    sideBar.classList.toggle('side-bar--close');
+});
