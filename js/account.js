@@ -51,15 +51,13 @@ function showSignInPassword() {
 }
 
 // tạo tài khoản 
-var userAccount = JSON.parse(localStorage.getItem('userAccount'));
-var email = document.getElementById('email');
 var passwords = document.querySelectorAll('.password');
-var myName = document.getElementById('user-name');
+
 
 if (!userAccount) {
     userAccount = [
-        {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin'},
-        {cartList: [], userName: 'Random', userEmail: 'random@gmail.com', userPassword: 'random', userFullName: 'Random', userPhone: '0123456789', userAddress: 'Random', userDate: '20/11/2022', type: 'user'},
+        {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin', status: 1},
+        {cartList: [], userName: 'User', userEmail: 'user@gmail.com', userPassword: '123123', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
     ];
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
@@ -73,10 +71,74 @@ function checkSameAccount(email) {
     return false;
 }
 
+// function createAccount() {
+//     var rePassword = document.getElementById('re-password');
+//     var password = document.getElementById('true-password');
+
+//     if (checkSameAccount(email.value)) {
+//         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
+//         return false;
+//     } else {
+//         document.querySelector('.error.email').innerHTML = '';
+//     }
+
+//     if (rePassword.value != password.value) {
+//         document.querySelector('.error.password').innerHTML = 'Mật khẩu không trùng khớp!';
+//         return false;
+//     } else {
+//         document.querySelector('.error.password').innerHTML = '';
+//         userAccount.push({cartList: [], userName: myName.value, userEmail: email.value, userPassword: password.value, userFullName: '', userPhone: '', userAddress: '', userDate: today, type: 'user'});
+//         localStorage.setItem('userAccount', JSON.stringify(userAccount));
+//         localStorage.setItem('isLogIn', 1);
+//         localStorage.setItem('userAccountIndex', userAccount.length - 1);
+//     }
+// }
+// function createAccount() {
+//     var rePassword = document.getElementById('re-password');
+//     var password = document.getElementById('true-password');
+
+//     if (checkSameAccount(email.value)) {
+//         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
+//         return false;
+//     } else {
+//         document.querySelector('.error.email').innerHTML = '';
+//     }
+
+//     if (rePassword.value != password.value) {
+//         document.querySelector('.error.password').innerHTML = 'Mật khẩu không trùng khớp!';
+//         return false;
+//     } else {
+//         document.querySelector('.error.password').innerHTML = '';
+        
+//         // Push new account data to userAccount
+//         userAccount.push({
+//             cartList: [],
+//             userName: myName.value,
+//             userEmail: email.value,
+//             userPassword: password.value,
+//             userFullName: '',
+//             userPhone: userPhone.value,  // Include phone number
+//             userAddress: userAddress.value, // Include address
+//             userDate: today,
+//             type: 'user'
+//         });
+        
+//         localStorage.setItem('userAccount', JSON.stringify(userAccount));
+//         localStorage.setItem('isLogIn', 1);
+//         localStorage.setItem('userAccountIndex', userAccount.length - 1);
+//     }
+// }
 function createAccount() {
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
-
+    var userAccount = JSON.parse(localStorage.getItem('userAccount'));
+    var email = document.getElementById('email');
+    
+    var myName = document.getElementById('user-name');
+    var userPhone = document.getElementById('user-phone');
+    var userAddress = document.getElementById('user-address');
+    var fullName = document.getElementById('full-name');
+    
     if (checkSameAccount(email.value)) {
         document.querySelector('.error.email').innerHTML = 'Email đã tồn tại!';
         return false;
@@ -89,10 +151,36 @@ function createAccount() {
         return false;
     } else {
         document.querySelector('.error.password').innerHTML = '';
-        userAccount.push({cartList: [], userName: myName.value, userEmail: email.value, userPassword: password.value, userFullName: '', userPhone: '', userAddress: '', userDate: today, type: 'user'});
+        // Push new account data to userAccount
+        
+        // userAccount.push({
+        //     cartList: [],
+        //     userName: myName.value,
+        //     userEmail: email.value,
+        //     userPassword: password.value,
+        //     userFullName: "", // Include full name
+        //     userPhone: "",  // Include phone number
+        //     userAddress: "", // Include address
+        //     userDate: today,
+        //     type: 'user',
+        //     status: 1
+        // });
+        userAccount.push({
+            cartList: [],
+            userName: myName.value,
+            userEmail: email.value,
+            userPassword: password.value,
+            userFullName: fullName.value, // Họ và tên
+            userPhone: userPhone.value,  // Số điện thoại
+            userAddress: userAddress.value, // Địa chỉ
+            userDate: new Date().toLocaleDateString(), // Ngày đăng ký
+            type: 'user',
+            status: 1
+        });
         localStorage.setItem('userAccount', JSON.stringify(userAccount));
         localStorage.setItem('isLogIn', 1);
         localStorage.setItem('userAccountIndex', userAccount.length - 1);
+
     }
 }
 
@@ -100,16 +188,33 @@ function createAccount() {
 var signInEmail = document.getElementById('sign-in-email');
 var signInPassword = document.getElementById('sign-in-password');
 
+// function checkLogIn() {
+//     if (userAccount != null) {
+//         for (var i = 0; i < userAccount.length; i++) {
+//             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
+//                 localStorage.setItem('userAccountIndex', i);
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
 function checkLogIn() {
     if (userAccount != null) {
         for (var i = 0; i < userAccount.length; i++) {
             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
-                localStorage.setItem('userAccountIndex', i);
-                return true;
+                // Kiểm tra nếu tài khoản có status là 1 (tài khoản đang hoạt động)
+                if (userAccount[i].status === 1) {
+                    localStorage.setItem('userAccountIndex', i);
+                    return true; // Đăng nhập thành công
+                } else {
+                    showToast('fail', 'Thất bại!', 'Tài khoản của bạn đã bị khóa.');
+                    return false; // Tài khoản đã bị khóa
+                }
             }
         }
     }
-    return false;
+    return false; // Nếu không tìm thấy email hoặc mật khẩu đúng
 }
 
 function LogIn() {
@@ -117,7 +222,7 @@ function LogIn() {
         localStorage.setItem('isLogIn', 1);
         location.reload();
     } else {
-        showToast('fail', 'Thất bại!', 'Email hoặc mật khẩu không hợp lệ. Vui lòng kiểm tra lại!');
+        showToast('fail', 'Thất bại!', 'Email hoặc mật khẩu không hợp lệ.');
     }
 }
 
@@ -133,23 +238,39 @@ var user =  document.querySelector('.header__user');
 var admin = document.querySelector('.header__admin');
 var index;
 
-function showUserGroup(name, name1, name2) { 
+// function showUserGroup(name, name1) { 
+//     name.style.display = 'block';
+//     name1.style.display = 'none';
+// }   
+// function showUserGroup(name, name1, name2) { 
+//     name.style.display = 'block';
+//     name1.style.display = 'none';
+//     name2.style.display = 'none';
+// }   
+
+
+// var isLogIn = localStorage.getItem('isLogIn');
+// if (isLogIn == 1) {
+//     index = JSON.parse(localStorage.getItem('userAccountIndex'));
+    
+//     var changeUserName = document.querySelector('.header__user .header__user-name');
+//     changeUserName.innerHTML = userAccount[index].userName;
+//     showUserGroup(user, noneUser);
+// } else {
+//     showUserGroup(noneUser, user);
+// }
+function showUserGroup(name, name1) { 
     name.style.display = 'block';
     name1.style.display = 'none';
-    name2.style.display = 'none';
+    // name2.style.display = 'none';
 }   
 
 var isLogIn = localStorage.getItem('isLogIn');
 if (isLogIn == 1) {
     index = JSON.parse(localStorage.getItem('userAccountIndex'));
-    
-    if (userAccount[index].type == 'admin') {
-        showUserGroup(admin, noneUser, user);
-    } else {
-        var changeUserName = document.querySelector('.header__user .header__user-name');
-        changeUserName.innerHTML = userAccount[index].userName;
-        showUserGroup(user, noneUser, admin);
-    }
+    var changeUserName = document.querySelector('.header__user .header__user-name');
+    changeUserName.innerHTML = userAccount[index].userName;
+    showUserGroup(user, noneUser, admin);
 } else {
     showUserGroup(noneUser, user, admin);
 }
