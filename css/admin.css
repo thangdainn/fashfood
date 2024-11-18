@@ -489,6 +489,37 @@ tr {
     border-collapse: collapse;
 }
 
+.admin__product-list-header-item,
+.admin__statis-product-list-header-item,
+.admin__statis-customer-list-header-item {
+    font-size: 16px;
+}
+
+.admin__product-item img,
+.admin__statis-product-item img {
+    width: 70px;
+    margin-top: 12px;
+}
+
+.admin__product-item i,
+.admin__statis-product-item i,
+.admin__statis-customer-item i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.admin__statis-product-list-header th,
+.admin__statis-customer-list-header th {
+    border-bottom: 1px solid #c5c5c5;
+    padding-bottom: 14px;
+}
+
+.admin__statis-product-list,
+.admin__statis-customer-list {
+    border-collapse: collapse;
+}
+
+
 .edit-product {
     color: #ffa800;
 }
