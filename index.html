@@ -83,7 +83,7 @@
                                 </span>
 
                                 <div class="mobile__header">
-                                    <img src="./img/logo.png" alt="" class="mobile__header-logo">
+                                    <img src="" alt="" class="mobile__header-logo">
                                 </div>
 
                                 <div class="hello-user">
@@ -134,22 +134,22 @@
                                     <h3 class="mobile__box-header">CATEGORIES</h3>
                                     <ul class="header__navbar-list">
                                         <li class="header__navbar-item">
-                                            <span class="material-symbols-rounded mobile-icon">phone_android</span>
-                                            <a href="index.html?iphone" class="header__navbar-item-link">iPhone</a>
+                                            <span class="material-symbols-rounded mobile-icon"></span>
+                                            <a href="index.html?iphone" class="header__navbar-item-link">Gà rán</a>
                                         </li>
                                         <li class="header__navbar-item">
-                                            <span class="material-symbols-rounded mobile-icon">tablet_mac</span>
-                                            <a href="index.html?ipad" class="header__navbar-item-link">iPad</a>
+                                            <span class="material-symbols-rounded mobile-icon"></span>
+                                            <a href="index.html?ipad" class="header__navbar-item-link">Phần ăn phụ</a>
                                         </li>
                                         <li class="header__navbar-item">
-                                            <span class="material-symbols-rounded mobile-icon">laptop_mac</span>
-                                            <a href="index.html?macbook" class="header__navbar-item-link">MacBook</a>
+                                            <span class="material-symbols-rounded mobile-icon"></span>
+                                            <a href="index.html?macbook" class="header__navbar-item-link">Thức uống</a>
                                         </li>
-                                        <li class="header__navbar-item">
-                                            <span class="material-symbols-rounded mobile-icon">watch</span>
+                                        <!-- <li class="header__navbar-item">
+                                            <span class="material-symbols-rounded mobile-icon"></span>
                                             <a href="index.html?apple-watch"
                                                 class="header__navbar-item-link">AppleWatch</a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -281,7 +281,7 @@
                                         <label for="phone" class="cart__form-info-lable">Số điện thoại: *</label>
                                         <input id="phone" class="cart__form-info-input" type="text"
                                             placeholder="Nhập số điện thoại" required>
-                                        <span class="error-phone">Số điện thoại phải có 10 chữ số</span>
+                                        <span class="error-phone">Số điện thoại phải có 10 chữ số và phải bắt đầu bằng số 0</span>
                                     </div>
                                     <div class="cart__form-info-box">
                                         <label for="address" class="cart__form-info-lable">Địa chỉ: *</label>
@@ -320,7 +320,7 @@
         <div class="order">
             <div class="grid wide">
                 <div class="order__wrapper">
-                    <div class="oder__header">
+                    <div class="order__header">
                         <h3 class="order__heading">Đơn hàng đã đặt</h3>
                     </div>
                     <div class="show-order">
@@ -392,15 +392,15 @@
                         </ul>
                     </div>
                     <div class="col l-4 c-12">
-                        <h3 class="footer__heading">CÔNG TY CỔ PHẦN HIGHTECH</h3>
+                        <h3 class="footer__heading">CÔNG TY CỔ PHẦN Dainn Shop</h3>
                         <ul class="footer__list">
-                            <li class="footer__item">Ngày thành lập: 18/10/2022</li>
-                            <li class="footer__item">HighTech đảm bảo uy tín và chất lượng những sản phẩm mang lại giá
+                            <li class="footer__item">Ngày thành lập: 18/10/2024</li>
+                            <li class="footer__item"> Dainn Shop đảm bảo uy tín và chất lượng những sản phẩm mang lại giá
                                 trị cho cộng đồng.</li>
                         </ul>
                     </div>
                     <div class="col l-12 c-12">
-                        <p class="footer__copyright">© 2022 - Bản quyền thuộc về Công ty TNHH HighTech</p>
+                        <p class="footer__copyright">© 2024 - Bản quyền thuộc về Công ty TNHH Dainn Shop</p>
                     </div>
                 </div>
             </div>
@@ -411,7 +411,7 @@
             <div class="modal-overlay"></div>
 
             <div class="modal-body">
-                <!-- Sign up -->
+             
                 <div id="sign-up" class="account-form">
                     <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
                         <i class="close-btn fa-solid fa-xmark"></i>
@@ -420,26 +420,19 @@
                         <div class="account-form__header">
                             <h3 class="account-form__heading">Đăng ký</h3>
                         </div>
-
+                
                         <div class="account-form__form">
                             <div class="account-form__box">
-                                <!-- <i class="account-form__box-icon uil uil-user"></i>
-                                <input id="user-name" type="text" class="account-form__input"
-                                    placeholder="Tên người dùng" required>
-                            </div> --> <i class="account-form__box-icon uil uil-user"></i>
+                                <i class="account-form__box-icon uil uil-user"></i>
                                 <input id="full-name" type="text" class="account-form__input" placeholder="Họ và tên" required>
+                                <span class="error full-name"></span>
                             </div>
                             <div class="account-form__box">
                                 <i class="account-form__box-icon uil uil-user"></i>
                                 <input id="user-name" type="text" class="account-form__input" placeholder="Tên người dùng" required>
+                                <span class="error user-name"></span>
                             </div>
-
-                            <!-- <div class="account-form__box">
-                                <i class="account-form__box-icon uil uil-envelope"></i>
-                                <input id="email" type="email" class="account-form__input" placeholder="Email của bạn"
-                                    required>
-                                <span class="error email"></span>
-                            </div> -->
+                
                             <div class="account-form__box">
                                 <i class="account-form__box-icon uil uil-envelope"></i>
                                 <input id="email" type="email" class="account-form__input" placeholder="Email của bạn" required>
@@ -448,23 +441,22 @@
                             <div class="account-form__box">
                                 <i class="account-form__box-icon uil uil-phone"></i>
                                 <input id="user-phone" type="tel" class="account-form__input" placeholder="Số điện thoại" required>
+                                <span class="error phone"></span>
                             </div>
-        
+                
                             <div class="account-form__box">
                                 <i class="account-form__box-icon uil uil-map-marker"></i>
                                 <input id="user-address" type="text" class="account-form__input" placeholder="Địa chỉ" required>
                             </div>
-
+                
                             <div class="account-form__box">
                                 <i class="account-form__box-icon uil uil-lock-alt"></i>
-                                <input id="true-password" type="password" class="account-form__input password"
-                                    placeholder="Nhập mật khẩu" required>
+                                <input id="true-password" type="password" class="account-form__input password" placeholder="Nhập mật khẩu" required>
                             </div>
-
+                
                             <div class="account-form__box">
                                 <i class="account-form__box-icon uil uil-lock-alt"></i>
-                                <input id="re-password" type="password" class="account-form__input password"
-                                    placeholder="Nhập lại mật khẩu" required>
+                                <input id="re-password" type="password" class="account-form__input password" placeholder="Nhập lại mật khẩu" required>
                                 <span class="account-form__box-showpass sign-up-showpass" onclick="showPassword()">
                                     <i class="uil uil-eye-slash show-hide"></i>
                                 </span>
@@ -482,17 +474,16 @@
                                 </p>
                             </label>
                         </div>
-
+                
                         <button class="account-form__btn" type="submit">Đăng ký</button>
-
+                
                         <div class="account-form__switch">
                             Bạn đã có tài khoản?
-                            <span id="sign-in-btn" class="account-form__switch-btn" onclick="showSignIn()">Đăng
-                                nhập</span>
+                            <span id="sign-in-btn" class="account-form__switch-btn" onclick="showSignIn()">Đăng nhập</span>
                         </div>
                     </form>
                 </div>
-
+                
                 <!-- Sign in -->
                 <div id="sign-in" class="account-form">
                     <span onclick="document.getElementById('account__modal').style.display='none'" class="close">

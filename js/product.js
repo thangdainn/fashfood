@@ -39,7 +39,8 @@ function htmlProduct(product) {
     var html = `
         <div class="col l-3 m-4 c-6">
             <div class="product__item">
-                <a href="index.html?${tmpName}" class="product__item-link">
+                <a href="index.html?${product.category}?${tmpName}" class="product__item-link">
+                    
                     <img src = "${product.img}" class = "product__item-img"></img>
                     <h3 class="product__item-name">${product.name}</h3>
                     <div class="product__item-price">
@@ -51,6 +52,67 @@ function htmlProduct(product) {
         </div>
     `;
     return html;
+}
+
+function showProductDetail() {
+    document.querySelector('.cart').style.display = 'none';
+    document.querySelector('.order').style.display = 'none';
+
+    var url = decodeURI(window.location.href);
+
+    var s = url.split('?');
+    var detailProduct = products.find(function(product) {
+        var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
+        return tmpName == s[2];
+    });
+
+    var html = `
+        <div class="col l-6 m-12 c-12">
+            <div class="product__detail-img-box">
+                <img src="${detailProduct.img}" alt="" class="product__detail-img">
+            </div>
+        </div>
+        <div class="col l-6 m-12 c-12">
+            <div class="product__detail-info" style="color: #000;">
+                <span class="product__detail-name">${detailProduct.name}</span>
+                <div class="product__detail-price">
+                    <p class="product__detail-current-price">${detailProduct.currentPrice}</p>
+                    <p class="product__detail-old-price">${detailProduct.oldPrice}</p>
+                </div>
+                <div class="product__detail-policy">
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-box" style="color: #000;"></i>
+                        <span class="product__detail-policy-text">Đóng gói cẩn thận, bảo quản đúng cách</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-shield-check" style="color: #000;"></i>
+                        <span class="product__detail-policy-text">Chất lượng thực phẩm đảm bảo an toàn</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-truck" style="color: #000;"></i>
+                        <span class="product__detail-policy-text">Giao hàng nhanh chóng, giữ tươi lâu</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-phone" style="color: #000;"></i>
+                        <span class="product__detail-policy-text">
+                            Tổng đài:
+                            <a href="tel:0976124506" class="product__detail-phone">0123456789</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="product__detail-pay">
+                    <button class="product__detail-add-cart">Thêm vào giỏ</button>
+                    <button class="product__detail-buy">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    ` ;
+
+    document.getElementById('body').style.display = 'none';
+    document.getElementById('show-product-detail').innerHTML = html;
+
+    haveToLogin();
+    addToCart();
 }
 
 
@@ -85,15 +147,18 @@ function showCurrentFilter(name) {
 function showFilter(category) {
     var productArray = products.filter(function(product) {
         return product.category == category;
+
     });
     var filterArray = productArray.map(function(product) {
         return product.detailCategory;
     });
     filterArray = [...new Set(filterArray)];
+
     if (filterArray.length == 1) {
         document.querySelector('.product__filter').style.display = 'none';
         return;
     }
+
     var s = `
         <li class="product__filter-item">
             <button class="product__filter-item-btn product__filter-item-btn--active" onclick="showProduct(1)">Tất cả</button>
@@ -110,6 +175,23 @@ function showFilter(category) {
     s = s + html.join('');
     document.querySelector('.product__filter').innerHTML = s;
     
+}
+
+function haveToLogin() {
+    var buyBtn = document.querySelector('.product__detail-buy');
+    var notUser = document.querySelector('.header__none-user');
+
+    buyBtn.addEventListener('click', function() {
+        if (notUser.style.display == 'block') {
+            showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để mua sản phẩm!');
+            setTimeout(function() {
+                document.getElementById('account__modal').style.display = 'flex';
+            }, 1000);
+        } else {
+            getCurrentProduct();
+            window.location.href = 'index.html?cart';
+        }
+    });
 }
 
 // show products in current page, filters
@@ -151,8 +233,8 @@ function showProduct(start) {
         productArray = products.filter(function(product) {
             return product.category == category;
         });
-        document.querySelector('.slider').style.display = 'none';
 
+        document.querySelector('.slider').style.display = 'none';
         showCurrentNavbar(category);
         
         showFilter(category);
@@ -180,4 +262,17 @@ function showProduct(start) {
         document.querySelector('.product__header').scrollIntoView();
     }
     
+}
+function getCurrentProduct() {
+    var url=decodeURI(window.location.href);
+    var s = url.split('?')[2];
+
+    var userAccount = JSON.parse(localStorage.getItem('userAccount'));
+    var index = localStorage.userAccountIndex;
+    var cartProduct = products.find(function(product) {
+        return product.name.replace('"', '').replaceAll(' ', '-') == s;
+    })
+
+    userAccount[index].cartList.push(cartProduct);
+    localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
