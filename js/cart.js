@@ -228,6 +228,9 @@ function getTotalPrice(array) {
     return strPrice;
 }
 
+
+
+
 //tạo array mới có thuộc tính quantity là số lượng của product 
 function createNewCartProductArray(array) {
     sortID(array);   
@@ -368,6 +371,7 @@ function minusProduct(name) {
     tmpArray = tmpArray.concat(newArray);
 
     userAccount[index].cartList = tmpArray;
+    userAccount[index].cartList.length = tmpArray.length;
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
     showCartQuantity(); // Cập nhật số lượng giỏ hàng
@@ -392,6 +396,7 @@ function plusProduct(name) {
     tmpArray = tmpArray.concat(newArray);
 
     userAccount[index].cartList = tmpArray;
+    userAccount[index].cartList.length = tmpArray.length;
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
     showCartQuantity(); // Cập nhật số lượng giỏ hàng
