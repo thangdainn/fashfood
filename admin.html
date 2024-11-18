@@ -626,8 +626,8 @@
         
         for (let i = 0; i < userAccount.length; i++) {
             if (userAccount[i].userEmail == email && userAccount[i].userPassword == password && userAccount[i].type == 'admin') {
-                localStorage.setItem('isLogIn', JSON.stringify(1));
-                localStorage.setItem('userAccountIndex', JSON.stringify(i));
+                // localStorage.setItem('isLogIn', JSON.stringify(1));
+                // localStorage.setItem('userAccountIndex', JSON.stringify(i));
                 return true;
             }
         }

@@ -209,7 +209,7 @@ function randomOrder() {
 
     var randDay = Math.floor(Math.random() * 30) + 1;
     var randMonth = Math.floor(Math.random() * 12) + 1;
-    randDay = String(randDay).padStart(2, 0);
+    randDay = String(randDay).padStart(2, 0);   
     randMonth = String(randMonth).padStart(2, 0);
     var randomDay = randDay + '/' + randMonth + '/' + '2024';
 
