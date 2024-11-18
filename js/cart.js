@@ -228,6 +228,9 @@ function getTotalPrice(array) {
     return strPrice + '₫';
 }
 
+
+
+
 //tạo array mới có thuộc tính quantity là số lượng của product 
 function createNewCartProductArray(array) {
     sortID(array);   
@@ -317,7 +320,11 @@ function showOrderPage() {
         document.querySelector('.order__wrapper').style.display = 'block';
         document.querySelector('.order__empty').style.display = 'none';
         
+
+
+   
         // Tạo HTML cho danh sách đơn hàng của người dùng
+     
         var html = orderList.map(function(orderItem) {
             if(orderItem.userAccount.userEmail == userAccount[index].userEmail) {
                 var tmpArray = createNewCartProductArray(orderItem.userAccount.cartList);
@@ -365,6 +372,7 @@ function minusProduct(name) {
     tmpArray = tmpArray.concat(newArray);
 
     userAccount[index].cartList = tmpArray;
+    userAccount[index].cartList.length = tmpArray.length;
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
     showCartQuantity(); // Cập nhật số lượng giỏ hàng
@@ -389,6 +397,7 @@ function plusProduct(name) {
     tmpArray = tmpArray.concat(newArray);
 
     userAccount[index].cartList = tmpArray;
+    userAccount[index].cartList.length = tmpArray.length;
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 
     showCartQuantity(); // Cập nhật số lượng giỏ hàng

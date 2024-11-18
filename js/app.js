@@ -198,6 +198,33 @@ if (signUpBtn && signInBtn && accountModal && helloBox && helloText && userAccou
 // for (var i = 1; i <= 30; i++) {
 //     randomOrder();
 // }
+// for (var i = 1; i <= 2; i++) {
+//     randomOrder();
+// }
+// function randomOrder() {
+//     var products = JSON.parse(localStorage.getItem('products'));
+//     var orderList = JSON.parse(localStorage.getItem('orderList'));
+//     var userAccount = JSON.parse(localStorage.getItem('userAccount'));
+//     if (!orderList) {
+//         return null;
+//     }
+
+//     var randDay = Math.floor(Math.random() * 30) + 1;
+//     var randMonth = Math.floor(Math.random() * 12) + 1;
+//     randDay = String(randDay).padStart(2, 0);
+//     randMonth = String(randMonth).padStart(2, 0);
+//     var randomDay = randDay + '/' + randMonth + '/' + '2022';
+
+//     var cartListLength = Math.floor(Math.random() * 10) + 1;
+//     var cartListArray = [];
+//     for (var i = 0; i < cartListLength; i++) {
+//         var id = Math.floor(Math.random() * products.length);
+//         cartListArray.push(products[id]);
+//     }
+//     userAccount[1].cartList = cartListArray;
+//     orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'not', userAccount: userAccount[1]});
+//     localStorage.setItem('orderList', JSON.stringify(orderList));
+// }
 function randomOrder() {
     var products = JSON.parse(localStorage.getItem('products'));
     var orderList = JSON.parse(localStorage.getItem('orderList'));
@@ -210,15 +237,19 @@ function randomOrder() {
     var randMonth = Math.floor(Math.random() * 12) + 1;
     randDay = String(randDay).padStart(2, 0);
     randMonth = String(randMonth).padStart(2, 0);
-    var randomDay = randDay + '/' + randMonth + '/' + '2022';
+    var randomDay = randDay + '/' + randMonth + '/' + '2024';
 
     var cartListLength = Math.floor(Math.random() * 10) + 1;
-    var cartListArray = [];
+    var orderDetails = [];
     for (var i = 0; i < cartListLength; i++) {
         var id = Math.floor(Math.random() * products.length);
-        cartListArray.push(products[id]);
+        orderDetails.push({
+            product: products[id],
+            quantity: Math.floor(Math.random() * 10) + 1
+        });
     }
-    userAccount[1].cartList = cartListArray;
-    orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'not', userAccount: userAccount[1]});
+    
+    // userAccount[1].cartList = orderDetail;
+    orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'done', userAccount: userAccount[1], orderDetails: orderDetails});
     localStorage.setItem('orderList', JSON.stringify(orderList));
 }

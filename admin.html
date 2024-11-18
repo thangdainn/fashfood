@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="./css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
     <style>
           
         /* Styles for the login form */
@@ -91,6 +98,8 @@
                 <img src="./img/logo-black.png" alt="" class="side-bar__logo-img">
                 <img src="./img/logo-icon.png" alt="" class="side-bar__logo-img-close">
             </a>
+     
+
 
             <span class="side-bar-switch">
                 <i class="right bx bx-chevron-right"></i>
@@ -108,7 +117,8 @@
                         <span class="side-bar__item-text">Quản lý đơn hàng</span>
                     </li>
                     <li class="side-bar__item" value="product" onclick="showAdminProduct(1)">
-                        <i class="uil uil-server"></i>
+                        <!-- <i class="uil uil-server"></i> -->
+                        <i class="fa fa-drumstick-bite"></i>
                         <span class="side-bar__item-text">Quản lý sản phẩm</span>
                     </li>
                     <li class="side-bar__item" value="user" onclick="showUserPage()">
@@ -120,7 +130,7 @@
                 <ul class="side-bar__bottom">
                     <li class="side-bar__item" value="homepage" onclick="backHomePage()">
                         <i class="uil uil-estate"></i>
-                        <span class="side-bar__item-text">Trở về trang chủ</span>
+                        <span class="side-bar__item-text"> Trang chủ</span>
                     </li>
                     <li class="side-bar__item" value="" onclick="LogOut()">
                         <i class="bx bx-log-out"></i>
@@ -152,7 +162,8 @@
                         </div>
                         <div class="admin__statis-sum-box">
                             <div class="admin__statis-sum-box-icon sum-product">
-                                <i class="uil uil-apple"></i>
+                                <!-- <i class="uil uil-apple"></i> -->
+                                <i class="fa fa-drumstick-bite"></i>
                             </div>
                             <div class="admin__statis-sum-box-info">
                                 <h3>Sản phẩm đã bán</h3>
@@ -171,6 +182,73 @@
                     </div>
 
                     <div class="admin__statis-filter">
+                        <div class="admin__filter-product active" onclick="showProductStatistics(event)">Theo sản phẩm</div>
+                        <div class="admin__filter-customer" onclick="showCustomerStatistics(event)">Theo khách hàng</div>
+                    </div>
+                    
+                    <div class="admin__statis-product">
+                        <div class="admin__statis-date" style="margin-bottom: 3rem;">
+                            <h4 style="display: inline-block; margin-right: 16px;">Khoảng thời gian:</h4>
+                            <label for="statis__product-start-date">Từ</label>
+                            <input type="date" id="statis__product-start-date" value="2024-01-01" min="2024-01-01" onchange="showChart()">
+                            <label for="statis__product-end-date">đến</label>
+                            <input type="date" id="statis__product-end-date" value="" min="2024-01-01" onchange="showChart()">
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="productBarChart"></canvas>
+                        </div>
+                        <table class="admin__statis-product-list">
+                            <thead class="admin__statis-product-list-header">
+                                <tr>
+                                    <th class="admin__statis-product-list-header-item">Ảnh</th>
+                                    <th class="admin__statis-product-list-header-item">ID</th>
+                                    <th class="admin__statis-product-list-header-item">Tên sản phẩm</th>
+                                    <th class="admin__statis-product-list-header-item">Số lượng đã bán</th>
+                                    <th class="admin__statis-product-list-header-item">Doanh thu</th>
+                                    <th class="admin__statis-product-list-header-item">Xem đơn hàng</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody class="admin__statis-product-item">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="admin__statis-customer">
+                        <div class="admin__statis-date" style="margin-bottom: 3rem;">
+                            <h4 style="display: inline-block; margin-right: 16px;">Khoảng thời gian:</h4>
+                            <label for="statis__customer-start-date">Từ</label>
+                            <input type="date" id="statis__customer-start-date" value="2024-01-01" min="2024-01-01" onchange="showCustomerOrdersByDate()">
+                            <label for="statis__customer-end-date">đến</label>
+                            <input type="date" id="statis__customer-end-date" value="" min="2024-01-01" onchange="showCustomerOrdersByDate()">
+                        </div>
+                        <div>
+                            <canvas id="customerBarChart"></canvas>
+                        </div>
+                        <h3 style="margin: 3rem 0; text-align: center;">Top 5 khách hàng phát sinh doanh thu nhiều nhất</h3>
+                        <table class="admin__statis-customer-list">
+                            <thead class="admin__statis-customer-list-header">
+                                <tr>
+                                    <th class="admin__statis-customer-list-header-item">Tên</th>
+                                    <th class="admin__statis-customer-list-header-item">Email</th>
+                                    <th class="admin__statis-customer-list-header-item">Doanh thu</th>
+                                    <th class="admin__statis-customer-list-header-item">Xem đơn hàng</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody class="admin__statis-customer-item">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="orderModal" class="admin__modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <div class="admin__statis-order-list scrollbar" ></div>
+                        </div>
+                    </div>
+
+                <!-- </div>
                         <h3>Chọn loại sản phẩm:</h3>
                         <select name="" id="" onchange="showChart(this.value)">
                             <option value="all" selected>Tất cả</option>
@@ -206,7 +284,7 @@
                         <div class="admin__statis-chart">
 
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Product -->
@@ -261,7 +339,7 @@
                 <div class="admin__order">
                     <div class="admin__ordder-filter">
                         <div class="admin__order-date">
-                            <h3>Khoảng thời gian:</h3>
+                            <!-- <h3>Khoảng thời gian:</h3>
                             <label for="start-date">Từ</label>
                             <input type="date" id="start-date" value="2022-01-01" min="2022-01-01" onchange="showAdminOrder()">
                             <label for="end-date">đến</label>
@@ -273,7 +351,20 @@
                             <select name="" id="" onchange="showAdminOrder()">
                                 <option value="all" selected>Tất cả</option>
                                 <option value="done">Đã xử lý</option>
-                                <option value="not">Chưa xử lý</option>
+                                <option value="not">Chưa xử lý</option> -->
+                                     <h4>Khoảng thời gian:</h4>
+                            <label for="start-date">Từ</label>
+                            <input type="date" id="start-date" value="2024-01-01" min="2024-01-01" onchange="showAdminOrder()">
+                            <label for="end-date">đến</label>
+                            <input type="date" id="end-date" value="" min="2024-01-01" onchange="showAdminOrder()">
+                        </div>
+                        
+                        <div class="admin__order-status">
+                            <h3>Tình trạng: </h3>
+                            <select name="" id="" onchange="showAdminOrder()">
+                                <option value="all" selected>Tất cả</option>
+                                <option value="done">Đã xử lý</option>
+                                <option value="processing">Chưa xử lý</option>
                             </select>
                         </div>
                     </div>
@@ -589,6 +680,8 @@
             login();
         }
     });
+   
+
     </script>
 
 </body>
