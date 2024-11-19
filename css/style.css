@@ -223,7 +223,7 @@
     padding: 10px 20px;
     border-radius: 30px;
     border: solid 1px #d6d6d6;
-    animation: slideLeft ease-out 0.5s;
+    animation: slideLeft ease-out 0.3s;
 }
 
 .header__search-input {
