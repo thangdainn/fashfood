@@ -30,10 +30,10 @@ function showPassword() {
     var icon = document.querySelector('.sign-up-showpass .show-hide');
     passwords.forEach(function(password) {
         if (password.type == 'password') {
-            icon.classList.replace('uil-eye', 'uil-eye-slash');
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
             password.type = 'text';
         } else {
-            icon.classList.replace('uil-eye-slash', 'uil-eye');
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
             password.type = 'password';
         }
     });
@@ -42,10 +42,10 @@ function showPassword() {
 function showSignInPassword() {
     var icon = document.querySelector('.sign-in-showpass .show-hide');
     if (signInPassword.type == 'password') {
-        icon.classList.replace('uil-eye-slash', 'uil-eye');
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
         signInPassword.type = 'text';
     } else {
-        icon.classList.replace('uil-eye', 'uil-eye-slash');
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
         signInPassword.type = 'password';
     }
 }
