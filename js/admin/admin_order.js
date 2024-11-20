@@ -32,7 +32,7 @@ function htmlAdminOrder(orderItem, array) {
         <div class="order__box">
             <div class="order__box-title" onclick="showAdminOrderDetail(${orderItem.orderID})">
                 <div class="order__box-item">
-                    <i class="uil uil-arrow-down"></i>
+                    <i class="fa fa-chevron-down"></i>
                 </div>
                 <div class="order__box-item">
                     <h3>Đơn hàng #${orderItem.orderID}</h3>

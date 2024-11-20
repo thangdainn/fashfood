@@ -37,7 +37,7 @@ modalBodies.forEach(function(modalBody) {
 })
 
 // Hủy delete
-function cacelDelete() {
+function cancelDelete() {
     productControlModal.style.display = 'none';
     userControlModal.style.display = 'none';
 }

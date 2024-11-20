@@ -8,6 +8,7 @@ prevBtn.addEventListener('click', function() {
         var s = getCategory();
         if (window.location.href.includes('admin')) {
             showAdminProduct(--number);
+            document.querySelector('.admin__product-header').scrollIntoView();
         } else if (s == 'search') {
             var categoryName = localStorage.getItem('categoryName');
             if (categoryName != 'Tất cả') {

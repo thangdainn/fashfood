@@ -121,31 +121,3 @@
         max-width: 100%;
     }
 }
-
-/* Mobile */
-@media (max-width: 739px) {
-    .row {
-        margin-left: -4px;
-        margin-right: -4px;
-    }
-    
-    .col {
-        padding: 8px 4px;
-    }
-
-    .c-0 {
-        display: none;
-    }
-    
-    .c-6 {
-        display: block;
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-
-    .c-12 {
-        display: block;
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}

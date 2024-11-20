@@ -171,24 +171,11 @@ function createAccount() {
 }
 
 
-
-
-
 // Check và Login
 var signInEmail = document.getElementById('sign-in-email');
 var signInPassword = document.getElementById('sign-in-password');
 
-// function checkLogIn() {
-//     if (userAccount != null) {
-//         for (var i = 0; i < userAccount.length; i++) {
-//             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
-//                 localStorage.setItem('userAccountIndex', i);
-//                 return true;
-//             }
-//         }
-//     }
-//     return false;
-// }
+
 function checkLogIn() {
     if (userAccount != null) {
         for (var i = 0; i < userAccount.length; i++) {
