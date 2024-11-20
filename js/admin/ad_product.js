@@ -5,10 +5,9 @@ function htmlAdminProduct(product) {
     if (product.oldPrice == '') {
         product.oldPrice = product.currentPrice;
     }
-    product.category = reNameCategory(product.category);
 
-    var tmpName = product.name.replace('"', '');
-    tmpName = tmpName.replaceAll(' ', '-');
+    let category = reNameCategory(product.category);
+    tmpName = product.name.replaceAll(' ', '-');
 
     var html = `
         <tbody class="admin__product-item">
@@ -18,16 +17,16 @@ function htmlAdminProduct(product) {
                 </td>
                 <td>#${product.id}</td>
                 <td class="td-name">${product.name}</td>
-                <td>${product.category}</td>
+                <td>${category}</td>
                 <td>${product.detailCategory}</td>
-                <td>${product.oldPrice}</td>
-                <td>${product.currentPrice}</td>
+                <td>${product.oldPrice}₫</td>
+                <td>${product.currentPrice}₫</td>
                 <td>
                     <span class="edit-product" onclick="showEditModal('${tmpName}')">
-                        <i class="uil uil-edit"></i>
+                        <i class="fa fa-edit"></i>
                     </span>
                     <span class="delete-product" onclick="showDeleteModal('${tmpName}')">
-                        <i class="uil uil-trash-alt"></i>
+                        <i class="fa fa-trash-alt"></i>
                     </span>
                 </td>
             </tr>
@@ -146,6 +145,12 @@ function resetForm() {
     document.getElementById('product-current-price').value = '';
 }
 
+function convertPrice(price) {
+    var tmp = Intl.NumberFormat('en-US');
+    price = tmp.format(price);
+    return price.replaceAll(',', '.');
+}
+
 function addProduct() {
     var productID = document.getElementById('product-id').value;
     var productImg = document.getElementById('product-img').src;
@@ -155,19 +160,23 @@ function addProduct() {
     var productOldPrice = document.getElementById('product-old-price').value;
     var productCurrentPrice = document.getElementById('product-current-price').value;
 
-    productCurrentPrice = converPriceToString(productCurrentPrice);
-    productOldPrice = converPriceToString(productOldPrice);
+    productCurrentPrice = convertPrice(productCurrentPrice);
+    productOldPrice = convertPrice(productOldPrice);
 
     if (checkSameID(productID)) {
         document.querySelector('.error.id').innerHTML = 'ID đã tồn tại!';
     } else {    
         products.push({id: productID, category: productCategory, name: productName, img: productImg, currentPrice: productCurrentPrice, oldPrice: productOldPrice, detailCategory: productDetailCategory});
+        
         localStorage.setItem('products', JSON.stringify(products));
         document.querySelector('.error.id').innerHTML = '';
-        productControlModal.style.display = 'none';
         showToast('success', 'Thành công!', `Thêm sản phẩm ${productID} thành công`);
-        showAdminProduct(1);
-        resetForm();
+        setTimeout(function() {
+            productControlModal.style.display = 'none';
+            showAdminProduct(1);
+            resetForm();
+        }, 1000);
+        
     }
 }
 
@@ -256,12 +265,15 @@ function editProductInfo() {
     products[editIndex].img = productImg.src;
     products[editIndex].name = productName.value;
     products[editIndex].detailCategory = productDetailCategory.value;
-    products[editIndex].oldPrice = converPriceToString(productOldPrice.value);
-    products[editIndex].currentPrice = converPriceToString(productCurrentPrice.value);
+    products[editIndex].oldPrice = convertPrice(productOldPrice.value);
+    products[editIndex].currentPrice = convertPrice(productCurrentPrice.value);
     localStorage.setItem('products', JSON.stringify(products));
-    productControlModal.style.display = 'none';
     showToast('success', 'Thành công!', `Đã lưu thông tin mới của sản phẩm ${products[editIndex].id}`);
-    showAdminProduct(1);
+    setTimeout(function() {
+        productControlModal.style.display = 'none';
+        showAdminProduct(1);
+    }, 1000);
+    
 }
 
 // Delete control

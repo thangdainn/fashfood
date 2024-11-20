@@ -406,6 +406,7 @@ select {
 .admin__product-control {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 32px;
 }
 
@@ -442,7 +443,6 @@ tr {
 }
 
 .admin__product-wrapper{
-    height: 500px;
     overflow-y: auto;
 }
 
@@ -690,7 +690,7 @@ tr {
 
 .delete-form__logo i {
     color: #ee3158;
-    font-size: 80px;
+    font-size: 52px;
 }
 
 .delete-form__question {
@@ -802,9 +802,6 @@ tr {
     transition: all linear 0.3s;
 }
 
-/* .order_detail.active {
-    max-height: 200px;
-} */
 .order_detail.active {
     max-height: 20rem;
 }
@@ -1049,7 +1046,7 @@ tr {
 }
 
 .admin__user-account-control-item i {
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .admin__user-account-control-item:nth-child(1) i,
@@ -1121,26 +1118,7 @@ tr {
 }
 
 /* Close button */
-.close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 44px;
-    height: 30px;
-    text-align: center;
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    border-radius: 0 5px 0 0;
-}
 
-.close:hover,
-.close:focus {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .admin__statis-order-list .order__box-title {
     padding: 6px 24px;
@@ -1201,27 +1179,6 @@ tr {
     border-radius: 5px;
 }
 
-/* Close button */
-.close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 44px;
-    height: 30px;
-    text-align: center;
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    border-radius: 0 5px 0 0;
-}
-
-.close:hover,
-.close:focus {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .admin__statis-order-list .order__box-title {
     padding: 6px 24px;
@@ -1247,4 +1204,79 @@ tr {
     overflow-y: auto;
     height: 547px;
     margin-top: 14px;
+}
+
+.order-close {
+    padding: 2px 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 28px;
+    color: #000;
+    cursor: pointer;
+    border-radius: 0 3px 0 0;
+}
+
+.order-close:hover {
+    cursor: pointer;
+    background-color: #EE4D2D;
+    color: #fff;
+}
+
+.chart-container {
+    width: 80%;
+    margin: auto;
+}
+
+/* Styles for the login form */
+.login-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    z-index: 1000;
+}
+
+.login-form h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form .btn {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form .btn:hover {
+    background: #0056b3;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    display: none;
+}
+
+/* Admin content is hidden initially */
+#admin-content {
+    display: none;
+    padding: 20px;
 }

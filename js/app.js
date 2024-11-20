@@ -20,24 +20,12 @@ function covertPriceToNumber(price) {
     return Number(price);
 }
 
-function converPriceToString(price) {
+function convertPriceToString(price) {
     var tmp = Intl.NumberFormat('en-US');
     price = tmp.format(price);
     price = price.replaceAll(',', '.');
     return price + '₫';
 }
-
-// sửa thành tên chuẩn
-// renderProductName();
-// function renderProductName() {
-//     var products = JSON.parse(localStorage.getItem('products'));
-//     for (var i = 0; i < products.length; i++) {
-//         products[i].name = renderString(products[i].name);
-//         products[i].category = renderString(products[i].category);
-//         products[i].detailCategory = renderString(products[i].detailCategory);
-//     }
-//     localStorage.setItem('products', JSON.stringify(products));
-// }
 
 function reNameCategory(name) {
     if (name == 'chicken') {
@@ -123,82 +111,16 @@ function showToast(type, title, message) {
     }
 }
 
-// Xử lý mobile&tablet menu
 var userAccount = JSON.parse(localStorage.getItem('userAccount'));
 var index = localStorage.userAccountIndex;
-var showMobileMenu = document.querySelector('.mobile__menu-btn');
-var hideMobileMenu = document.querySelector('.mobile__list .close');
-var MobileMenuPage = document.querySelector('.mobile__list');
-var MobileOverlay = document.querySelector('.mobile-overlay');
+
 var userInfo = document.querySelector('.user-info');
 var adminInterface = document.querySelector('.admin-interface');
 
-if (showMobileMenu && hideMobileMenu && MobileMenuPage && MobileOverlay && userInfo && adminInterface) {
-    showMobileMenu.addEventListener('click', function() {
-        MobileOverlay.style.display = 'block';
-        MobileMenuPage.classList.add('active');
-    });
-    
-    hideMobileMenu.addEventListener('click', function() {
-        MobileOverlay.style.display = 'none';
-        MobileMenuPage.classList.remove('active');
-    }); 
-    
-    //close mobile menu khi click ra ngoài
-    MobileOverlay.addEventListener('click', function() {
-        MobileOverlay.style.display = 'none';
-        MobileMenuPage.classList.remove('active');
-    })
-    
-    //ẩn user info khi không login
-    if (localStorage.getItem('isLogIn') == 1) {
-        userInfo.style.display = 'block';
-            
-        //hiện thỉ admin navbar        
-        if (userAccount[index].type == 'admin') {
-            adminInterface.style.display = 'flex';
-        } else {
-            adminInterface.style.display = 'none';
-        }
-    } else {
-        userInfo.style.display = 'none';
-    }
-}
-
-//Mobile sign up, sign in
-var signUpBtn = document.getElementById('mobile-sign-up');
-var signInBtn = document.getElementById('mobile-sign-in');
-var accountModal = document.getElementById('account__modal')
-var helloBox = document.querySelector('.hello-user');
-var helloText = document.querySelector('.hello-user p');
-var userAccountInterface = document.querySelector('.user-account');
-
-if (signUpBtn && signInBtn && accountModal && helloBox && helloText && userAccountInterface) {
-    signUpBtn.addEventListener('click', function() {
-        accountModal.style.display = 'flex';
-        showSignUp();
-    })
-    
-    signInBtn.addEventListener('click', function() {
-        accountModal.style.display = 'flex';
-        showSignIn();
-    })
-    
-    //hiển thị hello
-    if (localStorage.getItem('isLogIn') == 1) {
-        userAccountInterface.style.display = 'none';
-        helloBox.style.display = 'flex';
-        helloText.innerHTML = `Xin chào, ${userAccount[index].userName}`;
-    } else {
-        userAccountInterface.style.display = 'block';
-        helloBox.style.display = 'none';
-    }
-}
-
 // Random orderList(id, date, status, userAccount)
-for (var i = 1; i <= 2; i++) {
-    randomOrder();
-}
+// for (var i = 1; i <= 2; i++) {
+//     randomOrder();
+// }
 function randomOrder() {
     var products = JSON.parse(localStorage.getItem('products'));
     var orderList = JSON.parse(localStorage.getItem('orderList'));
@@ -226,4 +148,27 @@ function randomOrder() {
     // userAccount[1].cartList = orderDetail;
     orderList.push({orderID: '', orderDate: randomDay, orderStatus: 'done', userAccount: userAccount[1], orderDetails: orderDetails});
     localStorage.setItem('orderList', JSON.stringify(orderList));
+}
+
+window.onload = function () {
+    var url = window.location.href;
+    var s = url.split('?');
+
+    if (s[1] != undefined) {
+        if (s[1].split('&')[1] == undefined){
+            if (s[1] == 'order') {
+                showOrderPage();
+            } else if (s[1] == 'cart') {
+                showCartProduct();
+            } else if (s[1] == 'search') {
+                showSearchProduct(1);
+            } else {
+                showProduct(1);
+            }
+        } else {
+            showProductDetail();
+        }
+    } else {
+        showProduct(1);
+    }
 }

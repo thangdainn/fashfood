@@ -21,8 +21,8 @@ function convertPriceToString(price) {
     return price.toLocaleString('en-US').replace(/,/g, '.');
 }
 
-function convertPrice(price) {
-    return parseFloat(price.replace(/\./g, ''));
+function convertStatisticPrice(price) {
+    return parseInt(price.replace(/\./g, ''));
 }
 
 function closeModal() {
@@ -95,6 +95,7 @@ function showChart() {
 }
 
 function htmlStatisticProduct(product) {
+    
     let html = `
         <tbody class="admin__product-item">
             <tr>
@@ -167,7 +168,7 @@ function getProductStatistic(orderList) {
             if (productsMap.has(item.product.id)) {
                 let existingProduct = productsMap.get(item.product.id);
                 existingProduct.quantity ++;
-                existingProduct.netSales += convertPrice(item.product.currentPrice);
+                existingProduct.netSales += convertStatisticPrice(item.product.currentPrice);
                 existingProduct.orders.push(tempOrder);
             } else {
                 productsMap.set(item.product.id, {
@@ -175,7 +176,7 @@ function getProductStatistic(orderList) {
                     name: item.product.name,
                     img: item.product.img,
                     quantity: item.quantity,
-                    netSales: convertPrice(item.product.currentPrice),
+                    netSales: convertStatisticPrice(item.product.currentPrice),
                     orders: [tempOrder]
                 });
             }
@@ -208,7 +209,7 @@ function getTotalNetSales() {
     let productStatistic = getProductStatistic(orderList);
     let totalNetSales = 0;
     productStatistic.forEach(product => {
-        totalNetSales += convertPrice(product.netSales);
+        totalNetSales += convertStatisticPrice(product.netSales);
     });
     return convertPriceToString(totalNetSales);
 }
@@ -320,7 +321,7 @@ function getCustomerStatistics(orderList) {
         if (order.orderStatus == 'done') {
             let customerEmail = order.userAccount.userEmail;
             let orderTotal = order.orderDetails.reduce((total, item) => {
-                return total + convertPrice(item.product.currentPrice);
+                return total + convertStatisticPrice(item.product.currentPrice);
             }, 0);
 
             if (customerMap.has(customerEmail)) {
@@ -387,7 +388,7 @@ function showProductChart(statisticProducts) {
                 borderWidth: 1
             }, {
                 label: 'Tổng tiền thu được',
-                data: statisticProducts.map(product => convertPrice(product.netSales)),
+                data: statisticProducts.map(product => convertStatisticPrice(product.netSales)),
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
                 borderColor: 'rgba(153, 102, 255, 1)',
                 borderWidth: 1
