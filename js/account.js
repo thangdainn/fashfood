@@ -271,7 +271,7 @@ function LogIn() {
         localStorage.setItem('isLogIn', 1);
         location.reload();
     } else {
-        showToast('fail', 'Thất bại!', 'Tên đăng nhập, Email hoặc mật khẩu không hợp lệ.');
+        showToast('fail', 'Thất bại!', 'Tên người dùng, Email hoặc mật khẩu không hợp lệ.');
     }
 }
 
