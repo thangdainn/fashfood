@@ -302,7 +302,8 @@
                     <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <form class="account-form__container" onsubmit="return createAccount()">
+            
+                     <form class="account-form__container" onsubmit="return createAccount()">
                         <div class="account-form__header">
                             <h3 class="account-form__heading">Đăng ký</h3>
                         </div>
@@ -367,11 +368,53 @@
                             Bạn đã có tài khoản?
                             <span id="sign-in-btn" class="account-form__switch-btn" onclick="showSignIn()">Đăng nhập</span>
                         </div>
-                    </form>
+                    </form> 
                 </div>
                 
                 <!-- Sign in -->
                 <div id="sign-in" class="account-form">
+                    <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
+                        <i class="close-btn close fa-solid fa-xmark"></i>
+                    </span>
+                    <form class="account-form__container" onsubmit="LogIn(); return false">
+                        <div class="account-form__header">
+                            <h3 class="account-form__heading">Đăng nhập</h3>
+                        </div>
+                
+                        <div class="account-form__form">
+                            <div class="account-form__box">
+                                <i class="account-form__box-icon fa fa-user"></i>
+                                <input id="sign-in-username" type="text" class="account-form__input"
+                                    placeholder="Tên đăng nhập của bạn" required>
+                            </div>
+                
+                            <div class="account-form__box">
+                                <i class="account-form__box-icon fa fa-envelope"></i>
+                                <input id="sign-in-email" type="email" class="account-form__input"
+                                    placeholder="Email của bạn" required>
+                            </div>
+                
+                            <div class="account-form__box">
+                                <i class="account-form__box-icon fa fa-lock"></i>
+                                <input id="sign-in-password" type="password" class="account-form__input"
+                                    placeholder="Mật khẩu" required>
+                                <span class="account-form__box-showpass sign-in-showpass"
+                                    onclick="showSignInPassword()">
+                                    <i class="fa fa-eye-slash show-hide"></i>
+                                </span>
+                            </div>
+                        </div>
+                
+                        <button class="account-form__btn">Đăng nhập</button>
+                
+                        <div class="account-form__switch">
+                            Bạn chưa có tài khoản?
+                            <span id="sign-up-btn" class="account-form__switch-btn" onclick="showSignUp()">Đăng ký</span>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- <div id="sign-in" class="account-form">
                     <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
                         <i class="close-btn close fa-solid fa-xmark"></i>
                     </span>
@@ -406,7 +449,7 @@
                                 ký</span>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
