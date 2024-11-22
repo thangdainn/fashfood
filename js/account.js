@@ -62,15 +62,7 @@ if (!userAccount) {
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
 
-// function checkSameAccount(email) {
-//     for (var i = 0; i < userAccount.length; i++) {
-//         if (email == userAccount[i].userEmail) {
 
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 function checkSameAccount(email, userName) {
     for (var i = 0; i < userAccount.length; i++) {
         // Kiểm tra nếu email hoặc tên đăng nhập trùng
@@ -109,14 +101,21 @@ function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Định dạng email cơ bản
     return emailRegex.test(email);
 }
+<<<<<<< HEAD
 function createAccount(event) {
     event.preventDefault();
+=======
+
+function createAccount(event) {
+    event.preventDefault(); // Ngăn không cho form gửi đi mặc định
+
+>>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
     var fullName = document.getElementById('full-name').value.trim();
     var phone = document.getElementById('user-phone').value.trim();
     var address = document.getElementById('user-address').value.trim();
-    var emailValue = email.value.trim();
+    var emailValue = document.getElementById('email').value.trim();
 
     // Xóa các thông báo lỗi cũ
     document.querySelector('.error.full-name').textContent = '';
@@ -124,49 +123,87 @@ function createAccount(event) {
     let errorEmailElm = document.querySelector('#sign-up .error.email');
     errorEmailElm.textContent = '';
     document.querySelector('.error.password').textContent = '';
+    document.querySelector('.error.address').textContent = '';
 
-    // Thêm màu đỏ cho các thông báo lỗi
     const errorElements = document.querySelectorAll('.error');
     errorElements.forEach(element => {
         element.style.color = 'red';
     });
 
-    // Kiểm tra ký tự đặc biệt trong họ tên
-    if (containsSpecialChars(fullName)) {
+    let isValid = true;
+
+    // Kiểm tra các trường nhập liệu
+    if (isEmptyField(fullName)) {
+        document.querySelector('.error.full-name').textContent = 'Họ và tên không được để trống.';
+        isValid = false;
+    } else if (containsSpecialChars(fullName)) {
         document.querySelector('.error.full-name').textContent = 'Họ và tên không được chứa ký tự đặc biệt.';
-        return false;
+        isValid = false;
+    } else if (!isValidFullName(fullName)) {
+        document.querySelector('.error.full-name').textContent = 'Họ và tên chỉ được chứa chữ cái và khoảng trắng.';
+        isValid = false;
     }
 
-    // Kiểm tra ký tự đặc biệt trong tên người dùng
-    if (containsSpecialChars(userName)) {
+    if (isEmptyField(userName)) {
+        document.querySelector('.error.user-name').textContent = 'Tên người dùng không được để trống.';
+        isValid = false;
+    } else if (containsSpecialChars(userName)) {
         document.querySelector('.error.user-name').textContent = 'Tên người dùng không được chứa ký tự đặc biệt.';
-        return false;
+        isValid = false;
+    } else if (startsWithNumber(userName)) {
+        document.querySelector('.error.user-name').textContent = 'Tên người dùng không được bắt đầu bằng số.';
+        isValid = false;
     }
 
+<<<<<<< HEAD
     // Kiểm tra định dạng số điện thoại
     if (!validatePhoneNumber(phone)) {
         document.querySelector('.error.phone').textContent = 'Số điện thoại gồm 10 chữ số.';
         return false;
+=======
+    if (isEmptyField(phone)) {
+        document.querySelector('.error.phone').textContent = 'Số điện thoại không được để trống.';
+        isValid = false;
+    } else if (!validatePhoneNumber(phone)) {
+        document.querySelector('.error.phone').textContent = 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.';
+        isValid = false;
+>>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
     }
 
-    // Kiểm tra định dạng email
-    if (!validateEmail(emailValue)) {
+    if (isEmptyField(emailValue)) {
+        document.querySelector('.error.email').textContent = 'Email không được để trống.';
+        isValid = false;
+    } else if (!validateEmail(emailValue)) {
         document.querySelector('.error.email').textContent = 'Email không đúng định dạng!';
-        return false;
+        isValid = false;
     }
 
+<<<<<<< HEAD
     // Kiểm tra email đã tồn tại
     if (checkSameAccount(emailValue)) {
         document.querySelector('.error.email').textContent = 'Email đã tồn tại!';
         return false;
+=======
+    if (isEmptyField(address)) {
+        document.querySelector('.error.address').textContent = 'Địa chỉ không được để trống.';
+        isValid = false;
+>>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
     }
 
-    // Kiểm tra mật khẩu trùng khớp
-    if (rePassword.value !== password.value) {
+    if (isEmptyField(password.value)) {
+        document.querySelector('.error.password').textContent = 'Mật khẩu không được để trống.';
+        isValid = false;
+    }
+
+    if (isEmptyField(rePassword.value)) {
+        document.querySelector('.error.password').textContent = 'Mật khẩu không được để trống.';
+        isValid = false;
+    } else if (rePassword.value !== password.value) {
         document.querySelector('.error.password').textContent = 'Mật khẩu không trùng khớp!';
-        return false;
+        isValid = false;
     }
 
+<<<<<<< HEAD
     // Kiểm tra email đã tồn tại
     if (checkSameAccount(emailValue)) {
         errorEmailElm.textContent = 'Email đã tồn tại!';
@@ -187,57 +224,57 @@ function createAccount(event) {
         type: 'user',
         status: 1
     });
+=======
+    if (userAccount.some(user => user.userEmail === emailValue)) {
+        document.querySelector('.error.email').textContent = 'Email đã tồn tại!';
+        isValid = false;
+    }
+>>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
 
-    // Lưu dữ liệu vào localStorage
-    localStorage.setItem('userAccount', JSON.stringify(userAccount));
-    localStorage.setItem('isLogIn', 1);
-    localStorage.setItem('userAccountIndex', userAccount.length - 1);
+    if (userAccount.some(user => user.userName === userName)) {
+        document.querySelector('.error.user-name').textContent = 'Tên người dùng đã tồn tại!';
+        isValid = false;
+    }
 
+<<<<<<< HEAD
     // Hiển thị thông báo đăng ký thành công
     showToast('success', 'Thành công!', 'Đăng ký tài khoản thành công.');
     setTimeout(function() {
         location.reload();
     }, 2000);
+=======
+    if (isValid) {
+        // Đăng ký tài khoản mới
+        userAccount.push({
+            cartList: [],
+            userName: userName,
+            userEmail: emailValue,
+            userPassword: password.value,
+            userFullName: fullName,
+            userPhone: phone,
+            userAddress: address,
+            userDate: new Date().toLocaleDateString(),
+            type: 'user',
+            status: 1
+        });
+
+        // Lưu dữ liệu vào localStorage
+        localStorage.setItem('userAccount', JSON.stringify(userAccount));
+        localStorage.setItem('isLogIn', 1);
+        localStorage.setItem('userAccountIndex', userAccount.length - 1);
+
+        // Đóng modal sau khi đăng ký thành công
+        document.getElementById('account__modal').style.display = 'none';
+
+        // Gửi form sau khi tất cả đã hợp lệ
+        document.querySelector('.account-form__container').submit();
+    }
+>>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
 }
 
 
-// Check và Login
-// var signInEmail = document.getElementById('sign-in-email');
-// var signInPassword = document.getElementById('sign-in-password');
 
 
-// function checkLogIn() {
-//     if (userAccount != null) {
-//         for (var i = 0; i < userAccount.length; i++) {
-//             if (signInEmail.value == userAccount[i].userEmail && signInPassword.value == userAccount[i].userPassword) {
-//                 // Kiểm tra nếu tài khoản có status là 1 (tài khoản đang hoạt động)
-//                 if (userAccount[i].status === 1) {
-//                     localStorage.setItem('userAccountIndex', i);
-//                     return true; // Đăng nhập thành công
-//                 } else {
-//                     showToast('fail', 'Thất bại!', 'Tài khoản của bạn đã bị khóa.');
-//                     return false; // Tài khoản đã bị khóa
-//                 }
-//             }
-//         }
-//     }
-//     return false; // Nếu không tìm thấy email hoặc mật khẩu đúng
-// }
-
-// function LogIn() {
-//     if (checkLogIn()) {
-//         localStorage.setItem('isLogIn', 1);
-//         location.reload();
-//     } else {
-//         showToast('fail', 'Thất bại!', 'Email hoặc mật khẩu không hợp lệ.');
-//     }
-// }
-
-// function LogOut() {
-//     localStorage.setItem('isLogIn', 0);
-//     localStorage.setItem('userAccountIndex', '');
-//     window.location.href = 'index.html';
-// }
 
 var signInUsername = document.getElementById('sign-in-username');
 var signInEmail = document.getElementById('sign-in-email');
