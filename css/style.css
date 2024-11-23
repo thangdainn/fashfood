@@ -1036,6 +1036,15 @@
     animation: ModalfadeIn ease 0.5s;
 }
 
+.account-form-register {
+    width: 800px;
+    background-color: #f6f4f0;
+    border-radius: 3px;
+    overflow: hidden;
+    animation: ModalfadeIn ease 0.5s;
+}
+
+
 .account-form__container {
     padding: 32px;
 }
