@@ -20,6 +20,19 @@
     height: var(--header-height);
 }
 
+.register-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.register-table-row{
+    vertical-align: right;
+    padding: 10px 15px;
+    text-align: right;
+    position: relative;
+    top: -10px;
+}
+
 .header__logo,
 .side-bar__logo {
     font-size: 22px;

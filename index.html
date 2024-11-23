@@ -308,46 +308,80 @@
                         </div>
                 
                         <div class="account-form__form">
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon fa fa-user"></i>
-                                <input id="full-name" type="text" class="account-form__input" placeholder="Họ và tên" required>
-                                <span class="error full-name"></span>
-                            </div>
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon fa fa-user"></i>
-                                <input id="user-name" type="text" class="account-form__input" placeholder="Tên người dùng" required>
-                                <span class="error user-name"></span>
-                            </div>
-                
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon fa fa-envelope"></i>
-                                <input id="email" type="email" class="account-form__input" placeholder="Email của bạn" required>
-                                <span class="error email"></span>
-                            </div>
-                            <div class="account-form__box">
+                            <table class="register-table"><thead>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="register-table-row">Họ và tên:</td>
+                                <td>
+                                    <div class="account-form__box">
+                                    <i class="account-form__box-icon fa fa-user"></i>
+                                    <input id="full-name" type="text" class="account-form__input" placeholder="Họ và tên" required>
+                                    <span class="error full-name"></span>
+                                </div></td>
+                            </tr>
+                            <tr>
+                              <td class="register-table-row">Tên người dùng:</td>
+                              <td>
+                                <div class="account-form__box">
+                                    <i class="account-form__box-icon fa fa-user"></i>
+                                    <input id="user-name" type="text" class="account-form__input" placeholder="Tên người dùng" required>
+                                    <span class="error user-name"></span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="register-table-row">Email của bạn:</td>
+                              <td>
+                                <div class="account-form__box">
+                                    <i class="account-form__box-icon fa fa-envelope"></i>
+                                    <input id="email" type="email" class="account-form__input" placeholder="Email của bạn" required>
+                                    <span class="error email"></span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="register-table-row">Số điện thoại:</td>
+                              <td>
+                                <div class="account-form__box">
                                 <i class="account-form__box-icon fa fa-phone-square-alt"></i>
                                 <input id="user-phone" type="tel" class="account-form__input" placeholder="Số điện thoại" required>
                                 <span class="error phone"></span>
                             </div>
-                
-                            <div class="account-form__box">
+                            </td>
+                            </tr>
+                            <tr>
+                              <td class="register-table-row">Địa chỉ:</td>
+                              <td>
+                                <div class="account-form__box">
                                 <i class="account-form__box-icon fa fa-map-marker-alt"></i>
                                 <input id="user-address" type="text" class="account-form__input" placeholder="Địa chỉ" required>
-                            </div>
-                
-                            <div class="account-form__box">
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                              <td class="register-table-row">Nhập mật khẩu:</td>
+                              <td><div class="account-form__box">
                                 <i class="account-form__box-icon uil fa fa-lock"></i>
                                 <input id="true-password" type="password" class="account-form__input password" placeholder="Nhập mật khẩu" required>
-                            </div>
-                
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon uil fa fa-lock"></i>
-                                <input id="re-password" type="password" class="account-form__input password" placeholder="Nhập lại mật khẩu" required>
-                                <span class="account-form__box-showpass sign-up-showpass" onclick="showPassword()">
-                                    <i class="fa fa-eye-slash show-hide"></i>
-                                </span>
-                                <span class="error password"></span>
-                            </div>
+                            </div></td>
+                            </tr>
+                            <tr>
+                              <td class="register-table-row">Nhập lại mật khẩu:</td>
+                              <td>
+                                <div class="account-form__box">
+                            
+                                    <i class="account-form__box-icon uil fa fa-lock"></i>
+                                    <input id="re-password" type="password" class="account-form__input password" placeholder="Nhập lại mật khẩu" required>
+                                    <span class="account-form__box-showpass sign-up-showpass" onclick="showPassword()">
+                                        <i class="fa fa-eye-slash show-hide"></i>
+                                    </span>
+                                    <span class="error password"></span>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                          </table>
                         </div>
                         <div class="account-form__policy">
                             <input type="checkbox" name="" id="policy_check" required>
