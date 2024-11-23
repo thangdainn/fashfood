@@ -39,7 +39,11 @@ function htmlProduct(product) {
     var html = `
         <div class="col l-3 m-4 c-6">
             <div class="product__item">
+<<<<<<< HEAD
                 <a href="index.html?${product.category}&${tmpName}" class="product__item-link">
+=======
+                <a href="index.html?${product.category}?${tmpName}" class="product__item-link">
+>>>>>>> 6b7e20dd6d5a1e29e63cd0e7d07852d0492c9493
                     
                     <img src = "${product.img}" class = "product__item-img"></img>
                     <h3 class="product__item-name">${product.name}</h3>
@@ -58,6 +62,7 @@ function showProductDetail() {
     document.querySelector('.cart').style.display = 'none';
     document.querySelector('.order').style.display = 'none';
 
+<<<<<<< HEAD
     let url = decodeURI(window.location.href);
     let s = url.split('?');
     s = s[1].split('&');
@@ -67,6 +72,15 @@ function showProductDetail() {
 
     var detailProduct = products.find(function(product) {
         return product.category == category && product.name.replaceAll(' ', '-') == productName;
+=======
+    var url = decodeURI(window.location.href);
+
+    var s = url.split('?');
+    var detailProduct = products.find(function(product) {
+        var tmpName = product.name.replace('"', '').replaceAll(' ', '-');
+        
+        return tmpName == s[2];
+>>>>>>> 6b7e20dd6d5a1e29e63cd0e7d07852d0492c9493
     });
 
     var html = `
@@ -76,6 +90,7 @@ function showProductDetail() {
             </div>
         </div>
         <div class="col l-6 m-12 c-12">
+<<<<<<< HEAD
             <div class="product__detail-info" style="color: #000;">
                 <span class="product__detail-name">${detailProduct.name}</span>
                 <div class="product__detail-price">
@@ -114,6 +129,38 @@ function showProductDetail() {
                 <div class="product__detail-pay">
                     <button class="product__detail-add-cart" onclick="addToCart('${detailProduct.name}')">Thêm vào giỏ</button>
                     <button class="product__detail-buy" onclick="buyNow('${detailProduct.name}')">Mua ngay</button>
+=======
+            <div class="product__detail-info">
+                <span class="product__detail-name">${detailProduct.name}</span>
+                <div class="product__detail-price">
+                    <p class="product__detail-current-price">${detailProduct.currentPrice}</p>
+                    <p class="product__detail-old-price">${detailProduct.oldPrice}</p>
+                </div>
+                <div class="product__detail-policy">
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-box"></i>
+                        <span class="product__detail-policy-text">Bộ sản phẩm gồm: Hộp, Sách hướng dẫn, Cây lấy sim, Cáp Lightning - Type C</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-shield-check"></i>
+                        <span class="product__detail-policy-text">Bảo hành chính hãng 2 năm</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-truck"></i>
+                        <span class="product__detail-policy-text">Giao hàng nhanh toàn quốc</span>
+                    </div>
+                    <div class="product__detail-policy-item">
+                        <i class="uil uil-phone"></i>
+                        <span class="product__detail-policy-text">
+                            Tổng đài:
+                            <a href="tel:0976124506" class="product__detail-phone">0123456789</a>                                      
+                        </span>
+                    </div>
+                </div>
+                <div class="product__detail-pay">
+                    <button class="product__detail-add-cart">Thêm vào giỏ</button>
+                    <button class="product__detail-buy">Mua ngay</button>
+>>>>>>> 6b7e20dd6d5a1e29e63cd0e7d07852d0492c9493
                 </div>
             </div>
         </div>
@@ -121,10 +168,18 @@ function showProductDetail() {
 
     document.getElementById('body').style.display = 'none';
     document.getElementById('show-product-detail').innerHTML = html;
+<<<<<<< HEAD
     initQuantity();
     buyNow();
     addToCart();
 }
+=======
+
+    haveToLogin();
+    addToCart();
+}
+
+>>>>>>> 6b7e20dd6d5a1e29e63cd0e7d07852d0492c9493
 
 function showCurrentNavbar(str) {
     var currentNavbar = document.querySelectorAll('.header__navbar-item-link');
@@ -218,6 +273,23 @@ function showFilter(category) {
     s = s + html.join('');
     document.querySelector('.product__filter').innerHTML = s;
     
+}
+
+function haveToLogin() {
+    var buyBtn = document.querySelector('.product__detail-buy');
+    var notUser = document.querySelector('.header__none-user');
+
+    buyBtn.addEventListener('click', function() {
+        if (notUser.style.display == 'block') {
+            showToast('fail', 'Cảnh báo!', 'Vui lòng đăng nhập để mua sản phẩm!');
+            setTimeout(function() {
+                document.getElementById('account__modal').style.display = 'flex';
+            }, 1000);
+        } else {
+            getCurrentProduct();
+            window.location.href = 'index.html?cart';
+        }
+    });
 }
 
 // show products in current page, filters
