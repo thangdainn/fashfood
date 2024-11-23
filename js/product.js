@@ -249,7 +249,7 @@ function showFilterProduct(category, filterName, start) {
     Pagination();
 }
 
-function showProduct(start) {
+/* function showProduct(start) {
     document.querySelector('.cart').style.display = 'none';
     document.querySelector('.order').style.display = 'none';
 
@@ -290,4 +290,61 @@ function showProduct(start) {
         document.querySelector('.product__header').scrollIntoView();
     }
     
+} */
+
+function showProduct(start) {
+    const cartElement = document.querySelector('.cart');
+    if (cartElement) cartElement.style.display = 'none';
+
+    const orderElement = document.querySelector('.order');
+    if (orderElement) orderElement.style.display = 'none';
+
+    const sliderElement = document.querySelector('.slider');
+    const productHeader = document.querySelector('.product__header');
+
+    var category = getCategory();
+    var productArray;
+
+    if (category) {
+        productArray = products.filter(product => product.category == category);
+
+        if (sliderElement) sliderElement.style.display = 'none';
+        showCurrentNavbar(category);
+        showFilter(category);
+
+        if (paginationElm) {
+            paginationElm.style.display = 'flex';
+            showPagination(productArray);
+        }
+        showCurrentPage(start);
+        Pagination();
+
+        if (productHeader) productHeader.innerHTML = '';
+
+    } else {
+        if (sliderElement) sliderElement.style.display = 'block';
+        productArray = products.filter(product => product.state == 'new');
+        category = 'Món mới';
+
+        if (paginationElm) paginationElm.style.display = 'none';
+        if (productHeader) productHeader.innerHTML = '<h2>Món mới</h2>';
+    }
+
+    localStorage.setItem('filterName', "Tất cả");
+
+    if (!Array.isArray(productArray)) {
+        console.error("Product array is invalid");
+        return;
+    }
+
+    const arr = createTempArray(start, productArray);
+    const bodyElement = document.getElementById('body');
+    const showProductElement = document.getElementById('show-product');
+
+    if (bodyElement) bodyElement.style.display = 'block';
+    if (showProductElement) showProductElement.innerHTML = arr.join('');
+
+    if (category !== 'Món mới' && productHeader) {
+        productHeader.scrollIntoView();
+    }
 }
