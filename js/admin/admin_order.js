@@ -43,8 +43,8 @@ function htmlAdminOrder(orderItem, array) {
                     <span>${total}</span>
                 </div>
                 <div class="order__box-item">
-                    <h3>Tên người dùng</h3>
-                    <span>${orderItem.userAccount.userName}</span>
+                    <h3>Họ tên khách hàng</h3>
+                    <span>${orderItem.userAccount.userFullName}</span>
                 </div>
                 <div class="order__box-item">
                     <h3>Ngày đặt hàng</h3>
