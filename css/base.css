@@ -54,7 +54,9 @@ html::-webkit-scrollbar-thumb,
 
 .error.email,
 .error.password,
-.error.id {
+.error.id,
+.error.full-name,
+.error.phone {
     color: red;
     font-size: 12px;
     display: block;

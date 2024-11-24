@@ -302,7 +302,7 @@
                     <span onclick="document.getElementById('account__modal').style.display='none'" class="close">
                         <i class="close-btn fa-solid fa-xmark"></i>
                     </span>
-                    <form class="account-form__container" onsubmit="return createAccount()">
+                    <form class="account-form__container" onsubmit="createAccount(event)">
                         <div class="account-form__header">
                             <h3 class="account-form__heading">Đăng ký</h3>
                         </div>
@@ -313,15 +313,10 @@
                                 <input id="full-name" type="text" class="account-form__input" placeholder="Họ và tên" required>
                                 <span class="error full-name"></span>
                             </div>
-                            <div class="account-form__box">
-                                <i class="account-form__box-icon fa fa-user"></i>
-                                <input id="user-name" type="text" class="account-form__input" placeholder="Tên đăng nhập" required>
-                                <span class="error user-name"></span>
-                            </div>
                 
                             <div class="account-form__box">
                                 <i class="account-form__box-icon fa fa-envelope"></i>
-                                <input id="email" type="email" class="account-form__input" placeholder="Email của bạn" required>
+                                <input id="email" type="email" class="account-form__input" placeholder="Nhập email" required>
                                 <span class="error email"></span>
                             </div>
                             <div class="account-form__box">
@@ -384,7 +379,7 @@
                             <div class="account-form__box">
                                 <i class="account-form__box-icon fa fa-user"></i>
                                 <input id="sign-in-email" type="email" class="account-form__input"
-                                    placeholder="Nhập Email" required>
+                                    placeholder="Nhập email" required>
                             </div>
 
                             <div class="account-form__box">

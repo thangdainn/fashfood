@@ -21,7 +21,7 @@ function htmlUser(account) {
                 <img src="./img/account-logo.png" alt="">
             </div>
             <div class="admin__user-account-item-box">
-                <h3>${account.userName}</h3>
+                <h3>${account.userFullName}</h3>
                 <p>${account.userEmail}</p>
             </div>
             <div class="admin__user-account-item-box">
@@ -105,7 +105,7 @@ var searhInfo = document.querySelector('.admin__user-search-input');
 
 searhInfo.addEventListener('keyup', function() {
     var searchAccount = userAccount.filter(function(account) {
-        return account.userName.toLowerCase().includes(searhInfo.value);
+        return account.userEmail.toLowerCase().includes(searhInfo.value);
     });
 
     var html = searchAccount.map(function(account) {
@@ -121,7 +121,6 @@ var deleteAccountModal = document.getElementById('delete-account');
 
 // See info
 var userFullName = document.getElementById('user-fullname');
-var userName = document.getElementById('user-name');
 var userEmail = document.getElementById('user-email');
 var userPass = document.getElementById('user-pass');
 var userAddress = document.getElementById('user-address');
@@ -132,8 +131,7 @@ var editIndex;
 function disableEdit() {
     userFullName.classList.add('disable');
     userFullName.readOnly = true;
-    userName.classList.add('disable');
-    userName.readOnly = true;
+    
     userEmail.classList.add('disable');
     userEmail.readOnly = true;
 
@@ -154,8 +152,6 @@ function disableEdit() {
 function enableEdit() {
     userFullName.classList.remove('disable');
     userFullName.readOnly = false;
-    userName.classList.remove('disable');
-    userName.readOnly = false;
     userEmail.classList.add('disable'); // Email vẫn là readonly
     userEmail.readOnly = true;
 
@@ -186,7 +182,6 @@ function showSeeInfoModal(email) {
 
     // Set user information in the input fields
     userFullName.value = userInfo.userFullName;
-    userName.value = userInfo.userName;
     userEmail.value = userInfo.userEmail;
     userAddress.value = userInfo.userAddress;
     userPhone.value = userInfo.userPhone;
@@ -262,7 +257,6 @@ function EditInfo() {
     // Lấy các phần tử HTML
     const phoneInput = document.querySelector('#user-phone');
     const fullNameInput = document.querySelector('#user-fullname');
-    const userNameInput = document.querySelector('#user-name');
 
     // Kiểm tra số điện thoại
     let phoneError = phoneInput.parentElement.querySelector('.error-phone');
@@ -275,7 +269,7 @@ function EditInfo() {
     // Thêm thông báo lỗi vào JavaScript
     if (!checkPhone()) {
         phoneError.style.display = 'block';
-        phoneError.textContent = 'Số điện thoại phải có 10 chữ số và phải bắt đầu bằng số 0!';
+        phoneError.textContent = 'Số điện thoại phải có 10 số.';
         isValid = false;
     } else {
         phoneError.style.display = 'none';
@@ -297,28 +291,11 @@ function EditInfo() {
         fullNameError.style.display = 'none';
     }
 
-    // Kiểm tra ký tự đặc biệt trong Tên đăng nhập
-    let userNameError = userNameInput.parentElement.querySelector('.error-username');
-    if (!userNameError) {
-        userNameError = document.createElement('span');
-        userNameError.className = 'error-username';
-        userNameInput.parentElement.appendChild(userNameError);
-    }
-
-    if (containsSpecialChars(userNameInput.value)) {
-        userNameError.style.display = 'block';
-        userNameError.textContent = 'Tên đăng nhập không được chứa ký tự đặc biệt!';
-        isValid = false;
-    } else {
-        userNameError.style.display = 'none';
-    }
-
     // Nếu có lỗi thì dừng không thực hiện cập nhật thông tin
     if (!isValid) return;
 
     // Cập nhật thông tin người dùng nếu không có lỗi
     userAccount[editIndex].userFullName = fullNameInput.value;
-    userAccount[editIndex].userName = userNameInput.value;
     userAccount[editIndex].userAddress = document.querySelector('#user-address').value;
     userAccount[editIndex].userPhone = phoneInput.value;
 

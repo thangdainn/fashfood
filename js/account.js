@@ -56,8 +56,8 @@ var passwords = document.querySelectorAll('.password');
 
 if (!userAccount) {
     userAccount = [
-        {cartList: [], userName: 'Admin', userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin', status: 1},
-        {cartList: [], userName: 'User', userEmail: 'user@gmail.com', userPassword: '123123', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
+        {cartList: [], userEmail: 'admin@gmail.com', userPassword: 'admin', userFullName: 'Admin', userPhone: '0123456789', userAddress: 'Admin', userDate: '20/10/2022', type: 'admin', status: 1},
+        {cartList: [], userEmail: 'user@gmail.com', userPassword: '123123', userFullName: 'User', userPhone: '0123456789', userAddress: 'User', userDate: '20/11/2022', type: 'user', status: 1},
     ];
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
 }
@@ -90,10 +90,10 @@ function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Định dạng email cơ bản
     return emailRegex.test(email);
 }
-function createAccount() {
+function createAccount(event) {
+    event.preventDefault();
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
-    var userName = document.getElementById('user-name').value.trim();
     var fullName = document.getElementById('full-name').value.trim();
     var phone = document.getElementById('user-phone').value.trim();
     var address = document.getElementById('user-address').value.trim();
@@ -101,9 +101,9 @@ function createAccount() {
 
     // Xóa các thông báo lỗi cũ
     document.querySelector('.error.full-name').textContent = '';
-    document.querySelector('.error.user-name').textContent = '';
     document.querySelector('.error.phone').textContent = '';
-    document.querySelector('.error.email').textContent = '';
+    let errorEmailElm = document.querySelector('#sign-up .error.email');
+    errorEmailElm.textContent = '';
     document.querySelector('.error.password').textContent = '';
 
     // Thêm màu đỏ cho các thông báo lỗi
@@ -118,27 +118,15 @@ function createAccount() {
         return false;
     }
 
-    // Kiểm tra ký tự đặc biệt trong tên người dùng
-    if (containsSpecialChars(userName)) {
-        document.querySelector('.error.user-name').textContent = 'Tên người dùng không được chứa ký tự đặc biệt.';
-        return false;
-    }
-
     // Kiểm tra định dạng số điện thoại
     if (!validatePhoneNumber(phone)) {
-        document.querySelector('.error.phone').textContent = 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.';
+        document.querySelector('.error.phone').textContent = 'Số điện thoại gồm 10 chữ số.';
         return false;
     }
 
     // Kiểm tra định dạng email
     if (!validateEmail(emailValue)) {
-        document.querySelector('.error.email').textContent = 'Email không đúng định dạng!';
-        return false;
-    }
-
-    // Kiểm tra email đã tồn tại
-    if (checkSameAccount(emailValue)) {
-        document.querySelector('.error.email').textContent = 'Email đã tồn tại!';
+        errorEmailElm.textContent = 'Email không đúng định dạng!';
         return false;
     }
 
@@ -148,10 +136,17 @@ function createAccount() {
         return false;
     }
 
+    // Kiểm tra email đã tồn tại
+    if (checkSameAccount(emailValue)) {
+        errorEmailElm.textContent = 'Email đã tồn tại!';
+        console.log('Email đã tồn tại!');
+        
+        return false;
+    }
+
     // Đăng ký tài khoản mới
     userAccount.push({
         cartList: [],
-        userName: userName,
         userEmail: emailValue,
         userPassword: password.value,
         userFullName: fullName,
@@ -167,7 +162,11 @@ function createAccount() {
     localStorage.setItem('isLogIn', 1);
     localStorage.setItem('userAccountIndex', userAccount.length - 1);
 
-    return true;
+    // Hiển thị thông báo đăng ký thành công
+    showToast('success', 'Thành công!', 'Đăng ký tài khoản thành công.');
+    setTimeout(function() {
+        location.reload();
+    }, 2000);
 }
 
 
@@ -212,21 +211,19 @@ function LogOut() {
 // show user
 var noneUser = document.querySelector('.header__none-user');
 var user =  document.querySelector('.header__user');
-var admin = document.querySelector('.header__admin');
 var index;
 
 function showUserGroup(name, name1) { 
     name.style.display = 'block';
     name1.style.display = 'none';
-    // name2.style.display = 'none';
 }   
 
 var isLogIn = localStorage.getItem('isLogIn');
 if (isLogIn == 1) {
     index = JSON.parse(localStorage.getItem('userAccountIndex'));
     var changeUserName = document.querySelector('.header__user .header__user-name');
-    changeUserName.innerHTML = userAccount[index].userName;
-    showUserGroup(user, noneUser, admin);
+    changeUserName.innerHTML = userAccount[index].userFullName;
+    showUserGroup(user, noneUser);
 } else {
-    showUserGroup(noneUser, user, admin);
+    showUserGroup(noneUser, user);
 }
