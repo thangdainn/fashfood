@@ -370,5 +370,3 @@ function lockAccount() {
     userControlModal.style.display = 'none';
     showUserPage(); // Cập nhật lại danh sách người dùng
 }
-
-
