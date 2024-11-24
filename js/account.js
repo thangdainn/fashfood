@@ -101,15 +101,8 @@ function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Định dạng email cơ bản
     return emailRegex.test(email);
 }
-<<<<<<< HEAD
 function createAccount(event) {
     event.preventDefault();
-=======
-
-function createAccount(event) {
-    event.preventDefault(); // Ngăn không cho form gửi đi mặc định
-
->>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
     var rePassword = document.getElementById('re-password');
     var password = document.getElementById('true-password');
     var fullName = document.getElementById('full-name').value.trim();
@@ -155,19 +148,10 @@ function createAccount(event) {
         isValid = false;
     }
 
-<<<<<<< HEAD
     // Kiểm tra định dạng số điện thoại
     if (!validatePhoneNumber(phone)) {
         document.querySelector('.error.phone').textContent = 'Số điện thoại gồm 10 chữ số.';
         return false;
-=======
-    if (isEmptyField(phone)) {
-        document.querySelector('.error.phone').textContent = 'Số điện thoại không được để trống.';
-        isValid = false;
-    } else if (!validatePhoneNumber(phone)) {
-        document.querySelector('.error.phone').textContent = 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.';
-        isValid = false;
->>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
     }
 
     if (isEmptyField(emailValue)) {
@@ -178,16 +162,10 @@ function createAccount(event) {
         isValid = false;
     }
 
-<<<<<<< HEAD
     // Kiểm tra email đã tồn tại
     if (checkSameAccount(emailValue)) {
         document.querySelector('.error.email').textContent = 'Email đã tồn tại!';
         return false;
-=======
-    if (isEmptyField(address)) {
-        document.querySelector('.error.address').textContent = 'Địa chỉ không được để trống.';
-        isValid = false;
->>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
     }
 
     if (isEmptyField(password.value)) {
@@ -203,7 +181,6 @@ function createAccount(event) {
         isValid = false;
     }
 
-<<<<<<< HEAD
     // Kiểm tra email đã tồn tại
     if (checkSameAccount(emailValue)) {
         errorEmailElm.textContent = 'Email đã tồn tại!';
@@ -224,52 +201,17 @@ function createAccount(event) {
         type: 'user',
         status: 1
     });
-=======
-    if (userAccount.some(user => user.userEmail === emailValue)) {
-        document.querySelector('.error.email').textContent = 'Email đã tồn tại!';
-        isValid = false;
-    }
->>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
 
     if (userAccount.some(user => user.userName === userName)) {
         document.querySelector('.error.user-name').textContent = 'Tên người dùng đã tồn tại!';
         isValid = false;
     }
 
-<<<<<<< HEAD
     // Hiển thị thông báo đăng ký thành công
     showToast('success', 'Thành công!', 'Đăng ký tài khoản thành công.');
     setTimeout(function() {
         location.reload();
     }, 2000);
-=======
-    if (isValid) {
-        // Đăng ký tài khoản mới
-        userAccount.push({
-            cartList: [],
-            userName: userName,
-            userEmail: emailValue,
-            userPassword: password.value,
-            userFullName: fullName,
-            userPhone: phone,
-            userAddress: address,
-            userDate: new Date().toLocaleDateString(),
-            type: 'user',
-            status: 1
-        });
-
-        // Lưu dữ liệu vào localStorage
-        localStorage.setItem('userAccount', JSON.stringify(userAccount));
-        localStorage.setItem('isLogIn', 1);
-        localStorage.setItem('userAccountIndex', userAccount.length - 1);
-
-        // Đóng modal sau khi đăng ký thành công
-        document.getElementById('account__modal').style.display = 'none';
-
-        // Gửi form sau khi tất cả đã hợp lệ
-        document.querySelector('.account-form__container').submit();
-    }
->>>>>>> b20aeef (không cho trình duyệt mặc định gửi báo lỗi tiếng anh)
 }
 
 
