@@ -154,7 +154,10 @@ window.onload = function () {
     var url = window.location.href;
     var s = url.split('?');
 
-    if (s[1] != undefined) {
+    if (url.includes('admin')) {
+        console.log('admin');
+    } else {
+        if (s[1] != undefined) {
         if (s[1].split('&')[1] == undefined){
             if (s[1] == 'order') {
                 showOrderPage();
@@ -171,4 +174,7 @@ window.onload = function () {
     } else {
         showProduct(1);
     }
+    }
+
+    
 }
