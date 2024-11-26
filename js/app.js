@@ -158,23 +158,21 @@ window.onload = function () {
         console.log('admin');
     } else {
         if (s[1] != undefined) {
-        if (s[1].split('&')[1] == undefined){
-            if (s[1] == 'order') {
-                showOrderPage();
-            } else if (s[1] == 'cart') {
-                showCartProduct();
-            } else if (s[1] == 'search') {
-                showSearchProduct(1);
+            if (s[1].split('&')[1] == undefined){
+                if (s[1] == 'order') {
+                    showOrderPage();
+                } else if (s[1] == 'cart') {
+                    showCartProduct();
+                } else if (s[1] == 'search') {
+                    showSearchProduct(1);
+                } else {
+                    showProduct(1);
+                }
             } else {
-                showProduct(1);
+                showProductDetail();
             }
         } else {
-            showProductDetail();
+            showProduct(1);
         }
-    } else {
-        showProduct(1);
     }
-    }
-
-    
 }

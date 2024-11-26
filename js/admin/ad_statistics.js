@@ -294,7 +294,7 @@ function htmlStatisticOrders(orders) {
             </div>
             <div class="order__box-item">
                 <h3>Tổng tiền</h3>
-                <span>${getTotalPrice(order.orderDetails)}₫</span>
+                <span>${convertPriceToString(getTotalPrice(order.orderDetails))}₫</span>
             </div>
             <div class="order__box-item">
                 <h3>Ngày đặt hàng</h3>

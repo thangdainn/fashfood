@@ -12,7 +12,7 @@ function htmlAdminOrder(orderItem, array) {
             <li class="order__item">
                 <img src="${array[i].product.img}" alt="" class="order__item-img">
                 <span class="order__item-name">${array[i].product.name}</span>
-                <span class="order__item-price">${array[i].product.currentPrice}</span>
+                <span class="order__item-price">${array[i].product.currentPrice}₫</span>
                 <span class="order__item-quantity">${array[i].quantity}</span>
             </li>
         `;
@@ -40,7 +40,7 @@ function htmlAdminOrder(orderItem, array) {
                 </div>
                 <div class="order__box-item">
                     <h3>Tổng tiền</h3>
-                    <span>${total}</span>
+                    <span>${convertPriceToString(total)}₫</span>
                 </div>
                 <div class="order__box-item">
                     <h3>Họ tên khách hàng</h3>
