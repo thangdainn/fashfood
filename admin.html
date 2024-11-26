@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>DainnShop</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./plugins/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="./css/grid.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/admin.css">
+    <script src="./plugins/chart/chart.js"></script>
+
+</head>
+
+<body>
+
+ 
+
+<div class="account-form" id="loginForm">
+    <h2 class="account-form__heading">Đăng nhập quản trị</h2>
+    <div class="account-form__form">
+        <div class="account-form__box">
+            <i class="account-form__box-icon fa fa-user"></i>
+            <input type="email" id="email" class="account-form__input" placeholder="Nhập email" required>
+        </div>
+        <div class="account-form__box">
+            <i class="account-form__box-icon fa fa-lock"></i>
+            <input type="password" id="password" class="account-form__input" placeholder="Nhập mật khẩu" required>
+        </div>
+        <button class="account-form__btn" id="loginButton">Đăng nhập</button>
+    </div>
+    <div class="error-message" id="errorMessage">Mật khẩu hoặc email không đúng.</div>
+</div>
+
+
+    
+    <div id="admin-content">
+    <div id="admin-main">
+        <!-- side bar -->
+        <div class="side-bar">
+            <a href="index.html" class="side-bar__logo">
+                dainn<span>shop</span>
+            </a>
+     
+            <div class="side-bar-list">
+                <ul class="side-bar__top">
+                    <li class="side-bar__item" value="statistics" onclick="showStatisticsPage()">
+                        <i class="fa fa-chart-line"></i>
+                        <span class="side-bar__item-text">Thống kê</span> 
+                    </li>
+                    <li class="side-bar__item" value="order" onclick="showAdminOrder()">
+                        <i class="fa fa-clipboard"></i>
+                        <span class="side-bar__item-text">Quản lý đơn hàng</span>
+                    </li>
+                    <li class="side-bar__item" value="product" onclick="showAdminProduct(1)">
+                        <i class="fa fa-drumstick-bite"></i>
+                        <span class="side-bar__item-text">Quản lý sản phẩm</span>
+                    </li>
+                    <li class="side-bar__item" value="user" onclick="showUserPage()">
+                        <i class="fa fa-user-circle"></i>
+                        <span class="side-bar__item-text">Quản lý khách hàng</span>   
+                    </li>
+                </ul>
+
+                <ul class="side-bar__bottom">
+                    <li class="side-bar__item" value="homepage" onclick="backHomePage()">
+                        <i class="fa fa-house-user"></i>
+                        <span class="side-bar__item-text">Trang chủ</span>
+                    </li>
+                    <li class="side-bar__item" value="" onclick="LogOut()">
+                        <i class="fa fa-sign-out-alt"></i>
+                        <span class="side-bar__item-text">Đăng xuất</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Content -->
+        <div class="admin__content scrollbar"> 
+            <div class="admin__content-wrapper">
+                <div class="admin__content-header">
+                    <h3></h3>
+                </div>
+                
+                <!-- Statistics -->
+                <div class="admin__statis">
+                    <div class="admin__statis-sum">
+                        <div class="admin__statis-sum-box">
+                            <div class="admin__statis-sum-box-icon sum-order">
+                                <span class="material-symbols-rounded"><i class="fas fa-clipboard-check"></i></span>
+                            </div>
+                            <div class="admin__statis-sum-box-info">
+                                <h3>Đơn hàng</h3>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="admin__statis-sum-box">
+                            <div class="admin__statis-sum-box-icon sum-product">
+                                <i class="fa fa-drumstick-bite"></i>
+                            </div>
+                            <div class="admin__statis-sum-box-info">
+                                <h3>Sản phẩm đã bán</h3>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="admin__statis-sum-box">
+                            <div class="admin__statis-sum-box-icon total">
+                                <span class="material-symbols-rounded"><i class="fas fa-money-check-alt"></i></span>
+                            </div>
+                            <div class="admin__statis-sum-box-info">
+                                <h3>Doanh Thu</h3>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin__statis-filter">
+                        <div class="admin__filter-product active" onclick="showProductStatistics(event)">Theo sản phẩm</div>
+                        <div class="admin__filter-customer" onclick="showCustomerStatistics(event)">Theo khách hàng</div>
+                    </div>
+                    
+                    <div class="admin__statis-product">
+                        <div class="admin__statis-date" style="margin-bottom: 3rem;">
+                            <h4 style="display: inline-block; margin-right: 16px;">Khoảng thời gian:</h4>
+                            <label for="statis__product-start-date">Từ</label>
+                            <input type="date" id="statis__product-start-date" value="2024-01-01" min="2024-01-01" onchange="showChart()">
+                            <label for="statis__product-end-date">đến</label>
+                            <input type="date" id="statis__product-end-date" value="" min="2024-01-01" onchange="showChart()">
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="productBarChart"></canvas>
+                        </div>
+                        <table class="admin__statis-product-list">
+                            <thead class="admin__statis-product-list-header">
+                                <tr>
+                                    <th class="admin__statis-product-list-header-item">Ảnh</th>
+                                    <th class="admin__statis-product-list-header-item">ID</th>
+                                    <th class="admin__statis-product-list-header-item">Tên sản phẩm</th>
+                                    <th class="admin__statis-product-list-header-item">Số lượng đã bán</th>
+                                    <th class="admin__statis-product-list-header-item">Doanh thu</th>
+                                    <th class="admin__statis-product-list-header-item">Xem đơn hàng</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody class="admin__statis-product-item">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="admin__statis-customer">
+                        <div class="admin__statis-date" style="margin-bottom: 3rem;">
+                            <h4 style="display: inline-block; margin-right: 16px;">Khoảng thời gian:</h4>
+                            <label for="statis__customer-start-date">Từ</label>
+                            <input type="date" id="statis__customer-start-date" value="2024-01-01" min="2024-01-01" onchange="showCustomerOrdersByDate()">
+                            <label for="statis__customer-end-date">đến</label>
+                            <input type="date" id="statis__customer-end-date" value="" min="2024-01-01" onchange="showCustomerOrdersByDate()">
+                        </div>
+                        <div>
+                            <canvas id="customerBarChart"></canvas>
+                        </div>
+                        <h3 style="margin: 3rem 0; text-align: center;">Top 5 khách hàng phát sinh doanh thu nhiều nhất</h3>
+                        <table class="admin__statis-customer-list">
+                            <thead class="admin__statis-customer-list-header">
+                                <tr>
+                                    <th class="admin__statis-customer-list-header-item">Tên</th>
+                                    <th class="admin__statis-customer-list-header-item">Email</th>
+                                    <th class="admin__statis-customer-list-header-item">Doanh thu</th>
+                                    <th class="admin__statis-customer-list-header-item">Xem đơn hàng</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody class="admin__statis-customer-item">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="orderModal" class="admin__modal">
+                        <div class="modal-content">
+                            <span class="order-close" onclick="closeModal()">&times;</span>
+                            <div class="admin__statis-order-list scrollbar" ></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Product -->
+                <div class="admin__product">
+                    <div class="admin__product-control">
+                        <div class="admin__product-search">
+                            Tìm kiếm
+                            <input type="text" class="admin__product-search-input" placeholder="Nhập tên sản phẩm">
+                        </div>
+                        <div class="admin__product-add" onclick="showAddModal()">
+                            <i class="uil uil-plus-circle"></i>
+                            Thêm sản phẩm
+                        </div>
+                    </div>
+        
+                    <div class="admin__product-wrapper">
+                        <table class="admin__product-list">
+                            <thead class="admin__product-list-header">
+                                <tr>
+                                    <th class="admin__product-list-header-item">Ảnh</th>
+                                    <th class="admin__product-list-header-item">ID</th>
+                                    <th class="admin__product-list-header-item">Tên sản phẩm</th>
+                                    <th class="admin__product-list-header-item">Loại sản phẩm</th>
+                                    <th class="admin__product-list-header-item">Chi tiết loại sản phẩm</th>
+                                    <th class="admin__product-list-header-item">Giá niêm yết</th>
+                                    <th class="admin__product-list-header-item">Giá bán</th>
+                                    <th class="admin__product-list-header-item">Thao tác</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody class="admin__product-item">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="product__pagination">
+                        <div class="pagination-prev">
+                            <i class="pagination-prev__icon fa-solid fa-arrow-left"></i>
+                        </div>
+                        <div class="product__pagination-list">
+    
+                        </div>
+                        <div class="pagination-next">
+                            <i class="pagination-next__icon fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div> 
+                </div>
+                
+                <!-- Order -->
+                <div class="admin__order">
+                    <div class="admin__ordder-filter">
+                        <div class="admin__order-date">
+                            <h4>Khoảng thời gian:</h4>
+                            <label for="start-date">Từ</label>
+                            <input type="date" id="start-date" value="2024-01-01" min="2024-01-01" onchange="showAdminOrder()">
+                            <label for="end-date">đến</label>
+                            <input type="date" id="end-date" value="" min="2024-01-01" onchange="showAdminOrder()">
+                        </div>
+                        
+                        <div class="admin__order-status">
+                            <h3>Tình trạng: </h3>
+                            <select name="" id="" onchange="showAdminOrder()">
+                                <option value="all" selected>Tất cả</option>
+                                <option value="done">Đã xử lý</option>
+                                <option value="processing">Chưa xử lý</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="admin__order-wrapper">                        
+
+                    </div>
+                    
+                    <!-- Order empty -->
+                    <div class="empty admin__order-empty">
+                        <h3 class="empty-noti" style="font-size: 18px;">Không có đơn hàng nào!</h3>
+                        <img src="./img/order-empty.png" alt="" class="empty-img" style="width: 300px;">
+                    </div>
+                </div>
+                
+                <!-- User -->
+                <div class="admin__user">
+                    <div class="admin__user-wrapper">
+                        <div class="admin__user-left">
+                            <div class="admin__user-search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" class="admin__user-search-input" placeholder="Nhập tên người dùng">
+                            </div>
+                            <div class="admin__user-account-list">
+
+                            </div>
+                        </div>
+
+                        <div class="admin__user-right">
+                            <div class="admin__user-header">
+                                <span>Tất cả tài khoản</span>
+                                <span class="all-account-quantity"></span>
+                            </div>
+                            <div class="admin__user-list">
+                                <div class="admin__user-item">
+                                    <span>Admin</span>
+                                    <span class="admin-account-quantity"></span>
+                                </div>
+                                <div class="admin__user-item">
+                                    <span>Người dùng</span>
+                                    <span class="user-account-quantity"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product control -->
+        <div id="product-control-modal" class="modal" onclick="document.getElementById('product-control-modal').style.display='none'">
+            <div class="modal-overlay"></div>
+
+            <div class="modal-body">
+                <!-- Add product -->
+                <div id="add-product" class="control-form">
+                    <span class="close" onclick="document.getElementById('product-control-modal').style.display='none'">
+                        <i class="close-btn fa-solid fa-xmark"></i>
+                    </span>
+                    <div class="control-form__container">
+                        <div class="control-form__heading">
+                            <h3>Thêm sản phẩm</h3>
+                        </div>
+                        <div class="control-form__upload">
+                            <button class="upload-img-btn" onclick="openFileBtnActive()">Thêm ảnh</button>
+                            <input type="file" name="" id="open-file" accept="image/*" hidden required>
+                            <div class="upload-box">
+                                <img src="" alt="" class="upload-img" id="product-img">
+                                <span class="close">
+                                    <i class="close-btn fa-solid fa-xmark"></i>
+                                </span>
+                                <div class="upload-box-content">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-form__form">
+                            <div class="control-form__form-box">
+                                <label for="product-id" class="control-form__form-lable">ID</label>
+                                <input id="product-id" type="text" class="control-form__form-input" placeholder="Nhập ID" required >
+                                <span class="error id"></span>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-name" class="control-form__form-lable">Tên sản phẩm</label>
+                                <input id="product-name" type="text" class="control-form__form-input" placeholder="Nhập tên" required>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-category" class="control-form__form-lable">Loại sản phẩm</label>
+                                <select name="" id="product-category">
+                                    <option value="chicken">Gà rán</option>
+                                    <option value="side-dish">Phần ăn phụ</option>
+                                    <option value="drink">Thức uống</option>
+                                </select>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-detail-category" class="control-form__form-lable">Chi tiết loại sản phẩm</label>
+                                <input id="product-detail-category" type="text" class="control-form__form-input" placeholder="Nhập chi tiết loại sản phẩm" required>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-old-price" class="control-form__form-lable">Giá niêm yết</label>
+                                <input id="product-old-price" type="number" class="control-form__form-input" placeholder="Nhập giá niêm yết" required>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-current-price" class="control-form__form-lable">Giá bán</label>
+                                <input id="product-current-price" type="number" class="control-form__form-input" placeholder="Nhập giá bán" required>
+                            </div>
+
+                            <button class="control-form___form-btn add" onclick="addProduct()">Thêm sản phẩm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit product -->
+                <div id="edit-product" class="control-form">
+                    <span class="close" onclick="document.getElementById('product-control-modal').style.display='none'">
+                        <i class="close-btn fa-solid fa-xmark"></i>
+                    </span>
+                    <div class="control-form__container">
+                        <div class="control-form__heading">
+                            <h3>Sửa thông tin sản phẩm</h3>
+                        </div>
+                        <div class="control-form__upload">
+                            <button class="upload-img-btn" onclick="openEditFileBtnActive()">Upload ảnh</button>
+                            <input type="file" name="" id="open-file" accept="image/*" hidden>
+                            <div class="edit upload-box">
+                                <img src="" alt="" class="upload-img" id="product-img">
+                                <span class="edit-close" onclick="deleteImg()">
+                                    <i class="close-btn fa-solid fa-xmark"></i>
+                                </span>
+                                <div class="upload-box-content">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="control-form__form" onsubmit="editProductInfo(); return false">
+                            <div class="control-form__form-box">
+                                <label for="product-id" class="control-form__form-lable">ID</label>
+                                <input id="product-id" type="text" class="control-form__form-input disable" placeholder="Nhập ID" readonly>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-name" class="control-form__form-lable">Tên sản phẩm</label>
+                                <input id="product-name" type="text" class="control-form__form-input" placeholder="Nhập tên" required>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-category" class="control-form__form-lable">Loại sản phẩm</label>
+                                <select name="" id="product-category">
+                                    <option value="chicken">Gà rán</option>
+                                    <option value="side-dish">Phần ăn phụ</option>
+                                    <option value="drink">Thức uống</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-detail-category" class="control-form__form-lable">Chi tiết loại sản phẩm</label>
+                                <input id="product-detail-category" type="text" class="control-form__form-input" placeholder="Nhập chi tiết loại sản phẩm" required>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-old-price" class="control-form__form-lable">Giá niêm yết</label>
+                                <input id="product-old-price" type="number" class="control-form__form-input" placeholder="Nhập giá niêm yết" required>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="product-current-price" class="control-form__form-lable">Giá bán</label>
+                                <input id="product-current-price" type="number" class="control-form__form-input" placeholder="Nhập giá bán" required>
+                            </div>
+            
+                            <button class="control-form___form-btn" type="submit">Lưu chỉnh sửa</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Delete product -->
+                <div id="delete-product" class="control-form">
+                    <span class="close" onclick="document.getElementById('product-control-modal').style.display='none'">
+                        <i class="close-btn fa-solid fa-xmark"></i>
+                    </span>
+                    <div class="control-form__container">
+                        <div class="delete-form__logo">
+                            <i class="fa fa-trash-alt"></i>
+                        </div>
+                        <h3 class="delete-form__question"></h3>
+                        <div class="delete-form__control">
+                            <button class="delete-form__control-btn cancel" onclick="cancelDelete()">Hủy</button>
+                            <button class="delete-form__control-btn delete" onclick="deleteProduct()">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User control -->
+        <div id="user-control-modal" class="modal" onclick="document.getElementById('user-control-modal').style.display='none'">
+            <div class="modal-overlay"></div>
+
+            <div class="modal-body">
+                <!-- User info -->
+                <div id="user-info" class="control-form">
+                    <span class="close" onclick="document.getElementById('user-control-modal').style.display='none'">
+                        <i class="close-btn fa-solid fa-xmark"></i>
+                    </span>
+                    <div class="control-form__container">
+                        <div class="control-form__heading">
+                            <h3></h3>
+                        </div>
+                        <form class="control-form__form" onsubmit="EditInfo(); return false;">
+                            <div class="control-form__form-box">
+                                <label for="user-fullname" class="control-form__form-lable">Họ và tên</label>
+                                <input id="user-fullname" type="text" class="control-form__form-input disable"  readonly>
+                                
+                            </div>
+                          
+                            <div class="control-form__form-box">
+                                <label for="user-email" class="control-form__form-lable">Email</label>
+                                <input id="user-email" type="email" class="control-form__form-input disable" readonly>
+                            </div>
+                           
+                            <div class="control-form__form-box">
+                                <label for="user-address" class="control-form__form-lable">Địa chỉ</label>
+                                <input id="user-address" type="text" class="control-form__form-input disable" readonly>
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="user-phone" class="control-form__form-lable">Số điện thoại</label>
+                                <input id="user-phone" type="text" class="control-form__form-input disable" readonly>
+                                <!-- <span class="error-phone">Số điện thoại phải có 10 chữ số và phải bắt đầu bằng số 0</span> -->
+                            </div>
+                            <div class="control-form__form-box">
+                                <label for="user-type" class="control-form__form-lable">Chức vụ</label>
+                                <select name="" id="user-type" style="cursor: not-allowed;" disabled>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">Người dùng</option>
+                                </select>
+                            </div>
+                            <button class="control-form___form-btn" type="submit">Lưu </button>
+                        </form>
+                    </div>
+                </div>
+
+               <!-- đã khóa user thành công -->
+                <div id="delete-account" class="control-form">
+                    <span class="close" onclick="document.getElementById('user-control-modal').style.display='none'">
+                        <i class="close-btn fa-solid fa-xmark"></i>
+                    </span>
+                    <div class="control-form__container">
+                        <div class="delete-form__logo">
+                            <i class="fa fa-trash-alt"></i>
+                        </div>
+                        <h3 class="delete-form__question"></h3>
+                        <div class="delete-form__control">
+                            <button class="delete-form__control-btn cancel" onclick="cancelDelete()">Hủy</button>
+                            <button class="delete-form__control-btn delete" onclick="lockAccount()">Đồng ý</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast message -->
+        <div class="toast"></div>
+    </div>
+    
+    <script src="./js/app.js"></script>
+    <script src="./js/page.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/product.js"></script>
+    <script src="./js/admin/admin.js"></script>
+    <script src="./js/admin/ad_statistics.js"></script>
+    <script src="./js/admin/admin_order.js"></script>
+    <script src="./js/admin/ad_product.js"></script>
+    <script src="./js/admin/ad_user.js"></script>
+
+</body>
+</html>
