@@ -1072,6 +1072,7 @@
     border-bottom-color: #888;
 }
 
+
 .account-form__box-showpass {
     position: absolute;
     top: 50%;
@@ -1126,6 +1127,25 @@
     color: #EE4D2D;
     cursor: pointer;
 }
+/* Label cho trường nhập */
+.account-form__label {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+/* Đảm bảo khi người dùng nhập vào, label di chuyển lên trên input */
+.account-form__input:focus + .account-form__label,
+.account-form__input:not(:placeholder-shown) + .account-form__label {
+    top: -8px;
+    font-size: 12px;
+    color: #EE4D2D;
+}
+
 
 /* Sign up */
 #sign-up {
